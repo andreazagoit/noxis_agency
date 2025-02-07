@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import useCursorStore from "@/stores/useCursorStore";
+import { CursorVariants } from "./ui/cursor";
 
 type AnimateCursorProps = {
   children: React.ReactNode;
-  variant: "default" | "project";
+  variant: CursorVariants;
 };
 
 const AnimateCursor = ({ children, variant }: AnimateCursorProps) => {

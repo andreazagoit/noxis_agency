@@ -1,12 +1,13 @@
 // src/store.ts
+import { CursorVariants } from "@/components/ui/cursor";
 import { create } from "zustand";
 
 // Define the types for the store state
 interface CursorStore {
   cursorText: string;
-  cursorVariant: "default" | "project" | "contact"; // You can expand this if you have more variants
+  cursorVariant: CursorVariants;
   setCursorText: (text: string) => void;
-  setCursorVariant: (variant: "default" | "project" | "contact") => void;
+  setCursorVariant: (variant: CursorVariants) => void;
 }
 
 // Create the Zustand store with the defined types
