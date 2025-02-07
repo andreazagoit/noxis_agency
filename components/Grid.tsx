@@ -1,8 +1,15 @@
+"use client";
 import React from "react";
 import { BentoGrid, BentoGridItem } from "./BentoGrid";
 import Container from "./ui/container";
+import { useRouter } from "next/router";
 
 const Grid = () => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return null;
+  }
   return (
     <section id="about" className="relative z-[1]">
       <Container>

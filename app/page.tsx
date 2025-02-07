@@ -36,6 +36,7 @@ export default function Home() {
         <GridBackground />
         <Hero />
         <Grid />
+        <Container className="relative z-[1]">ciao</Container>
         <Approach />
         <Footer />
       </main>
