@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Approach from "@/components/Approach";
 import { CanvasRevealEffectDemo } from "@/components/canvas-reveal";
 import { FloatingNav } from "@/components/FloatingNavbar";
