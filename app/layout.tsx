@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FloatingNav } from "@/components/FloatingNavbar";
-import { navItems } from "./page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +28,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navItems = [
+    { name: "Home", link: "#" },
+    { name: "About", link: "#about" },
+    /* { name: "Projects", link: "#projects" }, */
+    /* { name: "Testimonials", link: "#testimonials" }, */
+    { name: "Contact", link: "#contact" },
+  ];
+
   return (
     <html lang="en" suppressHydrationWarning style={{ cursor: "none" }}>
       <body className={geistMono.className}>
