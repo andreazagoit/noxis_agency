@@ -3,54 +3,46 @@ import React, { useEffect, useState } from "react";
 import Container from "./ui/container";
 import * as motion from "motion/react-client";
 import AnimatedLogo from "./animated-logo";
-import Menu from "./menu";
+import Link from "next/link";
+import useNavigationStore from "@/stores/useNavigationStore";
+import TransitionLink from "./TransitionLink";
+import Clock from "./clock";
 
 type HeaderProps = {};
 
+const links = [
+  { id: "work", name: "Work", href: "/work" },
+  { id: "studio", name: "Studio", href: "/studio" },
+  { id: "contact", name: "Contact", href: "/contact" },
+];
+
 const Header = () => {
-  const [visualizedContent, setVisualizedContent] = useState<
-    "header" | "headerMenu"
-  >("header");
+  const showBrand = useNavigationStore((state) => state.showBrand);
+  const setShowBrand = useNavigationStore((state) => state.setShowBrand);
+
   const [coverState, setCoverState] = useState<"full" | "navbar" | "menu">(
-    "full"
+    "navbar"
   );
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setVisualizedContent("headerMenu");
       setCoverState("navbar");
     }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  const coverVariants = {
-    full: { backgroundColor: "#d1ce14", height: "100vh", padding: "0 100px" },
-    navbar: { backgroundColor: "#ffffff", height: "inherit" },
-    half: { backgroundColor: "#ffffff", height: "50vh" },
-  };
-
-  const textVariants = {
-    white: { color: "#ffffff" },
-    black: { color: "#000000" },
-  };
-
   return (
-    <main className="fixed w-full z-[200]">
+    <main className="fixed w-full z-[200] p-4 mix-blend-difference">
       <motion.div
         style={{
           display: "flex",
           flexDirection: "column",
           width: "100%",
-          height: "100vh",
-          justifyContent:
-            visualizedContent === "header" ? "center" : "space-between",
+          justifyContent: "center",
           alignItems: coverState === "menu" ? "start" : "center",
         }}
         layout
-        initial={coverState}
-        animate={coverState}
-        variants={coverVariants}
         transition={{
           type: "spring",
           duration: 1,
@@ -67,59 +59,46 @@ const Header = () => {
           style={{
             display: "flex",
             width: "100%",
-            justifyContent:
-              visualizedContent === "header" ? "center" : "space-between",
+            justifyContent: "space-between",
             alignItems: "center",
             boxSizing: "border-box",
           }}
         >
+          {showBrand && (
+            <motion.div
+              className="font-bold"
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                type: "spring",
+                duration: 1,
+                bounce: 0.2,
+              }}
+              style={{ backdropFilter: "invert(100%)" }}
+            >
+              <TransitionLink href="/">
+                <span className="text-xl">noxis</span>
+              </TransitionLink>
+            </motion.div>
+          )}
           <motion.div
-            className="text-9xl font-bold text-black"
+            className="flex gap-8"
             layout
-            initial={"black"}
-            animate={textVariants}
-            variants={textVariants}
             transition={{
               type: "spring",
               duration: 1,
               bounce: 0.2,
             }}
           >
-            <AnimatedLogo
-              centerLetter="x"
-              firstPart="no"
-              lastPart="is"
-              open={true}
-            />
+            {links.map((link) => (
+              <TransitionLink key={link.id} href={link.href}>
+                <span className="text-xl">{link.name}</span>
+              </TransitionLink>
+            ))}
           </motion.div>
-          {visualizedContent === "headerMenu" && <Menu />}
+          <Clock />
         </motion.div>
-        {coverState === "menu" && (
-          <div
-            className="absolute w-full"
-            style={{
-              width: "100%",
-              height: "100%",
-              boxSizing: "border-box",
-              display: "flex",
-              alignItems: "center",
-              top: 0,
-              left: 0,
-              padding: 100,
-            }}
-          >
-            <div
-              className=" bg-red-800"
-              style={{
-                padding: "100px 0",
-                height: "300px",
-                boxSizing: "border-box",
-              }}
-            >
-              <p className="text-purple">ciaooo</p>
-            </div>
-          </div>
-        )}
       </motion.div>
     </main>
   );
