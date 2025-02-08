@@ -15,7 +15,7 @@ const Clock = () => {
 
   const formattedTime = time.toLocaleTimeString();
 
-  return <p>{formattedTime}</p>;
+  return <p className="text-sm md:text-xl">{formattedTime}</p>;
 };
 
 export default Clock;

@@ -7,6 +7,8 @@ import Link from "next/link";
 import useNavigationStore from "@/stores/useNavigationStore";
 import TransitionLink from "./TransitionLink";
 import Clock from "./clock";
+import NOXISLogo from "@/public/NOXIS.svg";
+import Brand from "./brand";
 
 type HeaderProps = {};
 
@@ -78,12 +80,12 @@ const Header = () => {
               style={{ backdropFilter: "invert(100%)" }}
             >
               <TransitionLink href="/">
-                <span className="text-xl">noxis</span>
+                <Brand />
               </TransitionLink>
             </motion.div>
           )}
           <motion.div
-            className="flex gap-8"
+            className="flex gap-2 md:gap-8"
             layout
             transition={{
               type: "spring",
@@ -93,7 +95,7 @@ const Header = () => {
           >
             {links.map((link) => (
               <TransitionLink key={link.id} href={link.href}>
-                <span className="text-xl">{link.name}</span>
+                <span className="text-sm md:text-xl">{link.name}</span>
               </TransitionLink>
             ))}
           </motion.div>
