@@ -19,7 +19,7 @@ const Cover = () => {
   return (
     <motion.div
       className={cn(
-        "absolute bg-neutral-800 w-full z-[100]",
+        "absolute bg-black w-full z-[100]",
         transitionState === "open" ? "bottom-0" : "top-0"
       )}
       style={{ bottom: 0 }}
