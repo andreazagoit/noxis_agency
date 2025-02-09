@@ -57,7 +57,7 @@ const ContactPage = () => {
               </p>
             </div>
 
-            <div className="flex-1 flex gap-4 md:gap-32 flex-col md:flex-row">
+            <div className="flex-1 md:flex-none flex gap-4 md:gap-32 flex-col md:flex-row">
               <div className="flex flex-col gap-2 md:gap-4">
                 <p className="font-light text-sm text-[#818181]">EMAIL</p>
                 <p className="text-xs md:text-xl">info@noxis.agency</p>
