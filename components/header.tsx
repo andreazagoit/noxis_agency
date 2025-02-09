@@ -1,16 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Container from "./ui/container";
-import * as motion from "motion/react-client";
-import AnimatedLogo from "./animated-logo";
-import Link from "next/link";
 import useNavigationStore from "@/stores/useNavigationStore";
-import TransitionLink from "./TransitionLink";
-import Clock from "./clock";
-import NOXISLogo from "@/public/NOXIS.svg";
-import Brand from "./brand";
+import * as motion from "motion/react-client";
 import { usePathname } from "next/navigation";
+import React from "react";
+import TransitionLink from "./TransitionLink";
 import AnimateCursor from "./animate-cursor";
+import Brand from "./brand";
+import Clock from "./clock";
 
 type HeaderProps = {};
 
@@ -22,34 +18,23 @@ const links = [
 
 const Header = () => {
   const showBrand = useNavigationStore((state) => state.showBrand);
-  const setShowBrand = useNavigationStore((state) => state.setShowBrand);
   const pathname = usePathname();
 
-  const [coverState, setCoverState] = useState<"full" | "navbar" | "menu">(
-    "navbar"
-  );
-
   return (
-    <main className="fixed w-full z-[200] p-4 mix-blend-difference">
+    <nav className="fixed w-full z-[200] mix-blend-difference px-4 flex items-center h-20">
       <motion.div
         style={{
           display: "flex",
           flexDirection: "column",
           width: "100%",
           justifyContent: "center",
-          alignItems: coverState === "menu" ? "start" : "center",
+          alignItems: "center",
         }}
         layout
         transition={{
           type: "spring",
           duration: 1,
           bounce: 0.2,
-        }}
-        onClick={() => {
-          /* setVisualizedContent((state) =>
-            state === "header" ? "headerMenu" : "header"
-          ); */
-          setCoverState((state) => (state === "menu" ? "navbar" : "menu"));
         }}
       >
         <motion.div
@@ -80,7 +65,7 @@ const Header = () => {
             </motion.div>
           )}
           <motion.div
-            className="flex gap-2 md:gap-8"
+            className="flex gap-2 md:gap-8 items-center"
             layout
             transition={{
               type: "spring",
@@ -107,7 +92,7 @@ const Header = () => {
           <Clock />
         </motion.div>
       </motion.div>
-    </main>
+    </nav>
   );
 };
 

@@ -59,13 +59,13 @@ const Cover = () => {
     <div
       ref={coverRef}
       className={cn(
-        "fixed bg-[#bbdf32] w-full h-full z-[100] flex items-center justify-center",
+        "fixed bg-neutral-900 w-full h-full z-[100] flex items-center justify-center",
         initialRender && "hidden"
       )}
     >
       <div className="flex flex-col items-center">
         <h3
-          className="text-black text-6xl font-bold"
+          className="text-white text-6xl font-bold"
           style={{
             WebkitTextFillColor: "transparent",
             WebkitTextStrokeWidth: 2,
@@ -73,7 +73,7 @@ const Cover = () => {
         >
           NOXIS
         </h3>
-        <h4 className="text-black text-xl">agency</h4>
+        <h4 className="text-white text-xl">agency</h4>
       </div>
     </div>
   );
