@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 import React, { useEffect, useRef } from "react";
 import * as motion from "motion/react-client";
 import useNavigationStore from "@/stores/useNavigationStore";
@@ -9,18 +9,7 @@ const Cover = () => {
   const pageState = useNavigationStore((state) => state.pageState);
   const coverRef = useRef<any>(null!);
 
-  /* const coverVariants = {
-    loading: (custom) => {
-      return {
-        clipPath: "inset(0% 0% 0% 0%)", // Raggiunge il 100% (copre tutto)
-      };
-    },
-    ready: (custom) => {
-      return {
-        clipPath: "inset(100% 0% 0% 0%)", // Raggiunge il 100% (copre tutto)
-      };
-    },
-  }; */
+
 
   useEffect(() => {
     if (pageState === "loading") {
@@ -44,24 +33,10 @@ const Cover = () => {
   return (
     <div
       ref={coverRef}
-      className={cn(
-        "fixed bg-[#bbdf32] w-full h-full z-[100] flex items-center justify-center"
-      )}
-    >
-      <div className="flex flex-col items-center">
-        <h3
-          className="text-black text-6xl font-bold"
-          style={{
-            WebkitTextFillColor: "transparent",
-            WebkitTextStrokeWidth: 2,
-          }}
-        >
-          NOXIS
-        </h3>
-        <h4 className="text-black text-xl">agency</h4>
-      </div>
-    </div>
+      className={cn("fixed bg-[#bbdf32] w-full h-full z-[100]")}
+    />
   );
 };
 
 export default Cover;
+ */
