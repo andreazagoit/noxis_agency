@@ -20,9 +20,9 @@ const AnimateCursor = ({ children, variant }: AnimateCursorProps) => {
   };
 
   return (
-    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <span onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {children}
-    </div>
+    </span>
   );
 };
 

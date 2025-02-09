@@ -18,11 +18,11 @@ const cursorVariants = {
     borderRadius: 16,
   },
   link: {
-    width: 100,
-    backgroundColor: "red",
+    width: 64,
+    height: 64,
     transform: "translate(-50%, -50%)",
     backdropFilter: "invert(100%)",
-    borderRadius: 16,
+    borderRadius: 32,
   },
   project: {
     width: 100,
@@ -40,6 +40,13 @@ const cursorVariants = {
     border: "2px solid rgb(209, 206, 20)",
     scale: 0.8,
     transform: "translate(-50%, -50%)",
+  },
+  menu: {
+    width: 100,
+    backgroundColor: "red",
+    transform: "translate(-50%, -50%)",
+    backdropFilter: "invert(100%)",
+    borderRadius: 16,
   },
 };
 
@@ -119,13 +126,13 @@ const Cursor = () => {
         bounce: 0.2,
       }}
     >
-      <motion.span
+      {/* <motion.span
         className="cursorText"
         variants={textVariants}
         animate={cursorVariant}
       >
         Menu
-      </motion.span>
+      </motion.span> */}
     </motion.div>
   );
 };

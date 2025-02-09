@@ -1,4 +1,5 @@
 import React from "react";
+import { animate } from "motion";
 
 type BrandProps = {
   width?: number | string;
@@ -8,7 +9,7 @@ const Brand = ({ width = 80 }: BrandProps) => {
   return (
     <svg
       width={width}
-      height="auto"
+      height="100%"
       viewBox="0 0 1340 337"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

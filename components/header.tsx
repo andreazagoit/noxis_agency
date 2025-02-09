@@ -10,6 +10,7 @@ import Clock from "./clock";
 import NOXISLogo from "@/public/NOXIS.svg";
 import Brand from "./brand";
 import { usePathname } from "next/navigation";
+import AnimateCursor from "./animate-cursor";
 
 type HeaderProps = {};
 
@@ -88,17 +89,19 @@ const Header = () => {
             }}
           >
             {links.map((link) => (
-              <>
+              <React.Fragment key={link.id}>
                 {pathname === link.href ? (
                   <span className="text-sm md:text-xl text-neutral-400">
                     {link.name}
                   </span>
                 ) : (
-                  <TransitionLink key={link.id} href={link.href}>
-                    <span className="text-sm md:text-xl">{link.name}</span>
-                  </TransitionLink>
+                  <AnimateCursor variant="link">
+                    <TransitionLink key={link.id} href={link.href}>
+                      <span className="text-sm md:text-xl">{link.name}</span>
+                    </TransitionLink>
+                  </AnimateCursor>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </motion.div>
           <Clock />
