@@ -72,12 +72,26 @@ const Cursor = () => {
       }
     };
 
+    const handleWindowBlur = () => {
+      setIsVisible(false);
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        setIsVisible(false);
+      }
+    };
+
     window.addEventListener("pointermove", updateMousePosition);
     window.addEventListener("pointerdown", hideCursorOnTouch);
+    window.addEventListener("blur", handleWindowBlur);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       window.removeEventListener("pointermove", updateMousePosition);
       window.removeEventListener("pointerdown", hideCursorOnTouch);
+      window.removeEventListener("blur", handleWindowBlur);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
 

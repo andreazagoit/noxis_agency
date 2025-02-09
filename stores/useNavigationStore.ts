@@ -5,16 +5,16 @@ import { create } from "zustand";
 interface NavigationStore {
   showBrand: boolean;
   setShowBrand: (value: boolean) => void;
-  transitionState: "open" | "close";
-  setTransitionState: (value: "open" | "close") => void;
+  pageState: "loading" | "ready";
+  setPageState: (value: "loading" | "ready") => void;
 }
 
 // Create the Zustand store with the defined types
 const useNavigationStore = create<NavigationStore>((set) => ({
   showBrand: false,
   setShowBrand: (value) => set({ showBrand: value }),
-  transitionState: "close",
-  setTransitionState: (value) => set({ transitionState: value }),
+  pageState: "loading",
+  setPageState: (value) => set({ pageState: value }),
 }));
 
 export default useNavigationStore;

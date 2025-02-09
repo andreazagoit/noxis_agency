@@ -12,12 +12,10 @@ type TransitionLinkProps = {
 const TransitionLink = ({ href, children }: TransitionLinkProps) => {
   const router = useRouter();
   const setShowBrand = useNavigationStore((state) => state.setShowBrand);
-  const setTransitionState = useNavigationStore(
-    (state) => state.setTransitionState
-  );
+  const setPageState = useNavigationStore((state) => state.setPageState);
 
   const handleNavigationChange = async (href: string) => {
-    setTransitionState("open");
+    setPageState("loading");
     if (href === "/") {
       setShowBrand(false);
     } else {
@@ -25,9 +23,6 @@ const TransitionLink = ({ href, children }: TransitionLinkProps) => {
     }
     await delay(1);
     router.push(href);
-    await delay(0.5);
-
-    setTransitionState("close");
   };
 
   return <span onClick={() => handleNavigationChange(href)}>{children}</span>;

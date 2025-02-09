@@ -5,13 +5,13 @@ import useNavigationStore from "@/stores/useNavigationStore";
 import { cn } from "@/lib/utils";
 
 const Cover = () => {
-  const transitionState = useNavigationStore((state) => state.transitionState);
+  const pageState = useNavigationStore((state) => state.pageState);
 
   const coverVariants = {
-    open: {
+    loading: {
       height: "100vh",
     },
-    close: {
+    ready: {
       height: "0vh",
     },
   };
@@ -19,8 +19,8 @@ const Cover = () => {
   return (
     <motion.div
       className={cn(
-        "absolute bg-black w-full z-[100]",
-        transitionState === "open" ? "bottom-0" : "top-0"
+        "fixed bg-black w-full z-[100]",
+        pageState === "loading" ? "bottom-0" : "top-0"
       )}
       style={{ bottom: 0 }}
       transition={{
@@ -28,8 +28,8 @@ const Cover = () => {
         duration: 1,
         bounce: 0.2,
       }}
-      initial="close"
-      animate={transitionState}
+      initial="ready"
+      animate={pageState}
       variants={coverVariants}
     ></motion.div>
   );
