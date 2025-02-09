@@ -9,6 +9,7 @@ import TransitionLink from "./TransitionLink";
 import Clock from "./clock";
 import NOXISLogo from "@/public/NOXIS.svg";
 import Brand from "./brand";
+import { usePathname } from "next/navigation";
 
 type HeaderProps = {};
 
@@ -21,18 +22,11 @@ const links = [
 const Header = () => {
   const showBrand = useNavigationStore((state) => state.showBrand);
   const setShowBrand = useNavigationStore((state) => state.setShowBrand);
+  const pathname = usePathname();
 
   const [coverState, setCoverState] = useState<"full" | "navbar" | "menu">(
     "navbar"
   );
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCoverState("navbar");
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <main className="fixed w-full z-[200] p-4 mix-blend-difference">
@@ -94,9 +88,17 @@ const Header = () => {
             }}
           >
             {links.map((link) => (
-              <TransitionLink key={link.id} href={link.href}>
-                <span className="text-sm md:text-xl">{link.name}</span>
-              </TransitionLink>
+              <>
+                {pathname === link.href ? (
+                  <span className="text-sm md:text-xl text-neutral-400">
+                    {link.name}
+                  </span>
+                ) : (
+                  <TransitionLink key={link.id} href={link.href}>
+                    <span className="text-sm md:text-xl">{link.name}</span>
+                  </TransitionLink>
+                )}
+              </>
             ))}
           </motion.div>
           <Clock />

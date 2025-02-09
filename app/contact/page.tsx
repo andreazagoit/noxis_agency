@@ -49,9 +49,9 @@ const ContactPage = () => {
               </div>
             </Marquee>
           </div>
-          <div className="mx-4 py-8 flex border-t-[0.5px] border-neutral-700 gap-8 md:gap-32 md:flex-row flex-row-reverse">
+          <div className="mx-4 py-6 flex border-t-[0.5px] border-neutral-700 gap-8 md:gap-32 md:flex-row flex-row-reverse items-baseline">
             <div className="flex-1 flex flex-col gap-2">
-              <p className="text-xs md:text-xl leading-[1.5rem]">
+              <p className="text-xs leading-[1.5rem] md:text-xl md:leading-[2.5rem]">
                 We&apos;re always looking for amazing clients to work with –
                 drop us a mail and you will hear from us as soon as possible.
               </p>
