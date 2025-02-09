@@ -7,6 +7,7 @@ type PageState = "loading" | "ready";
 interface NavigationStore {
   showBrand: boolean;
   setShowBrand: (value: boolean) => void;
+  initialPageState: PageState;
   pageState: PageState;
   setPageState: (value: PageState) => void;
 }
@@ -15,7 +16,8 @@ interface NavigationStore {
 const useNavigationStore = create<NavigationStore>((set) => ({
   showBrand: false,
   setShowBrand: (value) => set({ showBrand: value }),
-  pageState: "loading",
+  initialPageState: "ready",
+  pageState: "ready",
   setPageState: (value) => set({ pageState: value }),
 }));
 

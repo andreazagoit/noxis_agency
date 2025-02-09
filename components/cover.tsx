@@ -1,12 +1,17 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as motion from "motion/react-client";
 import useNavigationStore from "@/stores/useNavigationStore";
 import { cn } from "@/lib/utils";
 import { animate } from "motion";
 
 const Cover = () => {
+  const initialPageState = useNavigationStore(
+    (state) => state.initialPageState
+  );
+  const [initialRender, setInitialRender] = useState(true);
   const pageState = useNavigationStore((state) => state.pageState);
+
   const coverRef = useRef<any>(null!);
 
   /* const coverVariants = {
@@ -23,6 +28,15 @@ const Cover = () => {
   }; */
 
   useEffect(() => {
+    if (initialRender) {
+      setInitialRender(false);
+      animate(
+        coverRef.current,
+        { clipPath: "inset(100% 0% 0% 0%)", display: "flex" },
+        { duration: 0 }
+      );
+      return;
+    }
     if (pageState === "loading") {
       animate(
         coverRef.current,
@@ -45,7 +59,8 @@ const Cover = () => {
     <div
       ref={coverRef}
       className={cn(
-        "fixed bg-[#bbdf32] w-full h-full z-[100] flex items-center justify-center"
+        "fixed bg-[#bbdf32] w-full h-full z-[100] flex items-center justify-center",
+        initialRender && "hidden"
       )}
     >
       <div className="flex flex-col items-center">
