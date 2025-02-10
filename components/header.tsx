@@ -7,6 +7,7 @@ import TransitionLink from "./TransitionLink";
 import AnimateCursor from "./animate-cursor";
 import Brand from "./brand";
 import Clock from "./clock";
+import WithCounter from "./WithCounter";
 
 type HeaderProps = {};
 
@@ -85,9 +86,19 @@ const Header = () => {
                   </span>
                 ) : (
                   <AnimateCursor variant="link">
-                    <TransitionLink key={link.id} href={link.href} asChild>
-                      <span className="text-sm md:text-xl">{link.name}</span>
-                    </TransitionLink>
+                    {link.id === "work" ? (
+                      <WithCounter count={works}>
+                        <TransitionLink key={link.id} href={link.href} asChild>
+                          <span className="text-sm md:text-xl">
+                            {link.name}
+                          </span>
+                        </TransitionLink>
+                      </WithCounter>
+                    ) : (
+                      <TransitionLink key={link.id} href={link.href} asChild>
+                        <span className="text-sm md:text-xl">{link.name}</span>
+                      </TransitionLink>
+                    )}
                   </AnimateCursor>
                 )}
               </React.Fragment>
