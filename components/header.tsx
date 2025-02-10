@@ -20,8 +20,10 @@ const Header = () => {
   const showBrand = useNavigationStore((state) => state.showBrand);
   const pathname = usePathname();
 
+  const works = 5;
+
   return (
-    <nav className="fixed w-full z-[200] mix-blend-difference px-4 flex items-center h-20">
+    <nav className="fixed w-full z-[200] mix-blend-difference px-4 flex items-center h-16">
       <motion.div
         style={{
           display: "flex",
@@ -47,22 +49,24 @@ const Header = () => {
           }}
         >
           {showBrand && (
-            <motion.div
-              className="font-bold"
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                type: "spring",
-                duration: 1,
-                bounce: 0.2,
-              }}
-              style={{ backdropFilter: "invert(100%)" }}
-            >
-              <TransitionLink href="/">
-                <Brand />
-              </TransitionLink>
-            </motion.div>
+            <AnimateCursor variant="link">
+              <motion.div
+                className="font-bold"
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  type: "spring",
+                  duration: 1,
+                  bounce: 0.2,
+                }}
+                style={{ backdropFilter: "invert(100%)" }}
+              >
+                <TransitionLink href="/">
+                  <Brand />
+                </TransitionLink>
+              </motion.div>
+            </AnimateCursor>
           )}
           <motion.div
             className="flex gap-2 md:gap-8 items-center"
@@ -81,7 +85,7 @@ const Header = () => {
                   </span>
                 ) : (
                   <AnimateCursor variant="link">
-                    <TransitionLink key={link.id} href={link.href}>
+                    <TransitionLink key={link.id} href={link.href} asChild>
                       <span className="text-sm md:text-xl">{link.name}</span>
                     </TransitionLink>
                   </AnimateCursor>

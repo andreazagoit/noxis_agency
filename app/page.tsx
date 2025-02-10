@@ -21,7 +21,7 @@ export default function Home() {
     <>
       <PageInitializer />
       <main>
-        <div className="h-[100vh] flex flex-col pt-20">
+        <div className="h-[100vh] flex flex-col pt-14">
           <div className="px-4 mb-4">
             <Brand width={"100%"} />
           </div>

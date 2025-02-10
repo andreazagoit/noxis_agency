@@ -1,45 +1,14 @@
-"use client";
-import gsap from "gsap";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 type BrandProps = {
   width?: number | string;
 };
 
 const Brand = ({ width = 80 }: BrandProps) => {
-  const svgRef = useRef<SVGSVGElement | null>(null);
-
-  useEffect(() => {
-    if (svgRef.current) {
-      // Select all the paths in the SVG
-      const paths = svgRef.current.querySelectorAll("path");
-
-      // GSAP stagger animation for each path
-      gsap.fromTo(
-        paths,
-        {
-          strokeDashoffset: (i) => (i % 2 === 0 ? 1000 : 500), // Start with an offset (for "drawing" effect)
-          strokeDasharray: (i) => (i % 2 === 0 ? 1000 : 500), // The length of each path
-          opacity: 0, // Make paths invisible initially
-          yPercent: 20,
-        },
-        {
-          yPercent: 0,
-          opacity: 1, // Make them fully visible
-          strokeDashoffset: 0, // Animate the dashoffset to 0 to simulate the drawing of the paths
-          duration: 1.5, // Animation duration for each path
-          stagger: 0.15, // Stagger each path's animation by 0.2 seconds
-          ease: "power3.out", // Easing function for the animation
-        }
-      );
-    }
-  }, []);
-
   return (
     <svg
-      ref={svgRef}
       width={width}
-      height="auto"
+      height="100%"
       viewBox="0 0 1340 337"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
