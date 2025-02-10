@@ -8,6 +8,7 @@ import AnimateCursor from "./animate-cursor";
 import Brand from "./brand";
 import Clock from "./clock";
 import WithCounter from "./WithCounter";
+import works from "@/data/works";
 
 type HeaderProps = {};
 
@@ -20,8 +21,6 @@ const links = [
 const Header = () => {
   const showBrand = useNavigationStore((state) => state.showBrand);
   const pathname = usePathname();
-
-  const works = 5;
 
   return (
     <nav className="fixed w-full z-[200] mix-blend-difference px-4 flex items-center h-14 md:h-16">
@@ -83,7 +82,7 @@ const Header = () => {
                   <>
                     {link.id === "work" ? (
                       <WithCounter
-                        count={works}
+                        count={works.length}
                         countClassName="text-neutral-400"
                       >
                         <span className="text-sm md:text-xl text-neutral-400">
@@ -99,7 +98,7 @@ const Header = () => {
                 ) : (
                   <AnimateCursor variant="link">
                     {link.id === "work" ? (
-                      <WithCounter count={works}>
+                      <WithCounter count={works.length}>
                         <TransitionLink key={link.id} href={link.href} asChild>
                           <span className="text-sm md:text-xl">
                             {link.name}

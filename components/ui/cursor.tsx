@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import * as motion from "motion/react-client";
 import useCursorStore from "@/stores/useCursorStore";
 
@@ -12,7 +12,7 @@ const cursorVariants = {
   default: {
     width: 32,
     height: 32,
-    background: "#bbdf3200",
+    background: "rgba(187, 223, 50, 0.125)",
     backdropFilter: "invert(100%)",
     transform: "translate(-50%, -50%)",
     borderRadius: 16,
@@ -23,36 +23,32 @@ const cursorVariants = {
     transform: "translate(-50%, -50%)",
     backdropFilter: "invert(100%)",
     borderRadius: 32,
+    border: "1px solid rgba(0,0,0,0.2)",
   },
   project: {
     width: 100,
     height: 64,
     scale: 1.2,
-    border: "0px solid rgb(209, 206, 20)",
-    background: "#d1ce1400",
+    border: "1px solid rgba(209, 206, 20, 0.5)",
+    background: "rgba(209, 206, 20, 0.1)",
     transform: "translate(-50%, -50%)",
     backdropFilter: "invert(100%)",
   },
   contact: {
     width: 48,
     height: 48,
-    backgroundColor: "green",
+    backgroundColor: "rgba(0, 128, 0, 0.2)",
     border: "2px solid rgb(209, 206, 20)",
     scale: 0.8,
     transform: "translate(-50%, -50%)",
   },
   menu: {
     width: 100,
-    backgroundColor: "red",
+    backgroundColor: "rgba(255, 0, 0, 0.2)",
     transform: "translate(-50%, -50%)",
     backdropFilter: "invert(100%)",
     borderRadius: 16,
   },
-};
-
-const textVariants = {
-  default: { opacity: 0 },
-  link: { opacity: 1, color: "#000000" },
 };
 
 export type CursorVariants = keyof typeof cursorVariants;
@@ -65,30 +61,28 @@ const Cursor = () => {
   });
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const updateMousePosition = (e: PointerEvent) => {
-      if (e.pointerType === "mouse") {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-        setIsVisible(true);
-      }
-    };
+  const updateMousePosition = useCallback((e: PointerEvent) => {
+    if (e.pointerType === "mouse") {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      setIsVisible(true);
+    }
+  }, []);
 
-    const hideCursorOnTouch = (e: PointerEvent) => {
-      if (e.pointerType !== "mouse") {
-        setIsVisible(false);
-      }
-    };
-
-    const handleWindowBlur = () => {
+  const hideCursorOnTouch = useCallback((e: PointerEvent) => {
+    if (e.pointerType !== "mouse") {
       setIsVisible(false);
-    };
+    }
+  }, []);
 
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "hidden") {
-        setIsVisible(false);
-      }
-    };
+  const handleWindowBlur = useCallback(() => {
+    setIsVisible(false);
+  }, []);
 
+  const handleVisibilityChange = useCallback(() => {
+    setIsVisible(document.visibilityState === "visible");
+  }, []);
+
+  useEffect(() => {
     window.addEventListener("pointermove", updateMousePosition);
     window.addEventListener("pointerdown", hideCursorOnTouch);
     window.addEventListener("blur", handleWindowBlur);
@@ -100,13 +94,18 @@ const Cursor = () => {
       window.removeEventListener("blur", handleWindowBlur);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, [
+    updateMousePosition,
+    hideCursorOnTouch,
+    handleWindowBlur,
+    handleVisibilityChange,
+  ]);
 
   if (!isVisible) return null;
 
   return (
     <motion.div
-      className="circle"
+      className="cursor fixed"
       style={{
         position: "fixed",
         display: "flex",
@@ -125,15 +124,7 @@ const Cursor = () => {
         duration: 0.3,
         bounce: 0.2,
       }}
-    >
-      {/* <motion.span
-        className="cursorText"
-        variants={textVariants}
-        animate={cursorVariant}
-      >
-        Menu
-      </motion.span> */}
-    </motion.div>
+    />
   );
 };
 
