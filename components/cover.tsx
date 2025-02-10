@@ -35,15 +35,15 @@ const Cover = () => {
     >
       <div className="flex flex-col items-center">
         <h3
-          className="text-white text-6xl font-bold"
+          className="text-white text-[30vw] font-bold md:text-[30vw]"
           style={{
             WebkitTextFillColor: "transparent",
-            WebkitTextStrokeWidth: 2,
+            WebkitTextStrokeWidth: 1,
           }}
         >
           NOXIS
         </h3>
-        <h4 className="text-white text-xl">agency</h4>
+        {/* <h4 className="text-white text-xs">agency</h4> */}
       </div>
     </motion.div>
   );
