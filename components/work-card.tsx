@@ -22,8 +22,7 @@ const WorkCard = ({ work }: WorkCardProps) => {
             alt={`${title} website`}
             layout="fill"
             objectFit="cover"
-            priority
-          />{" "}
+          />
         </div>
         <div>
           <h2 className="text-4xl md:text-6xl font-extrabold uppercase">
