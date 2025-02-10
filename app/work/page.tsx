@@ -34,7 +34,7 @@ const WorkPage = () => {
             <WorkCard key={work.id} work={work} />
           ))}
         </section>
-        <section className="py-4 mx-4 flex justify-between border-t-[0.5px] border-neutral-700 flex-col">
+        <section className="py-4 mx-4 flex justify-between border-t-[0.5px] border-neutral-700 flex-col md:flex-row">
           <p className="text-sm md:text-base">
             WE TRANSFORMS BRANDS INTO EXPERIENCES
           </p>
