@@ -1,6 +1,7 @@
 import { Work } from "@/data/works";
 import React from "react";
 import AnimateCursor from "./animate-cursor";
+import Image from "next/image";
 
 type WorkCardProps = {
   work: Work;
@@ -15,7 +16,15 @@ const WorkCard = ({ work }: WorkCardProps) => {
       onClick={() => window.open(href, "_blank", "noopener,noreferrer")}
     >
       <div className="flex flex-col pb-4 gap-4 min-w-full md:min-w-[55vw] min-h-[70vh] md:h-full">
-        <div className="bg-gray-200 h-full w-full flex-1"></div>
+        <div className="bg-gray-200 h-full w-full flex-1 relative">
+          <Image
+            src={image}
+            alt={`${title} website`}
+            layout="fill"
+            objectFit="cover"
+            priority
+          />{" "}
+        </div>
         <div>
           <h2 className="text-4xl md:text-6xl font-extrabold uppercase">
             {title}
