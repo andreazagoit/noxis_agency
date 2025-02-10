@@ -21,7 +21,7 @@ const Clock = () => {
   const formattedTime = time ? time.toLocaleTimeString() : ""; // Format time if available
 
   return (
-    <p className="text-sm md:text-xl" suppressHydrationWarning>
+    <p className="text-sm md:text-xl hidden md:flex" suppressHydrationWarning>
       {formattedTime}
     </p>
   );

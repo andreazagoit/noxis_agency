@@ -24,7 +24,7 @@ const Header = () => {
   const works = 5;
 
   return (
-    <nav className="fixed w-full z-[200] mix-blend-difference px-4 flex items-center h-16">
+    <nav className="fixed w-full z-[200] mix-blend-difference px-4 flex items-center h-14 md:h-16">
       <motion.div
         style={{
           display: "flex",
