@@ -33,7 +33,6 @@ const Header = () => {
           justifyContent: "center",
           alignItems: "center",
         }}
-        layout
         transition={{
           type: "spring",
           duration: 1,
@@ -53,7 +52,7 @@ const Header = () => {
             <AnimateCursor variant="link">
               <motion.div
                 className="font-bold"
-                layout
+                layout="position"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{

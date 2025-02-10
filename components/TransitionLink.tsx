@@ -35,6 +35,7 @@ const TransitionLink = ({
     }
     setCursorVariant("default");
     await delay(1);
+    window.scroll(0, 0);
     router.push(href);
   };
 

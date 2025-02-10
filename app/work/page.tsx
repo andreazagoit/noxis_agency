@@ -3,10 +3,12 @@ import React from "react";
 
 const WorkPage = () => {
   return (
-    <div>
+    <>
       <PageInitializer />
-      WorkPage
-    </div>
+      <main className="h-[100dvh] bg-blue-300 pt-14">
+        <h1 className="text-white">Works</h1>
+      </main>
+    </>
   );
 };
 
