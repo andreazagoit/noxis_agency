@@ -15,7 +15,7 @@ const WorkCard = ({ work }: WorkCardProps) => {
       onClick={() => window.open(href, "_blank", "noopener,noreferrer")}
     >
       <div className="flex flex-col pb-4 gap-4 min-w-full md:min-w-[55vw] min-h-[70vh] md:h-full">
-        <div className="bg-gray-200 h-full w-full"></div>
+        <div className="bg-gray-200 h-full w-full flex-1"></div>
         <div>
           <h2 className="text-4xl md:text-6xl font-extrabold uppercase">
             {title}

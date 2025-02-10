@@ -17,14 +17,14 @@ const WorkPage = () => {
   return (
     <>
       <PageInitializer />
-      <main className="h-[100dvh] pt-16 flex flex-col">
+      <main className="min-h-screen md:h-[100dvh] pt-16 flex flex-col">
         <section
           ref={scrollContainerRef}
           onWheel={handleWheel}
           className="flex-1 px-4 
           flex flex-col md:flex-row 
           overflow-x-scroll md:overflow-x-auto 
-          overflow-y-auto 
+          overflow-y-hidden 
           gap-4 
           [&::-webkit-scrollbar]:hidden 
           [-ms-overflow-style:none] 
@@ -38,7 +38,7 @@ const WorkPage = () => {
           <p className="text-sm md:text-base">
             WE TRANSFORMS BRANDS INTO EXPERIENCES
           </p>
-          <p className="text-sm  md:text-base">CURRENT WORK ({works.length})</p>
+          <p className="text-sm md:text-base">CURRENT WORK ({works.length})</p>
         </section>
       </main>
     </>
