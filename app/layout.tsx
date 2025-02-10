@@ -30,14 +30,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const navItems = [
-    { name: "Home", link: "#" },
-    { name: "About", link: "#about" },
-    /* { name: "Projects", link: "#projects" }, */
-    /* { name: "Testimonials", link: "#testimonials" }, */
-    { name: "Contact", link: "#contact" },
-  ];
-
   return (
     <html lang="en" suppressHydrationWarning style={{ cursor: "none" }}>
       <body className={geistMono.className}>

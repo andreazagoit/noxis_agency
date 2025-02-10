@@ -3,10 +3,10 @@ import React from "react";
 
 const WorkPage = () => {
   return (
-    <>
+    <div>
       <PageInitializer />
       WorkPage
-    </>
+    </div>
   );
 };
 

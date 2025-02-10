@@ -81,9 +81,22 @@ const Header = () => {
             {links.map((link) => (
               <React.Fragment key={link.id}>
                 {pathname === link.href ? (
-                  <span className="text-sm md:text-xl text-neutral-400">
-                    {link.name}
-                  </span>
+                  <>
+                    {link.id === "work" ? (
+                      <WithCounter
+                        count={works}
+                        countClassName="text-neutral-400"
+                      >
+                        <span className="text-sm md:text-xl text-neutral-400">
+                          {link.name}
+                        </span>
+                      </WithCounter>
+                    ) : (
+                      <span className="text-sm md:text-xl text-neutral-400">
+                        {link.name}
+                      </span>
+                    )}
+                  </>
                 ) : (
                   <AnimateCursor variant="link">
                     {link.id === "work" ? (
