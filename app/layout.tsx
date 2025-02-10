@@ -5,6 +5,7 @@ import "./globals.css";
 import Cursor from "@/components/ui/cursor";
 import Header from "@/components/header";
 import Cover from "@/components/cover";
+import MetaPixel from "@/components/meta-pixel";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning style={{ cursor: "none" }}>
       <body className={geistMono.className}>
+        <MetaPixel />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
