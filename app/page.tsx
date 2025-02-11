@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 import Approach from "@/components/Approach";
 import Brand from "@/components/brand";
-import Footer from "@/components/footer";
+import Footer from "@/components/Footer";
 import PageInitializer from "@/components/page-initializer";
 import ServicesSection from "@/components/services-section";
 import { AuroraBackground } from "@/components/ui/aurora-background";

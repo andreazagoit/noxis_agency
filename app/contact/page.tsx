@@ -1,5 +1,5 @@
 import ContactsSection from "@/components/contacts-section";
-import Footer from "@/components/footer";
+import Footer from "@/components/Footer";
 import PageInitializer from "@/components/page-initializer";
 import Marquee from "react-fast-marquee";
 
