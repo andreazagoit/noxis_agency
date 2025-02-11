@@ -14,7 +14,7 @@ type HeaderProps = {};
 
 const links = [
   { id: "work", name: "Work", href: "/work" },
-  { id: "studio", name: "Studio", href: "/studio" },
+  /* { id: "studio", name: "Studio", href: "/studio" }, */
   { id: "contact", name: "Contact", href: "/contact" },
 ];
 

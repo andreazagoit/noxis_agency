@@ -8,7 +8,7 @@ import Menu from "@/components/menu";
 import Cursor from "@/components/ui/cursor";
 import AnimateCursor from "@/components/animate-cursor";
 import Approach from "@/components/Approach";
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 
 const HomePage = () => {

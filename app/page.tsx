@@ -1,20 +1,11 @@
 export const dynamic = "force-dynamic";
 
 import Approach from "@/components/Approach";
-import { AuroraBackgroundDemo } from "@/components/aurora-background-demo";
 import Brand from "@/components/brand";
-import Footer from "@/components/Footer";
-import Grid from "@/components/Grid";
-import GridBackground from "@/components/grid-background";
-import Header from "@/components/header";
-import Hero from "@/components/Hero";
-import InfiniteScroll from "@/components/infinite-scroll";
+import Footer from "@/components/footer";
 import PageInitializer from "@/components/page-initializer";
 import { AuroraBackground } from "@/components/ui/aurora-background";
-import Container from "@/components/ui/container";
-import Cursor from "@/components/ui/cursor";
 import { WobbleCardDemo } from "@/components/wobble-card-demo";
-import Marquee from "react-fast-marquee";
 
 export default function Home() {
   return (

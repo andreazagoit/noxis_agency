@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 import Approach from "@/components/Approach";
 import { CanvasRevealEffectDemo } from "@/components/canvas-reveal";
 import { FloatingNav } from "@/components/FloatingNavbar";
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer";
 import Grid from "@/components/Grid";
 import GridBackground from "@/components/grid-background";
 import Header from "@/components/header";

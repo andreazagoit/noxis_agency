@@ -3,36 +3,27 @@ export type Work = {
   title: string;
   description: string;
   image: string;
-  href: string;
+  href?: string;
 };
 
 const works: Work[] = [
   {
     id: "1",
-    title: "Agenzia Dese",
-    description: "Pratiche auto",
+    title: "Email Marketing",
+    description: "Piattaforma di email marketing (wip)",
     image: "/website-1.webp",
-    href: "https://agenziadese.it/",
   },
   {
     id: "2",
-    title: "Agenzia Dese",
-    description: "Pratiche auto",
-    image: "/website-1.webp",
-    href: "https://agenziadese.it/",
+    title: "Upcoming Hub",
+    description: "Hub per uscita di prodotti, servizi",
+    image: "/project-2.webp",
   },
   {
     id: "3",
-    title: "Agenzia Dese",
+    title: "Agenzia Dese (2022)",
     description: "Pratiche auto",
-    image: "/website-1.webp",
-    href: "https://agenziadese.it/",
-  },
-  {
-    id: "4",
-    title: "Agenzia Dese",
-    description: "Pratiche auto",
-    image: "/website-1.webp",
+    image: "/project-1.webp",
     href: "https://agenziadese.it/",
   },
 ];

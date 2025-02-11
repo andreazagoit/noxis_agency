@@ -1,3 +1,5 @@
+import ContactsSection from "@/components/contacts-section";
+import Footer from "@/components/footer";
 import PageInitializer from "@/components/page-initializer";
 import React from "react";
 import Marquee from "react-fast-marquee";
@@ -49,27 +51,21 @@ const ContactPage = () => {
               </div>
             </Marquee>
           </div>
-          <div className="mx-4 py-6 flex border-t-[0.5px] border-neutral-700 gap-8 md:gap-32 md:flex-row flex-row-reverse items-baseline">
-            <div className="flex-1 flex flex-col gap-2">
-              <p className="text-xs leading-[1.5rem] md:text-xl md:leading-[2.5rem]">
+          <div className="px-4">
+            <ContactsSection>
+              <p
+                className={
+                  "text-xs leading-[1.5rem] md:text-xl md:leading-[2.5rem]"
+                }
+              >
                 We&apos;re always looking for amazing clients to work with –
                 drop us a mail and you will hear from us as soon as possible.
               </p>
-            </div>
-
-            <div className="flex-1 md:flex-none flex gap-4 md:gap-32 flex-col md:flex-row">
-              <div className="flex flex-col gap-2 md:gap-4">
-                <p className="font-light text-sm text-[#818181]">EMAIL</p>
-                <p className="text-xs md:text-xl">info@noxis.agency</p>
-              </div>
-              <div className="flex flex-col gap-2 md:gap-4">
-                <p className="font-light text-sm text-[#818181]">TELEFONO</p>
-                <p className="text-xs md:text-xl">+39 349 138 4504</p>
-              </div>
-            </div>
+            </ContactsSection>
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 };
