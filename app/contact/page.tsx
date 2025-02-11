@@ -1,7 +1,6 @@
 import ContactsSection from "@/components/contacts-section";
 import Footer from "@/components/footer";
 import PageInitializer from "@/components/page-initializer";
-import React from "react";
 import Marquee from "react-fast-marquee";
 
 const ContactPage = () => {
