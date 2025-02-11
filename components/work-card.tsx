@@ -1,5 +1,5 @@
 import { Work } from "@/data/works";
-import React from "react";
+import React, { useState } from "react";
 import AnimateCursor from "./animate-cursor";
 import Image from "next/image";
 
@@ -9,6 +9,7 @@ type WorkCardProps = {
 
 const WorkCard = ({ work }: WorkCardProps) => {
   const { id, title, description, image, href } = work;
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleClick = () => {
     if (href) {
@@ -17,15 +18,24 @@ const WorkCard = ({ work }: WorkCardProps) => {
       alert("Il progetto sará reso risponibile a breve");
     }
   };
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
+
   return (
     <AnimateCursor variant="link" asChild onClick={handleClick}>
       <div className="flex flex-col pb-4 gap-4 min-w-full md:min-w-[55vw] min-h-[70vh] md:h-full">
-        <div className="bg-gray-200 h-full w-full flex-1 relative">
+        <div className="bg-gray-900 h-full w-full flex-1 relative">
           <Image
             src={image}
             alt={`${title} website`}
             layout="fill"
             objectFit="cover"
+            className={`transition-all duration-500 ${
+              isLoading ? "blur-lg" : "blur-0"
+            }`}
+            onLoadingComplete={handleImageLoad}
           />
         </div>
         <div>
