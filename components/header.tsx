@@ -2,7 +2,7 @@
 import useNavigationStore from "@/stores/useNavigationStore";
 import * as motion from "motion/react-client";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import TransitionLink from "./TransitionLink";
 import AnimateCursor from "./animate-cursor";
 import Brand from "./brand";
@@ -20,6 +20,8 @@ const links = [
 
 const Header = () => {
   const showBrand = useNavigationStore((state) => state.showBrand);
+  const setShowBrand = useNavigationStore((state) => state.setShowBrand);
+
   const pathname = usePathname();
 
   return (
@@ -47,7 +49,7 @@ const Header = () => {
             boxSizing: "border-box",
           }}
         >
-          {showBrand && (
+          {pathname !== "/" && (
             <AnimateCursor variant="link">
               <motion.div
                 className="font-bold"

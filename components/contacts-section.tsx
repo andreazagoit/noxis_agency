@@ -1,5 +1,7 @@
 import React, { ReactNode } from "react";
+import Link from "next/link"; // Importiamo il componente Link di Next.js
 import { cn } from "@/lib/utils";
+import AnimateCursor from "./animate-cursor";
 
 type ContactsSectionProps = {
   children?: ReactNode;
@@ -24,18 +26,28 @@ const ContactsSection = ({
       </div>
 
       <div className="flex-1 md:flex-none flex gap-4 md:gap-32 flex-col md:flex-row">
-        <div className="flex flex-col gap-2 md:gap-4">
-          <p className="font-light text-sm text-[#818181]">EMAIL</p>
-          <p className={cn("text-xs md:text-xl", `text-${color}`)}>
-            info@noxis.agency
-          </p>
-        </div>
-        <div className="flex flex-col gap-2 md:gap-4">
-          <p className="font-light text-sm text-[#818181]">TELEFONO</p>
-          <p className={cn("text-xs md:text-xl", `text-${color}`)}>
-            +39 349 138 4504
-          </p>
-        </div>
+        <AnimateCursor variant="link" asChild>
+          <Link href="mailto:info@noxis.agency">
+            <div className="flex flex-col gap-2 md:gap-4">
+              <p className="font-light text-sm text-[#818181]">EMAIL</p>
+              {/* Aggiungiamo il Link con mailto */}
+              <p className={cn("text-xs md:text-xl", `text-${color}`)}>
+                info@noxis.agency
+              </p>
+            </div>
+          </Link>
+        </AnimateCursor>
+        <AnimateCursor variant="link" asChild>
+          <Link href="tel:+393491384504">
+            <div className="flex flex-col gap-2 md:gap-4">
+              <p className="font-light text-sm text-[#818181]">TELEFONO</p>
+              {/* Aggiungiamo il Link con tel */}
+              <p className={cn("text-xs md:text-xl", `text-${color}`)}>
+                +39 349 138 4504
+              </p>
+            </div>
+          </Link>
+        </AnimateCursor>
       </div>
     </div>
   );
