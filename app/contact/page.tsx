@@ -59,6 +59,7 @@ const ContactPage = () => {
                 }
               >
                 We&apos;re always looking for amazing clients to work with –
+                <br className="hidden md:block" />
                 drop us a mail and you will hear from us as soon as possible.
               </p>
             </ContactsSection>

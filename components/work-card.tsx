@@ -15,7 +15,7 @@ const WorkCard = ({ work }: WorkCardProps) => {
     if (href) {
       window.open(href, "_blank", "noopener,noreferrer");
     } else {
-      alert("Il progetto sará reso risponibile a breve");
+      alert("The project will be made available soon.");
     }
   };
 

@@ -10,19 +10,19 @@ const works: Work[] = [
   {
     id: "1",
     title: "Email Marketing",
-    description: "Piattaforma di email marketing (wip)",
+    description: "Email marketing platform (wip)",
     image: "/project-3.webp",
   },
   {
     id: "2",
     title: "Upcoming Hub",
-    description: "Hub per uscita di prodotti, servizi",
+    description: "Hub for product and service releases",
     image: "/project-2.webp",
   },
   {
     id: "3",
     title: "Agenzia Dese (2022)",
-    description: "Pratiche auto",
+    description: "Car practice agency",
     image: "/project-1.webp",
     href: "https://agenziadese.it/",
   },
