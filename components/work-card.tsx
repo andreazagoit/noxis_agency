@@ -9,12 +9,16 @@ type WorkCardProps = {
 
 const WorkCard = ({ work }: WorkCardProps) => {
   const { id, title, description, image, href } = work;
+
+  const handleClick = () => {
+    if (href) {
+      window.open(href, "_blank", "noopener,noreferrer");
+    } else {
+      alert("Il progetto sará reso risponibile a breve");
+    }
+  };
   return (
-    <AnimateCursor
-      variant="link"
-      asChild
-      onClick={() => window.open(href, "_blank", "noopener,noreferrer")}
-    >
+    <AnimateCursor variant="link" asChild onClick={handleClick}>
       <div className="flex flex-col pb-4 gap-4 min-w-full md:min-w-[55vw] min-h-[70vh] md:h-full">
         <div className="bg-gray-200 h-full w-full flex-1 relative">
           <Image

@@ -11,7 +11,7 @@ const works: Work[] = [
     id: "1",
     title: "Email Marketing",
     description: "Piattaforma di email marketing (wip)",
-    image: "/website-1.webp",
+    image: "/project-3.webp",
   },
   {
     id: "2",
