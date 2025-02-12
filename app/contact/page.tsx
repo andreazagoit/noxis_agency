@@ -57,12 +57,10 @@ const ContactPage = () => {
                   "text-xs leading-[1.5rem] md:text-xl md:leading-[2.5rem]"
                 }
               >
-                <p>
-                  Siamo sempre alla ricerca di clienti straordinari con cui
-                  collaborare
-                  <br className="hidden md:block" />
-                  Inviaci una mail e ti risponderemo il prima possibile.
-                </p>
+                Siamo sempre alla ricerca di clienti straordinari con cui
+                collaborare.
+                <br />
+                Inviaci una mail e ti risponderemo il prima possibile.
               </p>
             </ContactsSection>
           </div>
