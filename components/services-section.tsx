@@ -75,8 +75,9 @@ const ServiziSection = () => {
             realtà. Offriamo soluzioni digitali su misura che non solo
             soddisfano le tue esigenze immediate, ma alimentano anche la
             crescita e il successo a lungo termine. Dalla creazione di siti web
-            straordinari all'implementazione di strategie all'avanguardia, siamo
-            qui per aiutarti a navigare ogni fase del tuo percorso digitale.
+            straordinari all&apos;implementazione di strategie
+            all&apos;avanguardia, siamo qui per aiutarti a navigare ogni fase
+            del tuo percorso digitale.
           </div>
         </div>
         <div className="flex-[0.6] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
