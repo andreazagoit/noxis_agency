@@ -57,9 +57,12 @@ const ContactPage = () => {
                   "text-xs leading-[1.5rem] md:text-xl md:leading-[2.5rem]"
                 }
               >
-                We&apos;re always looking for amazing clients to work with –
-                <br className="hidden md:block" />
-                drop us a mail and you will hear from us as soon as possible.
+                <p>
+                  Siamo sempre alla ricerca di clienti straordinari con cui
+                  collaborare
+                  <br className="hidden md:block" />
+                  Inviaci una mail e ti risponderemo il prima possibile.
+                </p>
               </p>
             </ContactsSection>
           </div>

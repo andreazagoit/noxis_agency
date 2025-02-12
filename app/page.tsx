@@ -7,6 +7,7 @@ import PageInitializer from "@/components/page-initializer";
 import ServicesSection from "@/components/services-section";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { WobbleCardDemo } from "@/components/wobble-card-demo";
+import WorkWithSection from "@/components/work-with-section";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
             <Brand width={"100%"} />
           </div>
           <ServicesSection />
+          <WorkWithSection />
         </div>
         {/* <Hero /> */}
         {/* <WobbleCardDemo />

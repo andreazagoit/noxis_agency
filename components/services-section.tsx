@@ -8,58 +8,58 @@ import {
   FaSearch,
   FaTools,
   FaBriefcase,
-} from "react-icons/fa"; // Add the icons you want to use
+} from "react-icons/fa"; // Aggiungi le icone che desideri utilizzare
 
-const ServicesSection = () => {
-  const iconSize = 56;
-  const services = [
+const ServiziSection = () => {
+  const dimensioneIcona = 56;
+  const servizi = [
     {
-      name: "Showcase Website",
+      nome: "Sito Vetrina",
       descrizione:
-        "Creation of elegant and functional showcase websites to present your business online.",
-      icon: <FaDesktop size={iconSize} />,
+        "Creazione di siti vetrina eleganti e funzionali per presentare la tua attività online.",
+      icona: <FaDesktop size={dimensioneIcona} />,
     },
     {
-      name: "E-commerce",
+      nome: "E-commerce",
       descrizione:
-        "Development of complete e-commerce platforms with product management, cart, and secure payments.",
-      icon: <FaShoppingCart size={iconSize} />,
+        "Sviluppo di piattaforme e-commerce complete con gestione prodotti, carrello e pagamenti sicuri.",
+      icona: <FaShoppingCart size={dimensioneIcona} />,
     },
     {
-      name: "Custom Websites",
+      nome: "Siti Web Personalizzati",
       descrizione:
-        "Creation of custom websites tailored to meet the client's specific needs.",
-      icon: <FaCogs size={iconSize} />,
+        "Creazione di siti web su misura per soddisfare le esigenze specifiche del cliente.",
+      icona: <FaCogs size={dimensioneIcona} />,
     },
     {
-      name: "Mobile Applications",
+      nome: "Applicazioni Mobili",
       descrizione:
-        "Development of mobile applications for iOS and Android to enhance user experience and business.",
-      icon: <FaMobileAlt size={iconSize} />,
+        "Sviluppo di applicazioni mobili per iOS e Android per migliorare l'esperienza utente e il business.",
+      icona: <FaMobileAlt size={dimensioneIcona} />,
     },
     {
-      name: "Responsive Websites",
+      nome: "Siti Web Responsivi",
       descrizione:
-        "Design of websites that perfectly adapt to any device, ensuring optimal navigation.",
-      icon: <FaDesktop size={iconSize} />,
+        "Progettazione di siti web che si adattano perfettamente a qualsiasi dispositivo, garantendo una navigazione ottimale.",
+      icona: <FaDesktop size={dimensioneIcona} />,
     },
     {
-      name: "SEO & Optimization",
+      nome: "SEO & Ottimizzazione",
       descrizione:
-        "Optimization of websites for search engines to improve visibility and online ranking.",
-      icon: <FaSearch size={iconSize} />,
+        "Ottimizzazione dei siti web per i motori di ricerca per migliorare la visibilità e il posizionamento online.",
+      icona: <FaSearch size={dimensioneIcona} />,
     },
     {
-      name: "Website Maintenance",
+      nome: "Manutenzione Siti Web",
       descrizione:
-        "Website maintenance and update services to keep your site secure, functional, and up-to-date with the latest trends.",
-      icon: <FaTools size={iconSize} />,
+        "Servizi di manutenzione e aggiornamento dei siti web per mantenerli sicuri, funzionali e aggiornati con le ultime tendenze.",
+      icona: <FaTools size={dimensioneIcona} />,
     },
     {
-      name: "Digital Consulting",
+      nome: "Consulenza Digitale",
       descrizione:
-        "We offer consulting services to optimize your online presence and achieve business goals through advanced digital strategies.",
-      icon: <FaBriefcase size={iconSize} />,
+        "Offriamo servizi di consulenza per ottimizzare la tua presenza online e raggiungere gli obiettivi aziendali attraverso strategie digitali avanzate.",
+      icona: <FaBriefcase size={dimensioneIcona} />,
     },
   ];
 
@@ -68,29 +68,29 @@ const ServicesSection = () => {
       <div className="h-full w-full flex flex-col md:flex-row items-center gap-8 my-32">
         <div className="flex-[0.4]">
           <div className="text-white text-4xl font-semibold mb-4 text-center md:text-left">
-            Empowering Businesses and Entrepreneurs
+            Potenziare le Imprese e gli Imprenditori
           </div>
           <div className="text-white mb-12 text-center md:text-left">
-            We are dedicated to empowering businesses and entrepreneurs by
-            turning their ideas into reality. We offer tailored digital
-            solutions that not only meet your immediate needs but also fuel
-            long-term growth and success. From crafting stunning websites to
-            implementing cutting-edge strategies, we are here to help you
-            navigate every step of your digital journey with confidence.
+            Aiutiamo le imprese e gli imprenditori trasformando le loro idee in
+            realtà. Offriamo soluzioni digitali su misura che non solo
+            soddisfano le tue esigenze immediate, ma alimentano anche la
+            crescita e il successo a lungo termine. Dalla creazione di siti web
+            straordinari all'implementazione di strategie all'avanguardia, siamo
+            qui per aiutarti a navigare ogni fase del tuo percorso digitale.
           </div>
         </div>
         <div className="flex-[0.6] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {services.map((service, i) => (
+          {servizi.map((servizio, i) => (
             <div
               key={i}
               className="bg-[#0009] backdrop-blur-md py-8 px-4 rounded-3xl flex flex-col items-center"
             >
-              <div className="text-white text-3xl mb-4">{service.icon}</div>
+              <div className="text-white text-3xl mb-4">{servizio.icona}</div>
               <div className="text-white text-xl font-semibold text-center">
-                {service.name}
+                {servizio.nome}
               </div>
               <div className="text-white text-center">
-                {service.descrizione}
+                {servizio.descrizione}
               </div>
             </div>
           ))}
@@ -100,4 +100,4 @@ const ServicesSection = () => {
   );
 };
 
-export default ServicesSection;
+export default ServiziSection;

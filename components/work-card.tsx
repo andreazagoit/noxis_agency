@@ -26,7 +26,7 @@ const WorkCard = ({ work }: WorkCardProps) => {
   return (
     <AnimateCursor variant="link" asChild onClick={handleClick}>
       <div className="flex flex-col pb-4 gap-4 min-w-full md:min-w-[55vw] min-h-[70vh] md:h-full">
-        <div className="bg-gray-900 h-full w-full flex-1 relative">
+        <div className="bg-neutral-900 h-full w-full flex-1 relative">
           <Image
             src={image}
             alt={`${title} website`}
@@ -36,6 +36,7 @@ const WorkCard = ({ work }: WorkCardProps) => {
               isLoading ? "blur-lg" : "blur-0"
             }`}
             onLoadingComplete={handleImageLoad}
+            priority
           />
         </div>
         <div>

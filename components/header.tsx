@@ -13,9 +13,9 @@ import works from "@/data/works";
 type HeaderProps = {};
 
 const links = [
-  { id: "work", name: "Work", href: "/work" },
+  { id: "work", name: "Lavori", href: "/work" },
   /* { id: "studio", name: "Studio", href: "/studio" }, */
-  { id: "contact", name: "Contact", href: "/contact" },
+  { id: "contact", name: "Contatti", href: "/contact" },
 ];
 
 const Header = () => {
