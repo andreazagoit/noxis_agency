@@ -1,7 +1,15 @@
+"use client";
+import { useIubenda } from "@mep-agency/next-iubenda";
 import Script from "next/script";
 import React from "react";
 
 const MetaPixel = () => {
+  const { userPreferences } = useIubenda();
+
+  if (!userPreferences.gdprPurposes.measurement) {
+    return;
+  }
+
   return (
     <Script
       id="fb-pixel"

@@ -114,7 +114,7 @@ const Cursor = () => {
         pointerEvents: "none",
         top: mousePosition.y,
         left: mousePosition.x,
-        zIndex: 9999,
+        zIndex: "9999!important",
       }}
       variants={cursorVariants}
       animate={cursorVariant}

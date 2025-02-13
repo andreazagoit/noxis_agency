@@ -45,7 +45,7 @@ const TransitionLink = ({
     });
   }
 
-  return <div onClick={() => handleNavigationChange(href)}>{children}</div>;
+  return <span onClick={() => handleNavigationChange(href)}>{children}</span>;
 };
 
 export default TransitionLink;

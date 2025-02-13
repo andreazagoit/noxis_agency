@@ -1,11 +1,15 @@
+import Cover from "@/components/cover";
+import Header from "@/components/header";
+import MetaPixel from "@/components/meta-pixel";
 import { ThemeProvider } from "@/components/theme-provider";
+import Cursor from "@/components/ui/cursor";
+import {
+  IubendaCookieSolutionBannerConfigInterface,
+  IubendaProvider,
+} from "@mep-agency/next-iubenda";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto_Mono } from "next/font/google";
 import "./globals.css";
-import Cursor from "@/components/ui/cursor";
-import Header from "@/components/header";
-import Cover from "@/components/cover";
-import MetaPixel from "@/components/meta-pixel";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,26 +30,35 @@ export const metadata: Metadata = {
   description: "Sviluppo creativo web e mobile",
 };
 
+const iubendaBannerConfig: IubendaCookieSolutionBannerConfigInterface = {
+  siteId: parseInt(process.env.NEXT_PUBLIC_IUBENDA_SITE_ID!, 10),
+  cookiePolicyId: parseInt(process.env.NEXT_PUBLIC_IUBENDA_COOKIE!, 10),
+  lang: process.env.NEXT_PUBLIC_IUBENDA_LANG!,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning style={{ cursor: "none" }}>
+    <html lang="en" suppressHydrationWarning>
       <body className={geistMono.className}>
-        <MetaPixel />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Cover />
-          <Header />
-          {children}
-          <Cursor />
-        </ThemeProvider>
+        <IubendaProvider bannerConfig={iubendaBannerConfig}>
+          {/* <IubendaBanner /> */}
+          <MetaPixel />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Cover />
+            <Header />
+            {children}
+            <Cursor />
+          </ThemeProvider>
+        </IubendaProvider>
       </body>
     </html>
   );

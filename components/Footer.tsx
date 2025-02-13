@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Brand from "./brand";
 import ContactsSection from "./contacts-section";
 
@@ -34,10 +35,28 @@ const Footer = () => {
           <Brand fill="black" width="100%" />
         </div>
       </div>
-      <p className="text-black uppercase text-center mt-4 text-xs">
-        ZAGO ANDREA - P.IVA 05668260283 - C.F. zgandr97c22b563e - Trebaseleghe
-        (PD) Via Giuseppe Mazzini 5a 35010
-      </p>
+      <div className="flex items-center mt-4 gap-4 justify-center flex-col md:flex-row">
+        <p className="text-black uppercase text-center text-xs">
+          ZAGO ANDREA - P.IVA 05668260283 - C.F. zgandr97c22b563e - Trebaseleghe
+          (PD) Via Giuseppe Mazzini 5a 35010
+        </p>
+        <div className="flex gap-4">
+          <Link
+            href="https://www.iubenda.com/privacy-policy/75442792"
+            className="text-black text-xs uppercase"
+            target="_blank"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="https://www.iubenda.com/privacy-policy/75442792/cookie-policy"
+            className="text-black text-xs uppercase"
+            target="_blank"
+          >
+            Cookie Policy
+          </Link>
+        </div>
+      </div>
     </footer>
   );
 };

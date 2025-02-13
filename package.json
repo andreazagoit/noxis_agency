@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@mep-agency/next-iubenda": "^1.0.0-alpha5",
     "@radix-ui/react-slot": "^1.1.1",
     "@react-three/drei": "^9.121.4",
     "@react-three/fiber": "^9.0.0-rc.6",
