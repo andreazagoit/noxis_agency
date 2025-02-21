@@ -8,7 +8,7 @@ type WorkCardProps = {
 };
 
 const WorkCard = ({ work }: WorkCardProps) => {
-  const { id, title, description, image, href } = work;
+  const { title, description, image, href } = work;
   const [isLoading, setIsLoading] = useState(true);
 
   const handleClick = () => {
