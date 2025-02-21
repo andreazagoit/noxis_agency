@@ -37,7 +37,7 @@ const Footer = () => {
           <Brand fill="black" width="100%" />
         </div>
       </div>
-      <div className="flex items-center mt-3 gap-4 justify-center flex-col md:flex-row">
+      <div className="flex items-center mt-4 gap-4 justify-center flex-col md:flex-row">
         <p className="text-black uppercase text-center text-xs">
           ZAGO ANDREA - P.IVA 05668260283 - C.F. zgandr97c22b563e - Trebaseleghe
           (PD) Via Giuseppe Mazzini 5a 35010

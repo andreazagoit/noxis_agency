@@ -128,7 +128,7 @@ const ContactFormSection = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`mt-4 px-8 py-4 rounded-full w-fit ${
+            className={`px-8 py-4 w-fit ${
               isSubmitting ? "bg-gray-600" : "bg-black"
             }`}
           >
