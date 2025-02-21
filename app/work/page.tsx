@@ -30,15 +30,17 @@ const WorkPage = () => {
           [-ms-overflow-style:none] 
           [scrollbar-width:none]"
         >
-          {works.map((work) => (
-            <WorkCard key={work.id} work={work} />
+          {works.map((work, i) => (
+            <WorkCard key={i} work={work} />
           ))}
         </section>
         <section className="py-4 mx-4 flex justify-between border-t-[0.5px] border-neutral-700 flex-col md:flex-row">
-          <p className="text-sm md:text-base">
-            WE TRANSFORMS BRANDS INTO EXPERIENCES
+          <p className="text-sm md:text-base uppercase">
+            progetti a cui i nostri membri hanno lavorato
           </p>
-          <p className="text-sm md:text-base">CURRENT WORK ({works.length})</p>
+          <p className="text-sm md:text-base uppercase">
+            lavori ({works.length})
+          </p>
         </section>
       </main>
     </>

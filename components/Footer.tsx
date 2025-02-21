@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Brand from "./brand";
 import ContactsSection from "./contacts-section";
+import ContactFormSection from "./contact-form-section";
 
 export const socialMedia = [
   {
@@ -17,10 +18,11 @@ export const socialMedia = [
 
 const Footer = () => {
   return (
-    <footer className="bg-white sm:h-[100vh] pt-16 pb-4 flex flex-col">
-      <div className="px-4 flex flex-col h-full justify-between">
-        <div />
-        {/* <ContactFormSection /> */}
+    <footer className="bg-white sm:min-h-[100vh] pb-4 flex flex-col">
+      <div className="px-4 flex flex-col h-full justify-between flex-1">
+        <div className="flex items-center flex-1">
+          <ContactFormSection />
+        </div>
         <div>
           <ContactsSection color="black">
             <p

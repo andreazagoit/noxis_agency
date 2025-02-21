@@ -27,7 +27,7 @@ const companies = [
 
 const WorkWithSection = () => {
   return (
-    <section className="py-10 text-center my-16">
+    <section className="py-10 text-center my-28">
       <h2 className="text-white text-2xl font-semibold">
         Un background costruito in grandi realtà
       </h2>
@@ -36,7 +36,7 @@ const WorkWithSection = () => {
         lavorando su progetti innovativi e complessi. Questa solida base ci
         permette di offrire soluzioni affidabili e di alto livello.
       </p>
-      <div className="mt-12">
+      <div className="mt-24">
         <Marquee autoFill>
           {companies.map((company, index) => (
             <div key={index} className="mx-16">

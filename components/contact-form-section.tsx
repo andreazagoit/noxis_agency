@@ -1,11 +1,13 @@
 "use client";
-import React, { useState } from "react";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { Button } from "./ui/button";
-import { FaArrowRight } from "react-icons/fa";
+import { useState } from "react";
 import { IoIosSend } from "react-icons/io";
+import TextInput from "./ui/text-input";
+import TextAreaInput from "./ui/textarea-input";
+import { sendEmail } from "@/utils/email";
+import { z } from "zod";
+import { contactFormSchema } from "@/utils/validation";
 import { cn } from "@/lib/utils";
+import { Checkbox } from "./ui/checkbox";
 
 const ContactFormSection = () => {
   const [formData, setFormData] = useState({
@@ -15,108 +17,130 @@ const ContactFormSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState<boolean | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (e: any) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      contactFormSchema.parse(formData);
+      const result = await sendEmail({
+        ...formData,
+        gdprConsent: new Date().toISOString(),
       });
 
-      if (response.ok) {
+      if (result.success) {
         setSuccess(true);
-        setFormData({ name: "", email: "", message: "" });
+        setErrorMessage(null);
       } else {
         setSuccess(false);
+        setErrorMessage(
+          "Si è verificato un errore nell'invio del messaggio. Riprova più tardi."
+        );
       }
     } catch (error) {
-      setSuccess(false);
-    } finally {
-      setIsSubmitting(false);
+      if (error instanceof z.ZodError) {
+        setErrorMessage(error.errors.map((e) => e.message).join(", ")); // Uniamo i messaggi di errore
+        setSuccess(false);
+      } else {
+        setErrorMessage("Si è verificato un errore sconosciuto.");
+        setSuccess(false);
+      }
     }
+
+    setIsSubmitting(false);
   };
 
   return (
-    <div className="flex">
-      <div className="flex-1"></div>
+    <div className="flex flex-col md:flex-row gap-8 md:gap-16 py-16 flex-1">
       <div className="flex-1">
-        <h2 className="text-black text-5xl font-bold mb-2">Contact Us</h2>
-
+        <h2 className="text-black text-5xl font-bold mb-2 uppercase">
+          Richiedi un preventivo
+        </h2>
+        <p className="text-gray-600 mb-4">
+          Siamo pronti a trasformare la tua visione in un prodotto digitale.
+          <br />
+          Hai domande o desideri maggiori informazioni? Scrivici un messaggio e
+          ti risponderemo il prima possibile.
+        </p>
+      </div>
+      <div className="flex-1">
         {success !== null && (
           <div
             className={cn(success ? "text-green-500" : "text-red-500", "mb-2")}
           >
-            {success ? "Message sent successfully!" : "Something went wrong."}
+            {success
+              ? "Messaggio inviato con successo, ti ricontatteremo il prima possibile!"
+              : errorMessage}
           </div>
         )}
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name" className="text-black">
-              Name
-            </label>
-            <Input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+          <TextInput
+            label="Nome"
+            name="name"
+            placeholder="Mario Rossi"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+          <TextInput
+            label="Email"
+            name="email"
+            placeholder="text@domain.com"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <TextAreaInput
+            label="Messaggio"
+            name="message"
+            placeholder="Il mio progetto..."
+            value={formData.message}
+            onChange={handleChange}
+            required
+            maxLength={500}
+          />
+          <div className="flex items-center gap-4">
+            <Checkbox
+              name="gdprConsent"
               required
-              className="border p-2 w-full mb-4 text-black placeholder:text-neutral-500"
+              className="bg-neutral-300 mb-6"
             />
-          </div>
-          <div>
-            <label htmlFor="email" className="text-black">
-              Email
+            <label htmlFor="gdpr-consent" className="text-gray-600 ">
+              Acconsento al trattamento dei miei dati personali secondo la{" "}
+              <a
+                href="https://www.iubenda.com/privacy-policy/75442792"
+                className="text-neutral-400 underline"
+                target="_blank"
+              >
+                informativa sulla privacy
+              </a>
+              .
             </label>
-            <Input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="border p-2 w-full mb-4 text-black placeholder:text-neutral-500"
-            />
           </div>
-          <div>
-            <label htmlFor="message" className="text-black">
-              Message
-            </label>
-            <Textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              className="border p-2 w-full text-black placeholder:text-neutral-500 h-32"
-            />
-          </div>
+
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`mt-4 px-8 py-4 rounded-full ${
+            className={`mt-4 px-8 py-4 rounded-full w-fit ${
               isSubmitting ? "bg-gray-600" : "bg-black"
             }`}
           >
             {isSubmitting ? (
-              "Sending..."
+              "Invio in corso..."
             ) : (
               <span className="flex items-center gap-4">
-                Send Message
+                Invia messaggio
                 <IoIosSend />
               </span>
             )}
