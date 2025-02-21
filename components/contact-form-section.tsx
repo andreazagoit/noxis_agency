@@ -110,12 +110,8 @@ const ContactFormSection = () => {
             required
             maxLength={500}
           />
-          <div className="flex items-center gap-4">
-            <Checkbox
-              name="gdprConsent"
-              required
-              className="bg-neutral-300 mb-10 md:mb-5"
-            />
+          <div className="flex items-start gap-4">
+            <Checkbox name="gdprConsent" required className="bg-neutral-300" />
             <label htmlFor="gdpr-consent" className="text-gray-600 text-sm">
               Acconsento al trattamento dei miei dati personali secondo la{" "}
               <a
