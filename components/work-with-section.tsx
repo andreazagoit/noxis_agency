@@ -28,10 +28,10 @@ const companies = [
 const WorkWithSection = () => {
   return (
     <section className="py-10 md:text-center my-28 ">
-      <h2 className="text-white text-5xl font-semibold uppercase md:max-w-4xl mx-auto mb-6 px-4">
+      <h2 className="text-white text-5xl font-semibold uppercase md:max-w-[60%] mx-auto mb-6 px-4">
         Un background costruito in grandi realtà
       </h2>
-      <p className="text-gray-400 mt-2 md:max-w-4xl mx-auto px-4">
+      <p className="text-gray-400 mt-2 md:max-w-[60%] mx-auto px-4">
         Il nostro team ha maturato esperienza in aziende leader del settore,
         lavorando su progetti innovativi e complessi. Questa solida base ci
         permette di offrire soluzioni affidabili e di alto livello.
