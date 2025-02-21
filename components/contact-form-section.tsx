@@ -114,9 +114,9 @@ const ContactFormSection = () => {
             <Checkbox
               name="gdprConsent"
               required
-              className="bg-neutral-300 mb-6"
+              className="bg-neutral-300 mb-10 md:mb-5"
             />
-            <label htmlFor="gdpr-consent" className="text-gray-600 ">
+            <label htmlFor="gdpr-consent" className="text-gray-600 text-sm">
               Acconsento al trattamento dei miei dati personali secondo la{" "}
               <a
                 href="https://www.iubenda.com/privacy-policy/75442792"
@@ -139,7 +139,7 @@ const ContactFormSection = () => {
             {isSubmitting ? (
               "Invio in corso..."
             ) : (
-              <span className="flex items-center gap-4">
+              <span className="flex items-center gap-4 text-sm">
                 Invia messaggio
                 <IoIosSend />
               </span>
