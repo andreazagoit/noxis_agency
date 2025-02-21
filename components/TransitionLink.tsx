@@ -45,7 +45,14 @@ const TransitionLink = ({
     });
   }
 
-  return <span onClick={() => handleNavigationChange(href)}>{children}</span>;
+  return (
+    <span
+      onClick={() => handleNavigationChange(href)}
+      className="cursor-pointer"
+    >
+      {children}
+    </span>
+  );
 };
 
 export default TransitionLink;

@@ -8,6 +8,7 @@ import { z } from "zod";
 import { contactFormSchema } from "@/utils/validation";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "./ui/checkbox";
+import AnimateCursor from "./animate-cursor";
 
 const ContactFormSection = () => {
   const [formData, setFormData] = useState({
@@ -64,7 +65,7 @@ const ContactFormSection = () => {
   return (
     <div className="flex flex-col md:flex-row gap-8 md:gap-16 py-16 flex-1">
       <div className="flex-1">
-        <h2 className="text-black text-5xl font-bold mb-2 uppercase">
+        <h2 className="text-black text-3xl md:text-5xl font-bold mb-2 uppercase">
           Richiedi un preventivo
         </h2>
         <p className="text-gray-600 mb-4">
@@ -125,22 +126,24 @@ const ContactFormSection = () => {
             </label>
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`px-8 py-4 w-fit ${
-              isSubmitting ? "bg-gray-600" : "bg-black"
-            }`}
-          >
-            {isSubmitting ? (
-              "Invio in corso..."
-            ) : (
-              <span className="flex items-center gap-4 text-sm">
-                Invia messaggio
-                <IoIosSend />
-              </span>
-            )}
-          </button>
+          <AnimateCursor variant="link">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`px-8 py-4 w-fit ${
+                isSubmitting ? "bg-gray-600" : "bg-black"
+              }`}
+            >
+              {isSubmitting ? (
+                "Invio in corso..."
+              ) : (
+                <span className="flex items-center gap-4 text-sm">
+                  Invia messaggio
+                  <IoIosSend />
+                </span>
+              )}
+            </button>
+          </AnimateCursor>
         </form>
       </div>
     </div>

@@ -52,11 +52,7 @@ const ContactPage = () => {
           </div>
           <div className="px-4">
             <ContactsSection>
-              <p
-                className={
-                  "text-xs leading-[1.5rem] md:text-xl md:leading-[2.5rem]"
-                }
-              >
+              <p className={"text-xs md:text-base md:leading-[2rem]"}>
                 Siamo sempre alla ricerca di clienti straordinari con cui
                 collaborare.
                 <br />

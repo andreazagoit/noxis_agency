@@ -19,12 +19,12 @@ const ServiziSection = () => {
         "Creazione di siti vetrina eleganti e funzionali per presentare la tua attività online",
       icona: <FaDesktop size={dimensioneIcona} />,
     },
-    /* {
+    {
       nome: "E-commerce",
       descrizione:
         "Sviluppo di piattaforme e-commerce complete con gestione prodotti, carrello e pagamenti sicuri.",
       icona: <FaShoppingCart size={dimensioneIcona} />,
-    }, */
+    },
     {
       nome: "Siti Web Personalizzati",
       descrizione:
@@ -65,12 +65,12 @@ const ServiziSection = () => {
 
   return (
     <AuroraBackground className="bg-blue-300 flex-1 h-full min-h-[50dvh] p-4">
-      <div className="h-full w-full flex flex-col md:flex-row items-center gap-8 my-32">
-        <div className="flex-[0.4]">
-          <div className="text-white text-5xl uppercase font-semibold mb-4 text-center md:text-left">
-            Potenziare le Imprese e gli Imprenditori
+      <div className="h-full w-full flex flex-col items-center my-8 md:my-32">
+        <div className="flex flex-col md:flex-row  mb-8 md:mb-32 gap-8">
+          <div className="text-white  text-3xl md:text-6xl uppercase font-semibold flex-[0.4]">
+            Sviluppo creativo web e mobile
           </div>
-          <div className="text-white text-center md:text-left">
+          <div className="text-white flex-[0.6]">
             Aiutiamo le imprese e gli imprenditori trasformando le loro idee in
             realtà. Offriamo soluzioni digitali su misura che non solo
             soddisfano le tue esigenze immediate, ma alimentano anche la
@@ -80,7 +80,7 @@ const ServiziSection = () => {
             del tuo percorso digitale.
           </div>
         </div>
-        <div className="flex-[0.6] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="flex-[0.6] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {servizi.map((servizio, i) => (
             <div
               key={i}

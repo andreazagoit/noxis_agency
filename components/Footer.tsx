@@ -25,11 +25,7 @@ const Footer = () => {
         </div>
         <div>
           <ContactsSection color="black">
-            <p
-              className={
-                "text-xs leading-[1.5rem] md:text-xl md:leading-[2.5rem]"
-              }
-            >
+            <p className={"text-xs md:text-base md:leading-[2rem]"}>
               All Rights <br />
               Reserved © 2025
             </p>
