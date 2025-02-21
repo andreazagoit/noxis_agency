@@ -16,8 +16,8 @@ export default function Home() {
             <Brand width={"100%"} />
           </div>
           <ServicesSection />
-          <WorkWithSection />
         </div>
+        <WorkWithSection />
         {/* <Hero /> */}
         {/* <WobbleCardDemo />
         <Approach /> */}
