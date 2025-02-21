@@ -26,8 +26,9 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Noxis Agency",
-  description: "Sviluppo creativo web e mobile",
+  title: "Noxis Agency | Sviluppo creativo web e mobile",
+  description:
+    "Sviluppiamo siti web e app mobile su misura per startup e aziende. Soluzioni innovative, design moderno e performance ottimizzate per il tuo business.",
 };
 
 const iubendaBannerConfig: IubendaCookieSolutionBannerConfigInterface = {

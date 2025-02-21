@@ -66,13 +66,13 @@ const ContactFormSection = () => {
     <div className="flex flex-col md:flex-row gap-8 md:gap-16 py-16 flex-1">
       <div className="flex-1">
         <h2 className="text-black text-3xl md:text-5xl font-bold mb-2 uppercase">
-          Richiedi un preventivo
+          Richiedi un Preventivo Gratuito
         </h2>
         <p className="text-gray-600 mb-4">
-          Siamo pronti a trasformare la tua visione in un prodotto digitale.
-          <br />
-          Hai domande o desideri maggiori informazioni? Scrivici un messaggio e
-          ti risponderemo il prima possibile.
+          Vuoi un sito web professionale, un e-commerce performante o
+          un&apos;app mobile su misura? Contattaci oggi per un preventivo
+          gratuito e scopri come possiamo aiutarti a far crescere il tuo
+          business online.
         </p>
       </div>
       <div className="flex-1">
