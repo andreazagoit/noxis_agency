@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { useRef } from 'react'
 import { GlassScene } from '../3d/GlassScene'
 
@@ -12,10 +12,17 @@ export function Hero() {
         offset: ["start start", "end end"]
     })
 
-    // Subtly scale and move the 3D scene based on scroll
-    const sceneScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.2, 0.8])
-    const sceneY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]) // Controlled drift
-    const sceneBlur = useTransform(scrollYProgress, [0, 0.8, 1], ["blur(0px)", "blur(0px)", "blur(10px)"])
+    // Create a smoothed version of scroll progress
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    })
+
+    // Subtly scale and move the 3D scene based on SMOOTHED scroll
+    const sceneScale = useTransform(smoothProgress, [0, 0.5, 1], [0.7, 1.2, 0.8])
+    const sceneY = useTransform(smoothProgress, [0, 1], ["0%", "10%"]) // Controlled drift
+    const sceneBlur = useTransform(smoothProgress, [0, 0.8, 1], ["blur(0px)", "blur(0px)", "blur(10px)"])
 
     return (
         <section ref={containerRef} className="relative w-full">
