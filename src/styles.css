@@ -115,6 +115,16 @@
 
   body {
     @apply font-sans bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
   }
 
   /* Lenis CSS */
