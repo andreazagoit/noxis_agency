@@ -12,7 +12,7 @@ export function Header() {
                 className="glass-panel rounded-full px-6 py-3 flex items-center gap-8 pointer-events-auto"
             >
                 <Link to="/" className="text-lg font-bold tracking-tighter hover:opacity-70 transition-opacity">
-                    NOXIS
+                    Noxis<span className="text-primary">.</span>
                 </Link>
 
                 <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">

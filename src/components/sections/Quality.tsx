@@ -4,7 +4,7 @@ import { cn } from '../../lib/utils'
 export function Quality() {
     return (
         <section className="py-32 px-6">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div>
                     <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none mb-8">
                         Obsession <br />

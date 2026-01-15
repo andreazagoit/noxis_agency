@@ -4,7 +4,9 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import { SmoothScroll } from '../components/layout/SmoothScroll'
 import { Header } from '../components/layout/Header'
 import { Footer } from '../components/layout/Footer'
-import { CustomCursor } from '../components/ui/CustomCursor'
+import { ThemeProvider } from "../components/theme-provider"
+import { CustomScrollbar } from '../components/ui/CustomScrollbar'
+
 
 import appCss from '../styles.css?url'
 
@@ -35,30 +37,32 @@ export const Route = createRootRoute({
 
 function RootDocument() {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <HeadContent />
       </head>
       <body>
-        <CustomCursor />
-        <SmoothScroll>
-          <Header />
-          <main className="min-h-screen">
-            <Outlet />
-          </main>
-          <Footer />
-        </SmoothScroll>
-        <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-          ]}
-        />
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <SmoothScroll>
+            <CustomScrollbar />
+            <Header />
+            <main className="min-h-screen">
+              <Outlet />
+            </main>
+            <Footer />
+          </SmoothScroll>
+          <TanStackDevtools
+            config={{
+              position: 'bottom-right',
+            }}
+            plugins={[
+              {
+                name: 'Tanstack Router',
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+            ]}
+          />
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>

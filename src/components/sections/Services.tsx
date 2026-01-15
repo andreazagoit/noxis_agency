@@ -1,52 +1,114 @@
-import { GlassCard } from '../ui/GlassCard'
 import { motion } from 'framer-motion'
+import { BentoWireframe } from '../3d/BentoWireframe'
 
-const services = [
-    {
-        title: "Digital Ecosystems",
-        description: "Full-stack architectures that scale effortlessly. React, Node, Cloud Native.",
-        icon: "01"
-    },
-    {
-        title: "Immersive Front-end",
-        description: "Award-winning motion and interaction design. Three.js, WebGL, Framer Motion.",
-        icon: "02"
-    },
-    {
-        title: "Mobile Experiences",
-        description: "Native-feel applications for iOS and Android. React Native, Expo.",
-        icon: "03"
-    }
-]
+type GeometryType = 'icosahedron' | 'octahedron' | 'torus' | 'torusKnot' | 'dodecahedron'
+
+const bentoItems: {
+    title: string
+    description: string
+    span: string
+    accent?: boolean
+    geometry: GeometryType
+}[] = [
+        {
+            title: "Digital Ecosystems",
+            description: "Full-stack architectures that scale effortlessly.",
+            span: "md:col-span-2 md:row-span-2",
+            accent: true,
+            geometry: 'icosahedron'
+        },
+        {
+            title: "Immersive Front-end",
+            description: "Award-winning motion and interaction design.",
+            span: "md:col-span-1 md:row-span-2",
+            geometry: 'torusKnot'
+        },
+        {
+            title: "Mobile Experiences",
+            description: "Native-feel applications for iOS and Android.",
+            span: "md:col-span-1 md:row-span-1",
+            geometry: 'octahedron'
+        },
+        {
+            title: "Cloud Native",
+            description: "Serverless, edge-first, infinitely scalable.",
+            span: "md:col-span-1 md:row-span-1",
+            geometry: 'torus'
+        },
+        {
+            title: "Design Systems",
+            description: "Consistent, beautiful, reusable components.",
+            span: "md:col-span-1 md:row-span-1",
+            geometry: 'dodecahedron'
+        },
+    ]
 
 export function Services() {
     return (
         <section id="services" className="py-32 px-6">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-6xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Core Competencies</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                        What We Build<span className="text-primary">.</span>
+                    </h2>
                     <p className="text-muted-foreground text-lg max-w-xl">
                         We don't offer menus. We offer solutions.
                         Our expertise is focused, deep, and uncompromising.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {services.map((service, index) => (
-                        <GlassCard key={index} className="min-h-[300px] flex flex-col justify-between">
-                            <span className="text-6xl font-light text-white/5 opacity-50">{service.icon}</span>
-                            <div>
-                                <h3 className="text-2xl font-semibold mb-3">{service.title}</h3>
-                                <p className="text-muted-foreground leading-relaxed">
-                                    {service.description}
-                                </p>
+                {/* Bento Grid - 3 columns, auto rows */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[180px]">
+                    {bentoItems.map((item, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className={`
+                                group relative overflow-hidden rounded-2xl
+                                ${item.span}
+                                ${item.accent
+                                    ? 'bg-gradient-to-br from-primary/80 to-primary text-primary-foreground'
+                                    : 'glass-panel hover:bg-foreground/5'
+                                }
+                                transition-all duration-300
+                            `}
+                        >
+                            {/* Split layout: Text left, 3D right */}
+                            <div className="absolute inset-0 flex">
+                                {/* Text Content - Left Side */}
+                                <div className="w-1/2 h-full p-6 flex flex-col justify-center z-10">
+                                    <h3 className={`
+                                        text-lg md:text-xl font-semibold mb-2 tracking-tight leading-tight
+                                        ${item.accent ? '' : 'group-hover:text-primary transition-colors'}
+                                    `}>
+                                        {item.title}
+                                    </h3>
+                                    <p className={`
+                                        text-xs md:text-sm leading-relaxed
+                                        ${item.accent ? 'text-white/80' : 'text-muted-foreground'}
+                                    `}>
+                                        {item.description}
+                                    </p>
+                                </div>
+
+                                {/* 3D Shape - Right Side */}
+                                <div className="w-1/2 h-full relative">
+                                    <BentoWireframe
+                                        geometry={item.geometry}
+                                        accentColor={item.accent}
+                                        useGlass={false}
+                                    />
+                                </div>
                             </div>
-                        </GlassCard>
+                        </motion.div>
                     ))}
                 </div>
             </div>
