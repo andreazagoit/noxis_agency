@@ -1,10 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ComponentExample } from "@/components/component-example";
+import { HeroManifesto } from "../components/sections/HeroManifesto";
+import { Services } from "../components/sections/Services";
+import { Quality } from "../components/sections/Quality";
+import { Partnership } from "../components/sections/Partnership";
 
-export const Route = createFileRoute("/")({ component: App });
+export const Route = createFileRoute("/")({ component: Home });
 
-function App() {
-return (
-  <ComponentExample />
-);
+function Home() {
+  return (
+    <div className="flex flex-col gap-0 overflow-x-hidden">
+      <HeroManifesto />
+      <Services />
+      <Quality />
+      <Partnership />
+    </div>
+  );
 }

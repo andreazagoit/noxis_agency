@@ -1,6 +1,10 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { SmoothScroll } from '../components/layout/SmoothScroll'
+import { Header } from '../components/layout/Header'
+import { Footer } from '../components/layout/Footer'
+import { CustomCursor } from '../components/ui/CustomCursor'
 
 import appCss from '../styles.css?url'
 
@@ -15,7 +19,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'Noxis Agency',
       },
     ],
     links: [
@@ -26,17 +30,24 @@ export const Route = createRootRoute({
     ],
   }),
 
-  shellComponent: RootDocument,
+  component: RootDocument,
 })
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument() {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <HeadContent />
       </head>
       <body>
-        {children}
+        <CustomCursor />
+        <SmoothScroll>
+          <Header />
+          <main className="min-h-screen">
+            <Outlet />
+          </main>
+          <Footer />
+        </SmoothScroll>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
