@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Hero } from "../components/sections/Hero";
-import { Services } from "../components/sections/Services";
-import { Quality } from "../components/sections/Quality";
-import { Partnership } from "../components/sections/Partnership";
+import { createFileRoute } from '@tanstack/react-router'
+import { Hero } from '../components/sections/Hero'
+import { Services } from '../components/sections/Services'
+import { Quality } from '../components/sections/Quality'
+import { Partnership } from '../components/sections/Partnership'
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute('/')({ component: Home })
 
 function Home() {
   return (
@@ -14,5 +14,5 @@ function Home() {
       <Quality />
       <Partnership />
     </div>
-  );
+  )
 }

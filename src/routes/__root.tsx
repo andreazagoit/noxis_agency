@@ -1,12 +1,16 @@
-import { HeadContent, Scripts, createRootRoute, Outlet } from '@tanstack/react-router'
+import {
+  HeadContent,
+  Outlet,
+  Scripts,
+  createRootRoute,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { SmoothScroll } from '../components/layout/SmoothScroll'
 import { Header } from '../components/layout/Header'
-import { Footer } from '../components/layout/Footer'
-import { ThemeProvider } from "../components/theme-provider"
+import { Footer } from '../components/sections/Footer'
+import { ThemeProvider } from '../components/theme-provider'
 import { CustomScrollbar } from '../components/ui/CustomScrollbar'
-
 
 import appCss from '../styles.css?url'
 
