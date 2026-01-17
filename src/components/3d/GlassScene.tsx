@@ -1,13 +1,15 @@
 'use client'
 
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
+
 import { Canvas, useFrame } from '@react-three/fiber'
 import {
+  Center,
   Environment,
   MeshTransmissionMaterial,
   PointMaterial,
   Points,
+  Text3D,
 } from '@react-three/drei'
 import * as THREE from 'three'
 import { useTheme } from '../theme-provider'
@@ -73,87 +75,101 @@ function Geometries({
   isDark: boolean
   scrollYProgress: any
 }) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  const materialRef = useRef<any>(null)
+  const groupRef = useRef<THREE.Group>(null)
+  const xGroupRef = useRef<THREE.Group>(null)
+
+  // Material management
+  const matRefs = useRef<Array<any>>([])
+
   const [hovered, setHovered] = useState(false)
 
-  // Using ref to store latest scroll value to avoid re-renders if possible, or just direct access
-  // But since we are inside Canvas, we need to bridge the value.
-  // Actually, passing the MotionValue directly is fine if we read it in useFrame? No, useFrame is Three loop.
-  // Better to use state or ref updated by the spring.
+  useFrame((state) => {
+    if (!groupRef.current) return
 
-  // Simpler approach: We can't easily perform "useTransform" inside useFrame unless we access the .get() method of the motion value.
-
-  useFrame(() => {
-    if (!meshRef.current) return
-
-    // Get current scroll value (0 to 1 approx)
+    const time = state.clock.getElapsedTime()
     const progress = scrollYProgress ? scrollYProgress.get() : 0
 
-    // Constant rotation
-    meshRef.current.rotation.x += 0.002
-    meshRef.current.rotation.y += 0.005
+    // Entrance Scale
+    groupRef.current.scale.lerp(TARGET_SCALE, 0.05)
 
-    // Smooth entrance for scale only (to reach base scale)
-    meshRef.current.scale.lerp(TARGET_SCALE, 0.05)
-
-    // MATERIAL PHYSICS ANIMATION (Alchemy Effect)
-    if (materialRef.current) {
-      // Chromatic Aberration: 0.5 (base) -> 1.5 (high energy)
-      // Increases significantly with scroll
-      const targetAberration = hovered
-        ? 2
-        : THREE.MathUtils.lerp(0.5, 1.5, progress)
-
-      // Distortion: 0 (clean) -> 0.8 (liquid/warped)
-      // Becomes more "fluid" deep in the page
-      const targetDistortion = hovered
-        ? 0.5
-        : THREE.MathUtils.lerp(0, 0.8, progress)
-
-      // Apply lerps for smooth transition
-      materialRef.current.chromaticAberration = THREE.MathUtils.lerp(
-        materialRef.current.chromaticAberration,
-        targetAberration,
-        0.1,
-      )
-      materialRef.current.distortion = THREE.MathUtils.lerp(
-        materialRef.current.distortion,
-        targetDistortion,
-        0.1,
-      )
-
-      // Color animation (Theme switch)
-      const targetColor = isDark ? TARGET_COLOR_DARK : TARGET_COLOR_LIGHT
-      materialRef.current.color.lerp(targetColor, 0.05)
+    // DYNAMIC X ANIMATION
+    if (xGroupRef.current) {
+      // Rotates ONLY on Y axis
+      // Constant rotation without scroll acceleration
+      xGroupRef.current.rotation.x = 0
+      xGroupRef.current.rotation.y = time * 0.2
+      xGroupRef.current.rotation.z = 0
     }
+
+    // --- MATERIAL ALCHEMY (Shared) ---
+    const targetAberration = hovered ? 2 : THREE.MathUtils.lerp(0.5, 1.5, progress)
+    const targetDistortion = hovered ? 0.5 : THREE.MathUtils.lerp(0, 0.8, progress)
+    const targetColor = isDark ? TARGET_COLOR_DARK : TARGET_COLOR_LIGHT
+
+    matRefs.current.forEach((mat) => {
+      if (mat) {
+        mat.chromaticAberration = THREE.MathUtils.lerp(mat.chromaticAberration, targetAberration, 0.1)
+        mat.distortion = THREE.MathUtils.lerp(mat.distortion, targetDistortion, 0.1)
+        mat.color.lerp(targetColor, 0.05)
+      }
+    })
   })
 
+  // Common Props
+  const commonMaterialProps = {
+    backside: true,
+    backsideThickness: 1.5,
+    thickness: 2,
+    roughness: 0,
+    transmission: 1,
+    ior: 1.5,
+    chromaticAberration: 0.5,
+    anisotropy: 0.5,
+    distortion: 0,
+    distortionScale: 0.5,
+    temporalDistortion: 0.5,
+    color: "#ffffff"
+  }
+
+  // Registry helper
+  const addMatRef = (el: any) => {
+    if (el && !matRefs.current.includes(el)) {
+      matRefs.current.push(el)
+    }
+  }
+
+  const fontUrl = "/fonts/helvetiker_bold.typeface.json"
+
+  const textProps = {
+    font: fontUrl,
+    size: 2.5,
+    height: 0.5, // Extrusion depth
+    curveSegments: 12,
+    bevelEnabled: true,
+    bevelThickness: 0.05,
+    bevelSize: 0.02,
+    bevelOffset: 0,
+    bevelSegments: 5,
+  }
+
   return (
-    <mesh
-      ref={meshRef}
-      position={[0, 0, 0]} // KEEP FIXED CENTER
-      scale={[0, 0, 0]} // Initial 0 for entrance, then lerps to TARGET_SCALE
+    <group
+      ref={groupRef}
+      position={[0, 0, 0]}
+      scale={[0, 0, 0]}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
-      <icosahedronGeometry args={[1, 0]} />
-      <MeshTransmissionMaterial
-        ref={materialRef}
-        backside
-        backsideThickness={1.5}
-        thickness={2}
-        roughness={0} // Clean glass
-        transmission={1}
-        ior={1.5}
-        chromaticAberration={0.5} // Base value
-        anisotropy={0.5}
-        distortion={0} // Base value
-        distortionScale={0.5}
-        temporalDistortion={0.5}
-        color="#ffffff"
-      />
-    </mesh>
+      {/* X - DYNAMIC CENTER */}
+      <group ref={xGroupRef} position={[0, 0, 0]}>
+        <Center>
+          <Text3D {...textProps}>
+            X
+            <MeshTransmissionMaterial ref={addMatRef} {...commonMaterialProps} />
+          </Text3D>
+        </Center>
+      </group>
+    </group>
   )
 }
 
@@ -193,7 +209,7 @@ function SceneContent({ scrollYProgress }: { scrollYProgress: any }) {
       }}
     >
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
+        camera={{ position: [0, 0, 9], fov: 45 }}
         dpr={[1, 2]}
         style={{ width: '100%', height: '100%' }}
       >

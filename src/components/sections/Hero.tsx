@@ -4,6 +4,7 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 import { useRef } from 'react'
 import { GlassScene } from '../3d/GlassScene'
 import { Container } from '../layout/Container'
+import { Button } from '../ui/button'
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
@@ -21,9 +22,9 @@ export function Hero() {
 
   return (
     <section ref={containerRef} className="relative w-full">
-      {/* Sticky 3D Backdrop - takes full viewport, centered */}
+      {/* Sticky 3D Backdrop - ON TOP NOW */}
       <div
-        className="sticky top-0 z-0 pointer-events-none"
+        className="sticky top-0 z-20 pointer-events-none"
         style={{
           height: '100vh',
           width: '100%',
@@ -47,43 +48,51 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scrolling Content Flow */}
+      {/* Scrolling Content Flow - BEHIND */}
       <div className="relative z-10" style={{ marginTop: '-100vh' }}>
-        {/* Section 1: Brand Intro */}
+        {/* Section 1: Split Screen Hero */}
         <div
-          className="w-full flex flex-col items-center justify-center"
-          style={{ height: '100vh' }}
+          className="w-full flex items-stretch h-screen"
         >
-          <Container className="flex flex-col items-center justify-center">
+          {/* Left Column */}
+          <div className="w-1/2 h-full border-r border-border flex flex-col justify-center px-12 md:px-24">
             <motion.div
-              initial={{ opacity: 0, y: 100 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-center"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col items-start gap-8"
             >
-              <h1
-                className="font-bold tracking-tighter text-transparent mix-blend-difference leading-[0.8]"
-                style={{
-                  fontSize: 'clamp(4rem, 15vw, 20rem)',
-                  WebkitTextStroke: '2px rgba(255,255,255,0.8)',
-                }}
-              >
-                NOXIS
-              </h1>
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 1 }}
-                className="mt-8 font-medium uppercase text-primary text-center w-full"
-                style={{
-                  fontSize: 'clamp(0.625rem, 1vw, 1rem)',
-                  letterSpacing: '0.5em',
-                }}
-              >
-                Digital Architecture & Alchemy
-              </motion.p>
+              <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-md leading-relaxed">
+                We design immersive, motion-driven websites that command attention and guide users to act.
+                Clean builds. Sharp strategy. Zero fluff.
+              </p>
+              <div className="mt-8">
+                <Button
+                  size="lg"
+                  className="font-bold text-base"
+                >
+                  Let's Talk
+                </Button>
+              </div>
             </motion.div>
-          </Container>
+          </div>
+
+          {/* Right Column */}
+          <div className="w-1/2 h-full flex items-center justify-center px-6 md:px-12 p-32">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase leading-[0.85] tracking-tighter text-left text-foreground">
+                Your Brand <br />
+                <span className="text-primary">Deserves</span> <br />
+                More Than <br />
+                A Pretty <br />
+                Website.
+              </h1>
+            </motion.div>
+          </div>
         </div>
 
         {/* Section 2: Core Value Prop */}
