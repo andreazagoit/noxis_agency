@@ -99,7 +99,7 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase leading-[0.85] tracking-tighter text-left text-foreground">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold uppercase leading-[0.85] tracking-tighter text-left text-foreground">
                   Your Brand <br />
                   <span className="text-primary">Deserves</span> <br />
                   More Than <br />

@@ -9,10 +9,10 @@ export function Partnership() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-8xl font-bold tracking-tighter mb-12"
+          className="text-4xl md:text-6xl font-heading font-bold tracking-tighter mb-12"
         >
           Ready to{' '}
-          <span className="text-primary mix-blend-screen">ascend?</span>
+          <span className="text-primary">ascend?</span>
         </motion.h2>
 
         <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">

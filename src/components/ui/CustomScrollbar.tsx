@@ -91,7 +91,7 @@ function ScrollbarInner() {
 
   return (
     <motion.div
-      className="fixed right-5 top-1/2 -translate-y-1/2 z-50 mix-blend-difference"
+      className="fixed right-5 top-1/2 -translate-y-1/2 z-[100] mix-blend-difference"
       initial={{ opacity: 0, x: 10 }}
       animate={{
         opacity: isVisible ? 1 : 0.4,

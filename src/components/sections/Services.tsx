@@ -59,7 +59,7 @@ export function Services() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight mb-4">
             What We Build<span className="text-primary">.</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl">
@@ -81,10 +81,10 @@ export function Services() {
                                 group relative overflow-hidden rounded-3xl
                                 ${item.span}
                                 ${item.accent
-                  ? 'bg-gradient-to-br from-primary/80 to-primary text-primary-foreground'
-                  : 'glass-panel hover:bg-foreground/5'
+                  ? 'bg-gradient-to-br from-primary/80 to-primary text-primary-foreground border border-transparent hover:border-white'
+                  : 'glass-panel hover:border-primary/50'
                 }
-                                transition-all duration-300
+                                transition-all duration-500
                             `}
             >
               {/* Content Layout */}
