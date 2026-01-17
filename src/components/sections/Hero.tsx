@@ -50,12 +50,20 @@ export function Hero() {
 
       {/* Scrolling Content Flow - BEHIND */}
       <div className="relative z-10" style={{ marginTop: '-100vh' }}>
+        {/* Continuous Vertical Line */}
+        <div
+          className="absolute top-0 left-1/2 w-px h-full -translate-x-1/2"
+          style={{
+            background: 'linear-gradient(to bottom, var(--border) 80%, transparent 100%)'
+          }}
+        />
+
         {/* Section 1: Split Screen Hero */}
         <div
           className="w-full flex items-stretch h-screen"
         >
           {/* Left Column */}
-          <div className="w-1/2 h-full border-r border-border flex flex-col justify-center px-12 md:px-24">
+          <div className="w-1/2 h-full flex flex-col justify-center px-12 md:px-24">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -66,7 +74,7 @@ export function Hero() {
                 We design immersive, motion-driven websites that command attention and guide users to act.
                 Clean builds. Sharp strategy. Zero fluff.
               </p>
-              <div className="mt-8">
+              <div className="mt-6">
                 <Button
                   size="lg"
                   className="font-bold text-base"
@@ -216,7 +224,43 @@ export function Hero() {
           </Container>
         </div>
 
-        <div style={{ height: '20vh' }} />
+        {/* Section 4: Lead Text */}
+        <div className="w-full h-auto py-24 flex items-center justify-center">
+          <h2 className="font-bold text-6xl md:text-8xl lg:text-9xl uppercase tracking-tighter text-center leading-[0.8]">
+            We Are <span className="text-primary">Good</span> At
+          </h2>
+        </div>
+
+        {/* Section 4: The Core (Graduated Target) */}
+        <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
+          {/* Horizontal Line */}
+          <div className="absolute top-1/2 left-0 w-full h-px bg-border -translate-y-1/2" />
+
+          {/* Graduated Target Circle */}
+          <div className="relative w-[45vh] h-[45vh]">
+            {/* The Ring */}
+            <div className="absolute inset-0 rounded-full border-[3px] border-dashed border-primary/60" />
+
+            {/* Degree Ticks */}
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute top-1/2 left-1/2 w-1 h-3 rounded-full bg-primary"
+                style={{
+                  transform: `translate(-50%, -50%) rotate(${i * 30}deg) translateY(-22.5vh)`
+                }}
+              />
+            ))}
+
+            {/* Cardinal Dots Removed */}
+
+            {/* Labels */}
+            <span className="absolute -top-10 left-1/2 -translate-x-1/2 font-bold text-[10px] md:text-xs tracking-[0.2em] uppercase">Development</span>
+            <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 font-bold text-[10px] md:text-xs tracking-[0.2em] uppercase">E-Commerce</span>
+            <span className="absolute top-1/2 -left-10 -translate-x-full -translate-y-1/2 font-bold text-[10px] md:text-xs tracking-[0.2em] uppercase text-right">Design</span>
+            <span className="absolute top-1/2 -right-10 translate-x-full -translate-y-1/2 font-bold text-[10px] md:text-xs tracking-[0.2em] uppercase text-left">SEO</span>
+          </div>
+        </div>
       </div>
     </section>
   )
