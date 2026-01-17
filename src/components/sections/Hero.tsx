@@ -99,7 +99,7 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold uppercase leading-[0.85] tracking-tighter text-left text-foreground">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold uppercase leading-[0.85] text-left text-foreground">
                   Your Brand <br />
                   <span className="text-primary">Deserves</span> <br />
                   More Than <br />
@@ -129,7 +129,7 @@ export function Hero() {
               className="w-full text-center"
             >
               <h2
-                className="font-bold leading-[0.9] tracking-tighter mix-blend-difference uppercase"
+                className="font-bold leading-[0.9] mix-blend-difference uppercase"
                 style={{ fontSize: 'clamp(2rem, 8vw, 10rem)' }}
               >
                 We don't build
@@ -176,7 +176,7 @@ export function Hero() {
                 }}
               >
                 <h3
-                  className="font-bold tracking-tighter leading-none"
+                  className="font-bold leading-none"
                   style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)' }}
                 >
                   Unconventional
@@ -212,7 +212,7 @@ export function Hero() {
                 }}
               >
                 <h3
-                  className="font-bold tracking-tighter leading-none"
+                  className="font-bold leading-none"
                   style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)' }}
                 >
                   Ambitious
@@ -235,7 +235,7 @@ export function Hero() {
         {/* Section 4: Lead Text */}
         <div className="w-full h-auto flex items-center justify-center">
           <Container className="py-24 flex items-center justify-center">
-            <h2 className="font-bold text-6xl md:text-8xl lg:text-9xl uppercase tracking-tighter text-center leading-[0.8]">
+            <h2 className="font-bold text-6xl md:text-8xl lg:text-9xl uppercase text-center leading-[0.8]">
               We Are <span className="text-primary">Good</span> At
             </h2>
           </Container>

@@ -51,7 +51,7 @@ export function FeaturedWork({
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="text-6xl md:text-9xl font-heading font-black uppercase tracking-tighter text-center"
+                            className="text-6xl md:text-9xl font-heading font-black uppercase text-center"
                         >
                             {title}
                         </motion.h2>
@@ -82,7 +82,7 @@ export function FeaturedWork({
                             <motion.h2
                                 key={index}
                                 style={{ opacity, y }}
-                                className="absolute text-5xl md:text-8xl font-heading font-black uppercase tracking-tighter text-center w-full px-4"
+                                className="absolute text-5xl md:text-8xl font-heading font-black uppercase text-center w-full px-4"
                             >
                                 {item}
                             </motion.h2>

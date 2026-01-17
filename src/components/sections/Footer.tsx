@@ -10,7 +10,7 @@ export function Footer() {
           {/* Col 1: Slogan */}
           <div className="md:col-span-4 flex flex-col justify-between h-full">
             <div>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tighter uppercase mb-6">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold uppercase mb-6">
                 Noxis<span className="text-primary">.</span>
               </h2>
               <p className="text-xl md:text-2xl font-medium leading-tight max-w-sm">

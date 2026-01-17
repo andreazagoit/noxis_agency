@@ -9,7 +9,7 @@ export function Partnership() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl font-heading font-bold tracking-tighter mb-12"
+          className="text-4xl md:text-6xl font-heading font-bold mb-12"
         >
           Ready to{' '}
           <span className="text-primary">ascend?</span>

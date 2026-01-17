@@ -346,7 +346,7 @@ export function Method() {
         <section className="py-24 w-full h-[90vh] bg-background relative border-t border-border/40">
             <Container className="h-full relative">
                 <div className="absolute top-0 left-6 z-10 pointer-events-none">
-                    <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight mb-4">
+                    <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
                         Our Process<span className="text-primary">.</span>
                     </h2>
                     <p className="text-muted-foreground text-lg">

@@ -166,7 +166,7 @@ export function Quotes({
                         <motion.h2
                             key={i}
                             style={{ opacity: containerOpacities[i] }}
-                            className="absolute text-3xl md:text-6xl font-heading font-black uppercase tracking-widest text-center break-words max-w-[90vw]"
+                            className="absolute text-5xl md:text-8xl font-heading font-black uppercase text-center break-words max-w-[90vw]"
                         >
                             <AnimatedText
                                 text={text}
