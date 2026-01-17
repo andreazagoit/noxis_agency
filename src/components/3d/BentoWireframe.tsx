@@ -116,6 +116,7 @@ interface BentoWireframeProps {
   className?: string
   accentColor?: boolean
   useGlass?: boolean
+  position?: [number, number, number]
 }
 
 export function BentoWireframe({
@@ -123,6 +124,7 @@ export function BentoWireframe({
   className = '',
   accentColor = false,
   useGlass = false,
+  position = [0, 0, 0],
 }: BentoWireframeProps) {
   const wireColor = accentColor ? '#ffffff' : '#888888'
 
@@ -134,24 +136,26 @@ export function BentoWireframe({
         style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
-          {useGlass ? (
-            <>
-              <Environment preset="studio" />
-              <GlassShape geometry={geometry} />
-              <ambientLight intensity={0.5} />
-              <spotLight
-                position={[10, 10, 10]}
-                angle={0.15}
-                penumbra={1}
-                intensity={1}
-              />
-            </>
-          ) : (
-            <>
-              <WireframeShape geometry={geometry} color={wireColor} />
-              <ambientLight intensity={1} />
-            </>
-          )}
+          <group position={position}>
+            {useGlass ? (
+              <>
+                <Environment preset="studio" />
+                <GlassShape geometry={geometry} />
+                <ambientLight intensity={0.5} />
+                <spotLight
+                  position={[10, 10, 10]}
+                  angle={0.15}
+                  penumbra={1}
+                  intensity={1}
+                />
+              </>
+            ) : (
+              <>
+                <WireframeShape geometry={geometry} color={wireColor} />
+                <ambientLight intensity={1} />
+              </>
+            )}
+          </group>
         </Suspense>
       </Canvas>
     </div>

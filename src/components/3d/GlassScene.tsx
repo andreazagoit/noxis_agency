@@ -45,13 +45,10 @@ function Particles({
     // Get scroll progress (0 to 1)
     const progress = scrollYProgress ? scrollYProgress.get() : 0
 
-    // Increase turbulence based on scroll
-    // Base speed + scroll speed boost (reduced sensitivity to 0.02 as requested)
-    const rotationSpeedY = 0.02 + progress * 0.02
-    const rotationSpeedX = 0.01 + progress * 0.01
-
-    ref.current.rotation.y = time * rotationSpeedY
-    ref.current.rotation.x = time * rotationSpeedX
+    // Scroll interaction: rotation depends on time (continuous) AND progress (position)
+    // This makes particles rotate backwards when scrolling up.
+    ref.current.rotation.y = time * 0.05 + progress * 5
+    ref.current.rotation.x = time * 0.02 + progress * 2
   })
 
   return (

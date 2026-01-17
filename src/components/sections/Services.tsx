@@ -16,38 +16,38 @@ const bentoItems: Array<{
   accent?: boolean
   geometry: GeometryType
 }> = [
-  {
-    title: 'Digital Ecosystems',
-    description: 'Full-stack architectures that scale effortlessly.',
-    span: 'md:col-span-2 md:row-span-2',
-    accent: true,
-    geometry: 'icosahedron',
-  },
-  {
-    title: 'Immersive Front-end',
-    description: 'Award-winning motion and interaction design.',
-    span: 'md:col-span-1 md:row-span-2',
-    geometry: 'torusKnot',
-  },
-  {
-    title: 'Mobile Experiences',
-    description: 'Native-feel applications for iOS and Android.',
-    span: 'md:col-span-1 md:row-span-1',
-    geometry: 'octahedron',
-  },
-  {
-    title: 'Cloud Native',
-    description: 'Serverless, edge-first, infinitely scalable.',
-    span: 'md:col-span-1 md:row-span-1',
-    geometry: 'torus',
-  },
-  {
-    title: 'Design Systems',
-    description: 'Consistent, beautiful, reusable components.',
-    span: 'md:col-span-1 md:row-span-1',
-    geometry: 'dodecahedron',
-  },
-]
+    {
+      title: 'Digital Ecosystems',
+      description: 'Full-stack architectures that scale effortlessly.',
+      span: 'md:col-span-2 md:row-span-2',
+      accent: true,
+      geometry: 'icosahedron',
+    },
+    {
+      title: 'Immersive Front-end',
+      description: 'Award-winning motion and interaction design.',
+      span: 'md:col-span-1 md:row-span-2',
+      geometry: 'torusKnot',
+    },
+    {
+      title: 'Mobile Experiences',
+      description: 'Native-feel applications for iOS and Android.',
+      span: 'md:col-span-1 md:row-span-1',
+      geometry: 'octahedron',
+    },
+    {
+      title: 'Cloud Native',
+      description: 'Serverless, edge-first, infinitely scalable.',
+      span: 'md:col-span-1 md:row-span-1',
+      geometry: 'torus',
+    },
+    {
+      title: 'Design Systems',
+      description: 'Consistent, beautiful, reusable components.',
+      span: 'md:col-span-1 md:row-span-1',
+      geometry: 'dodecahedron',
+    },
+  ]
 
 export function Services() {
   return (
@@ -69,7 +69,7 @@ export function Services() {
         </motion.div>
 
         {/* Bento Grid - 3 columns, auto rows */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[180px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 auto-rows-[240px]">
           {bentoItems.map((item, index) => (
             <motion.div
               key={index}
@@ -78,46 +78,44 @@ export function Services() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className={`
-                                group relative overflow-hidden rounded-2xl
+                                group relative overflow-hidden rounded-3xl
                                 ${item.span}
-                                ${
-                                  item.accent
-                                    ? 'bg-gradient-to-br from-primary/80 to-primary text-primary-foreground'
-                                    : 'glass-panel hover:bg-foreground/5'
-                                }
+                                ${item.accent
+                  ? 'bg-gradient-to-br from-primary/80 to-primary text-primary-foreground'
+                  : 'glass-panel hover:bg-foreground/5'
+                }
                                 transition-all duration-300
                             `}
             >
-              {/* Split layout: Text left, 3D right */}
-              <div className="absolute inset-0 flex">
+              {/* Content Layout */}
+              <div className="relative h-full">
                 {/* Text Content - Left Side */}
-                <div className="w-1/2 h-full p-6 flex flex-col justify-center z-10">
+                <div className="relative z-10 w-1/2 h-full p-8 flex flex-col justify-end">
                   <h3
                     className={`
-                                        text-lg md:text-xl font-semibold mb-2 tracking-tight leading-tight
-                                        ${item.accent ? '' : 'group-hover:text-primary transition-colors'}
-                                    `}
+                                          text-lg md:text-xl font-semibold mb-2 tracking-tight leading-tight
+                                          ${item.accent ? '' : 'group-hover:text-primary transition-colors'}
+                                      `}
                   >
                     {item.title}
                   </h3>
                   <p
                     className={`
-                                        text-xs md:text-sm leading-relaxed
-                                        ${item.accent ? 'text-white/80' : 'text-muted-foreground'}
-                                    `}
+                                          text-xs md:text-sm leading-relaxed
+                                          ${item.accent ? 'text-white/80' : 'text-muted-foreground'}
+                                      `}
                   >
                     {item.description}
                   </p>
                 </div>
 
-                {/* 3D Shape - Right Side */}
-                <div className="w-1/2 h-full relative">
-                  <BentoWireframe
-                    geometry={item.geometry}
-                    accentColor={item.accent}
-                    useGlass={false}
-                  />
-                </div>
+                {/* 3D Full Cover */}
+                <BentoWireframe
+                  geometry={item.geometry}
+                  accentColor={item.accent}
+                  useGlass={true}
+                  position={item.span.includes('col-span-2') ? [2, 0, 0] : [1, 0, 0]}
+                />
               </div>
             </motion.div>
           ))}
