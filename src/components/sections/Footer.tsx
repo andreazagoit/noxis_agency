@@ -1,53 +1,54 @@
-import { ThemeToggle } from '../ui/ThemeToggle'
+'use client'
+
 import { Container } from '../layout/Container'
 
 export function Footer() {
   return (
-    <footer className="relative w-full border-t border-border/40 bg-background overflow-hidden pt-24 pb-12">
-      <Container className="flex flex-col gap-12">
-        {/* Navigation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-          {/* Col 1: Slogan */}
-          <div className="md:col-span-4 flex flex-col justify-between h-full">
-            <div>
-              <h2 className="text-5xl font-heading font-bold uppercase mb-6">
-                Noxis<span className="text-primary">.</span>
-              </h2>
-              <p className="text-2xl font-medium leading-tight max-w-sm">
-                We build digital assets that define value. <br />
-                <span className="text-muted-foreground">Unconventional by design.</span>
-              </p>
-            </div>
-
-            <div className="mt-12 hidden md:block">
-              <a href="mailto:hello@noxis.agency" className="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors">hello@noxis.agency</a>
-            </div>
+    <footer className="relative w-full bg-black text-white overflow-hidden pt-32 pb-12">
+      <Container className="relative z-10">
+        {/* Main Content: Just Contacts & Slogan */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
+          <div className="max-w-xl">
+            <h2 className="text-[2.5rem] md:text-[4rem] font-bold leading-none tracking-tighter mb-8 italic">
+              Beyond <br />
+              <span className="text-primary opacity-80">Digital Excellence.</span>
+            </h2>
           </div>
 
-
-
-          {/* Mobile Email */}
-          <div className="md:hidden mt-8">
-            <a href="mailto:hello@noxis.agency" className="text-lg font-bold tracking-wider hover:text-primary transition-colors">hello@noxis.agency</a>
+          <div className="flex flex-col gap-6">
+            <span className="text-[0.6rem] uppercase tracking-[0.3em] font-bold text-zinc-500">Get in touch</span>
+            <a href="mailto:hello@noxis.agency" className="text-[1.5rem] md:text-[2rem] font-medium hover:text-primary transition-colors tracking-tight">
+              hello@noxis.agency
+            </a>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-border/20">
-          <div className="flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-left text-[10px] uppercase tracking-widest text-muted-foreground font-bold opacity-60">
-            <span>Andrea Zago</span>
-            <span className="hidden md:inline text-border">|</span>
-            <span>P.IVA 05668260283 — C.F. zgandr97c22b563e</span>
-            <span className="hidden md:inline text-border">|</span>
-            <span>Via Giuseppe Mazzini 5a, 35010 Trebaseleghe (PD)</span>
-          </div>
+        {/* Bottom Giant Text */}
+        <div className="relative border-t border-zinc-900 pt-12 mt-12 overflow-hidden select-none pointer-events-none">
+          <h1 className="text-[22vw] font-black uppercase leading-[0.7] tracking-[-0.05em] text-zinc-900/50">
+            Noxis.
+          </h1>
+        </div>
 
-          <div className="flex items-center gap-6">
+        {/* Footer Bottom Bar: Legal & Office on one line */}
+        <div className="mt-24 pt-8 border-t border-zinc-900/50">
+          <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 text-[9px] uppercase tracking-[0.25em] font-bold text-zinc-600">
+            <div className="flex items-center gap-6">
+              <span>© 2026 Andrea Zago</span>
+              <span className="w-1 h-1 rounded-full bg-zinc-800" />
+              <span>P.IVA 05668260283 — C.F. zgandr97c22b563e</span>
+            </div>
 
-            <ThemeToggle />
+            <div className="flex items-center gap-6">
+              <span>Trebaseleghe (PD), Italy</span>
+              <span className="w-1 h-1 rounded-full bg-zinc-800" />
+              <span>Via G. Mazzini 5a, 35010</span>
+            </div>
           </div>
         </div>
       </Container>
+
+      {/* Decorative background mesh or gradient if needed, but keeping it flat for now */}
     </footer>
   )
 }

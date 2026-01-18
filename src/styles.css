@@ -83,18 +83,6 @@
   --font-sans: 'Inter Tight', 'Inter Variable', sans-serif;
   --font-heading: 'Bebas Neue', sans-serif;
 
-  /* Hyper-Fluid Typography - Uncapped & Aggressive */
-  --font-size-9xl: max(6rem, 25vw);
-  --font-size-8xl: max(5rem, 20vw);
-  --font-size-7xl: max(4rem, 16vw);
-  --font-size-6xl: max(3.5rem, 13vw);
-  --font-size-5xl: max(3rem, 11vw);
-  --font-size-4xl: max(2.5rem, 9vw);
-  --font-size-3xl: max(2rem, 7vw);
-  --font-size-2xl: max(1.5rem, 5vw);
-  --font-size-xl: max(1.25rem, 4vw);
-  --font-size-lg: max(1.1rem, 3vw);
-
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -181,5 +169,83 @@
   .font-heading {
     font-family: var(--font-heading);
     letter-spacing: 0.04em;
+  }
+
+  /* Centralized Fluid Design System */
+
+  /* Typography */
+  .text-display {
+    @apply text-[12vw] md:text-[10vw] lg:text-[7.5vw] font-heading font-bold uppercase leading-[0.9];
+  }
+
+  .text-title {
+    @apply text-[11vw] md:text-[8vw] lg:text-[6.5vw] font-heading font-bold uppercase leading-[0.9];
+  }
+
+  .text-subtitle {
+    @apply text-[10vw] md:text-[6vw] lg:text-[4.5vw] font-bold uppercase leading-tight;
+  }
+
+  .text-body {
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    line-height: var(--leading-relaxed, 1.625);
+    font-weight: 400;
+  }
+
+  @media (min-width: 768px) {
+    .text-body {
+      font-size: 1.2vw;
+    }
+  }
+
+  .text-caption {
+    font-size: 3vw;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .text-caption {
+      font-size: 0.8vw;
+    }
+  }
+
+  .text-nav {
+    font-size: 3.5vw;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .text-nav {
+      font-size: 0.75vw;
+    }
+  }
+
+  /* Spacing */
+  .py-section {
+    @apply py-24 md:py-40;
+  }
+
+  .pt-section {
+    @apply pt-24 md:pt-40;
+  }
+
+  .pb-section {
+    @apply pb-24 md:pb-40;
+  }
+
+  .mb-element {
+    @apply mb-8 md:mb-12;
+  }
+
+  .gap-fluid {
+    @apply gap-16 md:gap-24;
+  }
+
+  .gap-element {
+    @apply gap-8 md:gap-12;
   }
 }

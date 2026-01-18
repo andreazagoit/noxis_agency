@@ -17,33 +17,33 @@ const bentoItems: Array<{
   geometry: GeometryType
 }> = [
     {
-      title: 'Digital Ecosystems',
-      description: 'Full-stack architectures that scale effortlessly.',
+      title: 'Digital Strategy',
+      description: 'Strategic foundations rooted in ambition and long-term vision.',
       span: 'md:col-span-2 md:row-span-2',
       accent: true,
       geometry: 'icosahedron',
     },
     {
-      title: 'Immersive Front-end',
-      description: 'Award-winning motion and interaction design.',
+      title: 'Creative Excellence',
+      description: 'Design that delivers real value beyond mere aesthetics.',
       span: 'md:col-span-1 md:row-span-2',
       geometry: 'torusKnot',
     },
     {
-      title: 'Mobile Experiences',
-      description: 'Native-feel applications for iOS and Android.',
+      title: 'Ethical Engineering',
+      description: 'Technology as a positive force for human impact.',
       span: 'md:col-span-1 md:row-span-1',
       geometry: 'octahedron',
     },
     {
-      title: 'Cloud Native',
-      description: 'Serverless, edge-first, infinitely scalable.',
+      title: 'Solid Systems',
+      description: 'Scalable architectures built without shortcuts.',
       span: 'md:col-span-1 md:row-span-1',
       geometry: 'torus',
     },
     {
-      title: 'Design Systems',
-      description: 'Consistent, beautiful, reusable components.',
+      title: 'User Respect',
+      description: 'Functional products that honor the people using them.',
       span: 'md:col-span-1 md:row-span-1',
       geometry: 'dodecahedron',
     },
@@ -52,24 +52,25 @@ const bentoItems: Array<{
 export function Services() {
   return (
     <section id="services">
-      <Container className="py-32">
+      <Container className="py-section">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-element"
         >
-          <h2 className="text-6xl font-heading font-bold mb-4">
-            What We Build<span className="text-primary">.</span>
+          <h2 className="text-title mb-element">
+            Premium <br />
+            <span className="text-primary italic">Digital Products.</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-xl">
-            We don't offer menus. We offer solutions. Our expertise is focused,
-            deep, and uncompromising.
+          <p className="text-body max-w-xl text-muted-foreground">
+            We unite high-level design, solid technology, and professional ethics
+            to create products that are just, useful, and reliable.
           </p>
         </motion.div>
 
         {/* Bento Grid - 3 columns, auto rows */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 auto-rows-[240px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-element auto-rows-[240px]">
           {bentoItems.map((item, index) => (
             <motion.div
               key={index}
@@ -93,15 +94,15 @@ export function Services() {
                 <div className="relative z-10 w-1/2 h-full p-8 flex flex-col justify-end">
                   <h3
                     className={`
-                                          text-lg md:text-xl font-semibold mb-2 tracking-tight leading-tight
-                                          ${item.accent ? '' : 'group-hover:text-primary transition-colors'}
-                                      `}
+                      text-body font-semibold mb-2 tracking-tight leading-tight
+                      ${item.accent ? '' : 'group-hover:text-primary transition-colors'}
+                    `}
                   >
                     {item.title}
                   </h3>
                   <p
                     className={`
-                                          text-xs md:text-sm leading-relaxed
+                                          text-caption leading-relaxed
                                           ${item.accent ? 'text-white/80' : 'text-muted-foreground'}
                                       `}
                   >

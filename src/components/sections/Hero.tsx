@@ -68,20 +68,19 @@ export function Hero() {
 
         {/* Section 1: Split Screen Hero */}
         <div className="w-full min-h-screen flex items-center">
-          <Container className="grid grid-cols-1 md:grid-cols-2 gap-y-12 md:gap-x-[10vw] items-center md:items-stretch py-8 md:py-0">
+          <Container className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center py-8 md:py-0">
             {/* Title - First on mobile, Right on desktop */}
-            <div className="flex items-center md:pl-0 order-1 md:order-2 mb-6 md:mb-0">
+            <div className="flex items-center md:pl-0 order-1 md:order-2">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="w-full"
               >
-                <h1 className="text-9xl font-heading font-bold uppercase leading-[0.85] text-left text-foreground">
-                  Your Brand <br />
-                  <span className="text-primary">Deserves</span> More<br />
-                  Than A Pretty <br />
-                  Website.
+                <h1 className="text-display text-left text-foreground leading-[0.85] tracking-tighter">
+                  Elevating the <br />
+                  <span className="text-primary italic">digital</span> through<br />
+                  beauty & ethics.
                 </h1>
               </motion.div>
             </div>
@@ -92,15 +91,15 @@ export function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-col items-start gap-6"
+                className="flex flex-col items-start gap-6 md:max-w-[50%]"
               >
-                <p className="text-lg text-muted-foreground font-medium leading-relaxed text-left">
-                  We design immersive, motion-driven websites that command attention and guide users to act.
-                  Clean builds. Sharp strategy. Zero fluff.
+                <p className="text-body text-left text-muted-foreground font-medium">
+                  We design and develop premium digital experiences where beauty, functionality, and ethics coexist.
+                  Impacting the world through quality.
                 </p>
                 <Button
                   size="lg"
-                  className="font-bold text-base"
+                  className="font-bold text-caption mt-8"
                 >
                   Let's Talk
                 </Button>
@@ -111,11 +110,9 @@ export function Hero() {
 
         {/* Section 2: Core Value Prop */}
         <div
-          className="w-full flex items-center justify-center"
+          className="w-full flex items-center justify-center py-section"
           style={{
             minHeight: '100vh',
-            paddingTop: '8rem',
-            paddingBottom: '8rem',
           }}
         >
           <Container className="flex items-center justify-center">
@@ -127,17 +124,17 @@ export function Hero() {
               className="w-full text-center"
             >
               <h2
-                className="font-heading font-bold text-8xl leading-[0.9] mix-blend-difference uppercase"
+                className="text-display mix-blend-difference uppercase"
               >
                 We don't build
                 <br />
-                <span className="text-muted-foreground opacity-50">
-                  websites.
+                <span className="text-muted-foreground opacity-50 italic">
+                  disposable code.
                 </span>
                 <br />
-                <span className="text-primary italic">We build assets</span>
+                <span className="text-primary">We build assets</span>
                 <br />
-                that define value.
+                that improve lives.
               </h2>
             </motion.div>
           </Container>
@@ -145,47 +142,38 @@ export function Hero() {
 
         {/* Section 3: Manifesto Details */}
         <div
-          className="w-full"
+          className="w-full py-section"
           style={{
             minHeight: '100vh',
-            paddingTop: 'clamp(4rem, 10vw, 16rem)',
-            paddingBottom: 'clamp(4rem, 10vw, 16rem)',
           }}
         >
           <Container
-            className="flex flex-col items-center"
-            style={{ gap: 'clamp(4rem, 10vw, 16rem)' }}
+            className="flex flex-col items-center gap-fluid"
           >
             {/* Manifesto Block 1 */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="max-w-5xl w-full flex flex-col md:flex-row items-start"
-              style={{ gap: 'clamp(2rem, 5vw, 6rem)' }}
+              className="max-w-5xl w-full flex flex-col md:flex-row items-start gap-20"
             >
               <div
                 className="flex-1"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '2rem',
+                  gap: '1.5rem',
                 }}
               >
-                <h3
-                  className="font-heading font-bold text-6xl leading-none"
-                >
-                  Unconventional
+                <h3 className="text-subtitle">
+                  Ambition
                   <br />
-                  <span className="text-primary italic">by design.</span>
+                  <span className="text-primary italic">by definition.</span>
                 </h3>
-                <p
-                  className="text-muted-foreground text-2xl leading-tight font-light max-w-2xl"
-                >
-                  In a world of templates, we chose to be the exception. Noxis
-                  combines liquid aesthetics with rigid engineering to create
-                  experiences that feel{' '}
-                  <span className="text-foreground">expensive</span>.
+                <p className="text-body text-muted-foreground max-w-2xl">
+                  We don't build to just "make sites". We build to last.
+                  Our work is driven by a refusal of mediocrity and a commitment to
+                  excellence that defines our industry.
                 </p>
               </div>
             </motion.div>
@@ -195,30 +183,25 @@ export function Hero() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="max-w-5xl w-full flex flex-col md:flex-row-reverse items-start"
-              style={{ gap: 'clamp(2rem, 5vw, 6rem)' }}
+              className="max-w-5xl w-full flex flex-col md:flex-row-reverse items-start gap-20"
             >
               <div
                 className="flex-1 text-right"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '2rem',
+                  gap: '1.5rem',
                 }}
               >
-                <h3
-                  className="font-heading font-bold text-6xl leading-none"
-                >
-                  Ambitious
+                <h3 className="text-subtitle">
+                  Premium
                   <br />
-                  <span className="text-primary italic">by nature.</span>
+                  <span className="text-primary italic">by essence.</span>
                 </h3>
-                <p
-                  className="text-muted-foreground text-2xl leading-tight font-light ml-auto max-w-2xl"
-                >
-                  Our method focuses on perceived value and cinematic motion. We
-                  transform traditional navigation into a{' '}
-                  <span className="text-foreground">fluid journey</span>.
+                <p className="text-body text-muted-foreground ml-auto max-w-2xl">
+                  Authentic premium is found in the details, the care, and the coherence.
+                  We reject shortcuts and dark patterns, focusing on real value
+                  perceivable by people.
                 </p>
               </div>
             </motion.div>
@@ -227,8 +210,8 @@ export function Hero() {
 
         {/* Section 4: Lead Text */}
         <div className="w-full h-auto flex items-center justify-center">
-          <Container className="py-24 flex items-center justify-center">
-            <h2 className="font-heading font-bold text-9xl uppercase text-center leading-[0.8]">
+          <Container className="py-section flex items-center justify-center">
+            <h2 className="text-display text-center">
               We Are <span className="text-primary">Good</span> At
             </h2>
           </Container>
@@ -279,25 +262,25 @@ export function Hero() {
                 {/* Development - Top on desktop, Top-Right on mobile */}
                 <div className="absolute -top-8 -right-8 md:-top-10 md:right-auto md:left-1/2 md:-translate-x-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase">Development</span>
+                  <span className="text-caption">Development</span>
                 </div>
 
                 {/* E-Commerce - Bottom on desktop, Bottom-Left on mobile */}
                 <div className="absolute -bottom-8 -left-8 md:-bottom-10 md:left-1/2 md:-translate-x-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase">E-Commerce</span>
+                  <span className="text-caption">E-Commerce</span>
                 </div>
 
                 {/* Design - Left on desktop, Top-Left on mobile */}
                 <div className="absolute -top-8 -left-8 md:top-1/2 md:-left-10 md:-translate-x-full md:-translate-y-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase">Design</span>
+                  <span className="text-caption">Design</span>
                 </div>
 
                 {/* SEO - Right on desktop, Bottom-Right on mobile */}
                 <div className="absolute -bottom-8 -right-8 md:top-1/2 md:-right-10 md:translate-x-full md:-translate-y-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase">SEO</span>
+                  <span className="text-caption">SEO</span>
                 </div>
               </div>
             </div>
