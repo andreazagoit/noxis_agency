@@ -83,6 +83,18 @@
   --font-sans: 'Inter Tight', 'Inter Variable', sans-serif;
   --font-heading: 'Bebas Neue', sans-serif;
 
+  /* Hyper-Fluid Typography - Uncapped & Aggressive */
+  --font-size-9xl: max(6rem, 25vw);
+  --font-size-8xl: max(5rem, 20vw);
+  --font-size-7xl: max(4rem, 16vw);
+  --font-size-6xl: max(3.5rem, 13vw);
+  --font-size-5xl: max(3rem, 11vw);
+  --font-size-4xl: max(2.5rem, 9vw);
+  --font-size-3xl: max(2rem, 7vw);
+  --font-size-2xl: max(1.5rem, 5vw);
+  --font-size-xl: max(1.25rem, 4vw);
+  --font-size-lg: max(1.1rem, 3vw);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -164,5 +176,10 @@
   .vertical-text {
     writing-mode: vertical-rl;
     text-orientation: mixed;
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: 0.04em;
   }
 }

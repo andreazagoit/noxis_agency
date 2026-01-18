@@ -152,21 +152,20 @@ export function Quotes({
             {/* Sticky Container */}
             <div
                 className="sticky top-0 h-screen w-full flex flex-col items-center justify-center"
-                style={{ paddingBlock: "max(0px, calc((100vw - 90rem) / 2))" }}
             >
                 <Container className="relative z-20 flex flex-col items-center justify-center h-full w-full">
                     {/* Corner Markers */}
-                    <PlusMarker className="top-0 left-0 -translate-x-1/2 -translate-y-1/2" />
-                    <PlusMarker className="top-0 right-0 translate-x-1/2 -translate-y-1/2" />
-                    <PlusMarker className="bottom-0 left-0 -translate-x-1/2 translate-y-1/2" />
-                    <PlusMarker className="bottom-0 right-0 translate-x-1/2 translate-y-1/2" />
+                    <PlusMarker className="top-[5vw] left-[5vw] -translate-x-1/2 -translate-y-1/2" />
+                    <PlusMarker className="top-[5vw] right-[5vw] translate-x-1/2 -translate-y-1/2" />
+                    <PlusMarker className="bottom-[5vw] left-[5vw] -translate-x-1/2 translate-y-1/2" />
+                    <PlusMarker className="bottom-[5vw] right-[5vw] translate-x-1/2 translate-y-1/2" />
 
                     {/* Animated Texts */}
                     {items.map((text, i) => (
                         <motion.h2
                             key={i}
                             style={{ opacity: containerOpacities[i] }}
-                            className="absolute text-5xl md:text-8xl font-heading font-black uppercase text-center break-words max-w-[90vw]"
+                            className="absolute text-8xl font-heading font-black uppercase text-center break-words max-w-[90vw]"
                         >
                             <AnimatedText
                                 text={text}

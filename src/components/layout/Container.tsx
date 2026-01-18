@@ -12,8 +12,8 @@ export function Container({
 }: ContainerProps) {
   return (
     <Component
-      className={cn('w-full max-w-[90rem] mx-auto px-4 md:px-6', className)}
-      {...props}
+      className={cn('w-full px-[5vw]', className)}
+      {...(props as any)}
     />
   )
 }

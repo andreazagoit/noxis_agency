@@ -9,13 +9,13 @@ export function Partnership() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl font-heading font-bold mb-12"
+          className="text-9xl font-heading font-bold mb-12"
         >
           Ready to{' '}
           <span className="text-primary">ascend?</span>
         </motion.h2>
 
-        <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <p className="text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
           We only partner with brands ready to redefine their industry. If
           that's you, let's talk business.
         </p>

@@ -67,45 +67,43 @@ export function Hero() {
         />
 
         {/* Section 1: Split Screen Hero */}
-        <div className="w-full h-screen">
-          <Container className="flex items-stretch h-full">
-            {/* Left Column */}
-            <div className="w-1/2 h-full flex flex-col justify-center pr-6 md:pr-12">
+        <div className="w-full min-h-screen flex items-center">
+          <Container className="grid grid-cols-1 md:grid-cols-2 gap-y-12 md:gap-x-[10vw] items-center md:items-stretch py-8 md:py-0">
+            {/* Title - First on mobile, Right on desktop */}
+            <div className="flex items-center md:pl-0 order-1 md:order-2 mb-6 md:mb-0">
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex flex-col items-start gap-8"
+                className="w-full"
               >
-                <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-md leading-relaxed">
-                  We design immersive, motion-driven websites that command attention and guide users to act.
-                  Clean builds. Sharp strategy. Zero fluff.
-                </p>
-                <div className="mt-6">
-                  <Button
-                    size="lg"
-                    className="font-bold text-base"
-                  >
-                    Let's Talk
-                  </Button>
-                </div>
+                <h1 className="text-9xl font-heading font-bold uppercase leading-[0.85] text-left text-foreground">
+                  Your Brand <br />
+                  <span className="text-primary">Deserves</span> More<br />
+                  Than A Pretty <br />
+                  Website.
+                </h1>
               </motion.div>
             </div>
 
-            {/* Right Column */}
-            <div className="w-1/2 h-full flex items-center justify-center pl-6 md:pl-12">
+            {/* Description - Second on mobile, Left on desktop */}
+            <div className="flex flex-col justify-center md:pr-0 order-2 md:order-1">
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex flex-col items-start gap-6"
               >
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold uppercase leading-[0.85] text-left text-foreground">
-                  Your Brand <br />
-                  <span className="text-primary">Deserves</span> <br />
-                  More Than <br />
-                  A Pretty <br />
-                  Website.
-                </h1>
+                <p className="text-lg text-muted-foreground font-medium leading-relaxed text-left">
+                  We design immersive, motion-driven websites that command attention and guide users to act.
+                  Clean builds. Sharp strategy. Zero fluff.
+                </p>
+                <Button
+                  size="lg"
+                  className="font-bold text-base"
+                >
+                  Let's Talk
+                </Button>
               </motion.div>
             </div>
           </Container>
@@ -129,8 +127,7 @@ export function Hero() {
               className="w-full text-center"
             >
               <h2
-                className="font-bold leading-[0.9] mix-blend-difference uppercase"
-                style={{ fontSize: 'clamp(2rem, 8vw, 10rem)' }}
+                className="font-heading font-bold text-8xl leading-[0.9] mix-blend-difference uppercase"
               >
                 We don't build
                 <br />
@@ -176,16 +173,14 @@ export function Hero() {
                 }}
               >
                 <h3
-                  className="font-bold leading-none"
-                  style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)' }}
+                  className="font-heading font-bold text-6xl leading-none"
                 >
                   Unconventional
                   <br />
                   <span className="text-primary italic">by design.</span>
                 </h3>
                 <p
-                  className="text-muted-foreground leading-tight font-light max-w-2xl"
-                  style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2.5rem)' }}
+                  className="text-muted-foreground text-2xl leading-tight font-light max-w-2xl"
                 >
                   In a world of templates, we chose to be the exception. Noxis
                   combines liquid aesthetics with rigid engineering to create
@@ -212,16 +207,14 @@ export function Hero() {
                 }}
               >
                 <h3
-                  className="font-bold leading-none"
-                  style={{ fontSize: 'clamp(2.5rem, 6vw, 6rem)' }}
+                  className="font-heading font-bold text-6xl leading-none"
                 >
                   Ambitious
                   <br />
                   <span className="text-primary italic">by nature.</span>
                 </h3>
                 <p
-                  className="text-muted-foreground leading-tight font-light ml-auto max-w-2xl"
-                  style={{ fontSize: 'clamp(1.25rem, 2.5vw, 2.5rem)' }}
+                  className="text-muted-foreground text-2xl leading-tight font-light ml-auto max-w-2xl"
                 >
                   Our method focuses on perceived value and cinematic motion. We
                   transform traditional navigation into a{' '}
@@ -235,7 +228,7 @@ export function Hero() {
         {/* Section 4: Lead Text */}
         <div className="w-full h-auto flex items-center justify-center">
           <Container className="py-24 flex items-center justify-center">
-            <h2 className="font-bold text-6xl md:text-8xl lg:text-9xl uppercase text-center leading-[0.8]">
+            <h2 className="font-heading font-bold text-9xl uppercase text-center leading-[0.8]">
               We Are <span className="text-primary">Good</span> At
             </h2>
           </Container>
@@ -248,7 +241,7 @@ export function Hero() {
 
           <Container className="relative h-full w-full flex items-center justify-center">
             {/* Graduated Target Circle */}
-            <div className="relative w-[55vh] h-[55vh]">
+            <div className="relative w-[280px] h-[280px] md:w-[55vh] md:h-[55vh]">
               {/* Rotating Layer */}
               <motion.div
                 className="absolute inset-0"
@@ -259,43 +252,52 @@ export function Hero() {
                 <div className="absolute inset-0 rounded-full border-[3px] border-dashed border-primary/60" />
 
                 {/* Degree Ticks */}
-                {[...Array(12)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute top-1/2 left-1/2 w-1 h-3 rounded-full bg-primary"
-                    style={{
-                      transform: `translate(-50%, -50%) rotate(${i * 30}deg) translateY(-27.5vh)`
-                    }}
-                  />
-                ))}
+                {[...Array(12)].map((_, i) => {
+                  // Calculate position as percentage of container (circle) size
+                  const angle = i * 30
+                  const radius = 50 // percentage of container size - exactly on edge
+                  const x = Math.sin((angle * Math.PI) / 180) * radius
+                  const y = -Math.cos((angle * Math.PI) / 180) * radius
+                  return (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-3 rounded-full bg-primary"
+                      style={{
+                        top: `calc(50% + ${y}%)`,
+                        left: `calc(50% + ${x}%)`,
+                        transform: `translate(-50%, -50%) rotate(${angle}deg)`
+                      }}
+                    />
+                  )
+                })}
 
                 {/* Cardinal Dots Removed */}
               </motion.div>
 
               {/* Static Labels */}
               <div className="absolute inset-0 pointer-events-none">
-                {/* Top */}
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                {/* Development - Top on desktop, Top-Right on mobile */}
+                <div className="absolute -top-8 -right-8 md:-top-10 md:right-auto md:left-1/2 md:-translate-x-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                   <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase">Development</span>
                 </div>
 
-                {/* Bottom */}
-                <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                {/* E-Commerce - Bottom on desktop, Bottom-Left on mobile */}
+                <div className="absolute -bottom-8 -left-8 md:-bottom-10 md:left-1/2 md:-translate-x-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                   <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase">E-Commerce</span>
                 </div>
 
-                {/* Left */}
-                <div className="absolute top-1/2 -left-10 -translate-x-full -translate-y-1/2 flex items-center gap-2">
+                {/* Design - Left on desktop, Top-Left on mobile */}
+                <div className="absolute -top-8 -left-8 md:top-1/2 md:-left-10 md:-translate-x-full md:-translate-y-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase text-right">Design</span>
+                  <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase">Design</span>
                 </div>
 
-                {/* Right */}
-                <div className="absolute top-1/2 -right-10 translate-x-full -translate-y-1/2 flex items-center gap-2">
+                {/* SEO - Right on desktop, Bottom-Right on mobile */}
+                <div className="absolute -bottom-8 -right-8 md:top-1/2 md:-right-10 md:translate-x-full md:-translate-y-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase text-left">SEO</span>
+                  <span className="font-bold text-xs md:text-sm tracking-[0.2em] uppercase">SEO</span>
                 </div>
               </div>
             </div>

@@ -59,7 +59,7 @@ export function Services() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
+          <h2 className="text-6xl font-heading font-bold mb-4">
             What We Build<span className="text-primary">.</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl">

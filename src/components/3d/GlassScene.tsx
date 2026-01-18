@@ -15,7 +15,8 @@ import * as THREE from 'three'
 import { useTheme } from '../theme-provider'
 
 // Cached objects to avoid allocations in render loop
-const TARGET_SCALE = new THREE.Vector3(0.85, 0.85, 0.85)
+const TARGET_SCALE_MOBILE = new THREE.Vector3(0.55, 0.55, 0.55)
+const TARGET_SCALE_DESKTOP = new THREE.Vector3(0.85, 0.85, 0.85)
 const TARGET_COLOR_LIGHT = new THREE.Color('#111111')
 const TARGET_COLOR_DARK = new THREE.Color('#ffffff')
 
@@ -86,8 +87,10 @@ function Geometries({
     const time = state.clock.getElapsedTime()
     const progress = scrollYProgress ? scrollYProgress.get() : 0
 
-    // Entrance Scale
-    groupRef.current.scale.lerp(TARGET_SCALE, 0.05)
+    // Entrance Scale - smaller on mobile
+    const isMobile = state.size.width < 768
+    const targetScale = isMobile ? TARGET_SCALE_MOBILE : TARGET_SCALE_DESKTOP
+    groupRef.current.scale.lerp(targetScale, 0.05)
 
     // DYNAMIC X ANIMATION
     if (xGroupRef.current) {

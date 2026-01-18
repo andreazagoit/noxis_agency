@@ -5,7 +5,7 @@ export function Quality() {
     <section>
       <Container className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center py-32">
         <div>
-          <h2 className="text-4xl md:text-6xl font-heading font-bold leading-none mb-8">
+          <h2 className="text-6xl font-heading font-bold leading-none mb-8">
             Obsession <br />
             <span className="text-muted-foreground">is our strategy.</span>
           </h2>
