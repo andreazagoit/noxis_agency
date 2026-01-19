@@ -49,6 +49,10 @@ export const Route = createRootRoute({
   component: RootDocument,
 })
 
+import { LoadingProvider } from '../context/LoadingContext'
+
+// ... existing imports
+
 function RootDocument() {
   return (
     <html lang="en">
@@ -56,28 +60,30 @@ function RootDocument() {
         <HeadContent />
       </head>
       <body>
-        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-          <LoadingScreen />
-          <SmoothScroll>
-            <CustomScrollbar />
-            <Header />
-            <main className="min-h-screen">
-              <Outlet />
-            </main>
-            <Footer />
-          </SmoothScroll>
-          <TanStackDevtools
-            config={{
-              position: 'bottom-right',
-            }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-            ]}
-          />
-        </ThemeProvider>
+        <LoadingProvider>
+          <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+            <LoadingScreen />
+            <SmoothScroll>
+              <CustomScrollbar />
+              <Header />
+              <main className="min-h-screen">
+                <Outlet />
+              </main>
+              <Footer />
+            </SmoothScroll>
+            <TanStackDevtools
+              config={{
+                position: 'bottom-right',
+              }}
+              plugins={[
+                {
+                  name: 'Tanstack Router',
+                  render: <TanStackRouterDevtoolsPanel />,
+                },
+              ]}
+            />
+          </ThemeProvider>
+        </LoadingProvider>
         <Scripts />
       </body>
     </html>

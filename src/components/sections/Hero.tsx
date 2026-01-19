@@ -4,11 +4,13 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { GlassScene } from '../3d/GlassScene'
 import { Container } from '../layout/Container'
+import { useLoading } from '../../context/LoadingContext'
 
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
   const [rotation, setRotation] = useState(0)
+  const { isLoading } = useLoading()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -51,6 +53,9 @@ export function Hero() {
             height: '100%',
             position: 'relative',
           }}
+          initial={{ opacity: 0 }}
+          animate={isLoading ? { opacity: 0 } : { opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         >
           <GlassScene scrollYProgress={smoothProgress} />
         </motion.div>
@@ -71,39 +76,71 @@ export function Hero() {
           <Container className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 items-center py-8 md:py-0">
             {/* Title - First on mobile, Right on desktop */}
             <div className="flex items-center md:pl-0 order-1 md:order-2">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="w-full"
-              >
+              <div className="w-full">
                 <h1 className="text-display text-left text-foreground leading-[0.85] tracking-tight">
-                  Your Brand <br />
-                  <span className="text-primary font-medium">Deserves</span> More <br />
-                  Than a Pretty <br />
-                  Website.
+                  <div className="overflow-hidden">
+                    <motion.div
+                      initial={{ y: "100%" }}
+                      animate={isLoading ? { y: "100%" } : { y: 0 }}
+                      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.3 }}
+                    >
+                      Your Brand
+                    </motion.div>
+                  </div>
+                  <div className="overflow-hidden">
+                    <motion.div
+                      initial={{ y: "100%" }}
+                      animate={isLoading ? { y: "100%" } : { y: 0 }}
+                      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.4 }}
+                    >
+                      <span className="text-primary font-medium">Deserves</span> More
+                    </motion.div>
+                  </div>
+                  <div className="overflow-hidden">
+                    <motion.div
+                      initial={{ y: "100%" }}
+                      animate={isLoading ? { y: "100%" } : { y: 0 }}
+                      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.5 }}
+                    >
+                      Than a Pretty
+                    </motion.div>
+                  </div>
+                  <div className="overflow-hidden">
+                    <motion.div
+                      initial={{ y: "100%" }}
+                      animate={isLoading ? { y: "100%" } : { y: 0 }}
+                      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.6 }}
+                    >
+                      Website.
+                    </motion.div>
+                  </div>
                 </h1>
-              </motion.div>
+              </div>
             </div>
 
             {/* Description - Second on mobile, Left on desktop */}
             <div className="flex flex-col justify-center md:pr-0 order-2 md:order-1">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-col items-start gap-4 md:gap-6 md:max-w-[50%]"
-              >
-                <p className="text-body text-left text-muted-foreground font-medium">
-                  We design immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero fluff.
-                </p>
-                <a
+              <div className="flex flex-col items-start gap-4 md:gap-6 md:max-w-[50%]">
+                <div className="overflow-hidden">
+                  <motion.p
+                    className="text-body text-left text-muted-foreground font-medium"
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={isLoading ? { y: "100%", opacity: 0 } : { y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+                  >
+                    We design immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero fluff.
+                  </motion.p>
+                </div>
+                <motion.a
                   href="mailto:hello@noxis.agency"
                   className="inline-block px-12 py-4 bg-primary text-primary-foreground font-bold text-caption rounded-full hover:scale-105 transition-transform duration-300 md:mt-4"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isLoading ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: "backOut", delay: 1 }}
                 >
                   Start a Project
-                </a>
-              </motion.div>
+                </motion.a>
+              </div>
             </div>
           </Container>
         </div>

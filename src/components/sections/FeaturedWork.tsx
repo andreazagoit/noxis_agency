@@ -6,6 +6,7 @@ import { Container } from '../layout/Container'
 import { GlassCard } from '../ui/glass-card'
 import { GlassBadge } from '../ui/glass-badge'
 import { cn } from '../../lib/utils'
+import { Reveal } from '../ui/Reveal'
 
 interface Stage {
     id: string;
@@ -75,23 +76,16 @@ export function FeaturedWork() {
         >
             <Container>
                 <div className="flex flex-col items-center mb-32 text-center">
-                    <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-caption mb-4 text-white/70"
-                    >
-                        From chaos to clarity
-                    </motion.span>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-display text-white"
-                    >
-                        The <span className="italic">Process</span><span className="opacity-30">.</span>
-                    </motion.h2>
+                    <Reveal width="100%">
+                        <div className="flex flex-col items-center">
+                            <span className="text-caption mb-4 text-white/70">
+                                From chaos to clarity
+                            </span>
+                            <h2 className="text-display text-white">
+                                The <span className="italic">Process</span><span className="opacity-30">.</span>
+                            </h2>
+                        </div>
+                    </Reveal>
                 </div>
 
                 <div className="relative max-w-6xl mx-auto">
@@ -131,41 +125,41 @@ function TimelineStep({ step, index }: { step: typeof PROCESS_STEPS[0], index: n
                 <div className="w-3 h-3 rounded-full bg-white relative z-10" />
             </div>
 
-            {/* Card */}
-            <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full md:w-[46%] group"
-            >
-                <GlassCard>
-                    {/* Step Number - Large Accent */}
-                    <span className="absolute top-6 right-8 font-heading text-[5rem] md:text-[7rem] leading-none text-white/10 dark:text-black/10 group-hover:text-white/20 dark:group-hover:text-black/20 transition-colors duration-300 select-none">
-                        {step.id}
-                    </span>
+            {/* Card Wrapper handled by div to avoid Reveal style conflict */}
+            <div className="w-full md:w-[46%] group">
+                <Reveal
+                    width="100%"
+                    delay={0.1}
+                    yOffset={40}
+                >
+                    <GlassCard>
+                        {/* Step Number - Large Accent */}
+                        <span className="absolute top-6 right-8 font-heading text-[5rem] md:text-[7rem] leading-none text-white/10 dark:text-black/10 group-hover:text-white/20 dark:group-hover:text-black/20 transition-colors duration-300 select-none">
+                            {step.id}
+                        </span>
 
-                    {/* Content */}
-                    <div className="relative z-10">
-                        <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                            {step.title}
-                        </h3>
+                        {/* Content */}
+                        <div className="relative z-10">
+                            <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                                {step.title}
+                            </h3>
 
-                        <p className="text-white/80 text-sm md:text-base leading-relaxed mb-6">
-                            {step.description}
-                        </p>
+                            <p className="text-white/80 text-sm md:text-base leading-relaxed mb-6">
+                                {step.description}
+                            </p>
 
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-2">
-                            {step.items.map((item) => (
-                                <GlassBadge key={item}>
-                                    {item}
-                                </GlassBadge>
-                            ))}
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-2">
+                                {step.items.map((item) => (
+                                    <GlassBadge key={item}>
+                                        {item}
+                                    </GlassBadge>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                </GlassCard>
-            </motion.div>
+                    </GlassCard>
+                </Reveal>
+            </div>
 
             {/* Spacer */}
             <div className="hidden md:block w-[46%]" />

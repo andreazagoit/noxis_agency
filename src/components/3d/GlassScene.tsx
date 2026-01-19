@@ -12,11 +12,13 @@ import {
   Text3D,
 } from '@react-three/drei'
 import * as THREE from 'three'
+import { useLoading } from '../../context/LoadingContext'
 import { useTheme } from '../theme-provider'
 
 // Cached objects to avoid allocations in render loop
 const TARGET_SCALE_MOBILE = new THREE.Vector3(0.55, 0.55, 0.55)
 const TARGET_SCALE_DESKTOP = new THREE.Vector3(0.85, 0.85, 0.85)
+const ZERO_SCALE = new THREE.Vector3(0, 0, 0)
 const TARGET_COLOR_LIGHT = new THREE.Color('#111111')
 const TARGET_COLOR_DARK = new THREE.Color('#ffffff')
 
@@ -69,9 +71,11 @@ function Particles({
 function Geometries({
   isDark,
   scrollYProgress,
+  isLoading,
 }: {
   isDark: boolean
   scrollYProgress: any
+  isLoading: boolean
 }) {
   const groupRef = useRef<THREE.Group>(null)
   const xGroupRef = useRef<THREE.Group>(null)
@@ -89,7 +93,10 @@ function Geometries({
 
     // Entrance Scale - smaller on mobile
     const isMobile = state.size.width < 768
-    const targetScale = isMobile ? TARGET_SCALE_MOBILE : TARGET_SCALE_DESKTOP
+    const baseScale = isMobile ? TARGET_SCALE_MOBILE : TARGET_SCALE_DESKTOP
+
+    // Animate scale: Stay at 0 if loading, grow to baseScale if loaded
+    const targetScale = isLoading ? ZERO_SCALE : baseScale
     groupRef.current.scale.lerp(targetScale, 0.05)
 
     // DYNAMIC X ANIMATION
@@ -115,7 +122,8 @@ function Geometries({
     })
   })
 
-  // Common Props
+  // ... (rest of Geometries content: commonMaterialProps, addMatRef, fontUrl, textProps, return JSX) ...
+
   const commonMaterialProps = {
     backside: true,
     backsideThickness: 1.5,
@@ -177,6 +185,7 @@ function Geometries({
 
 function SceneContent({ scrollYProgress }: { scrollYProgress: any }) {
   const { theme } = useTheme()
+  const { isLoading } = useLoading()
   const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
@@ -218,7 +227,7 @@ function SceneContent({ scrollYProgress }: { scrollYProgress: any }) {
         <Suspense fallback={null}>
           <Environment preset="studio" />
           <Particles isDark={isDark} scrollYProgress={scrollYProgress} />
-          <Geometries isDark={isDark} scrollYProgress={scrollYProgress} />
+          <Geometries isDark={isDark} scrollYProgress={scrollYProgress} isLoading={isLoading} />
           <ambientLight intensity={0.5} />
           <spotLight
             position={[10, 10, 10]}

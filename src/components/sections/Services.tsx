@@ -82,6 +82,8 @@ export function Services() {
           {bentoItems.map((item, index) => (
             <Reveal
               key={index}
+              width="100%"
+              height="100%"
               delay={index * 0.1} // Staggered delay based on index
               duration={0.6}
               className={`
@@ -93,7 +95,7 @@ export function Services() {
                 }
                                 transition-all duration-500
                             `}
-              style={{ display: 'block' }} // Ensure Reveal wrapper behaves correctly in grid
+              style={{ display: 'block', height: '100%' }} // Ensure Reveal wrapper behaves correctly in grid
             >
               {/* Content Layout */}
               <div className="relative h-full w-full">

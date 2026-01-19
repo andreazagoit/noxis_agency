@@ -1,44 +1,77 @@
-'use client'
-
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { useProgress } from '@react-three/drei'
+import { useLoading } from '../../context/LoadingContext'
 
 export function LoadingScreen() {
+    const { progress: realProgress, active } = useProgress()
     const [progress, setProgress] = useState(0)
     const [phase, setPhase] = useState<'loading' | 'complete' | 'reveal' | 'hidden'>('loading')
+    const { setIsLoading } = useLoading()
 
-    // Simulate loading progress
+    // Smart Progress Logic:
+    // 1. Advance linear progress to ensure minimum 1s duration
+    // 2. But CAP it at realProgress so we wait for actual assets
     useEffect(() => {
+        // If nothing is loading initially/yet, treat realProgress as 100 or 0? 
+        // Usually drei reports 0 initially. We'll assume if !active & progress=0 it might be starting.
+        // But if we have assets, it usually flips active=true quickly.
+        // Let's rely on a sanitized Real Progress.
+        // If not active and progress=0, it's either done or not started. We'll start ramping anyway.
+        // If active becomes true, we Clamp.
+
         const interval = setInterval(() => {
             setProgress((prev) => {
-                if (prev >= 100) {
-                    clearInterval(interval)
-                    return 100
-                }
-                // Accelerating progress for natural feel
-                const increment = Math.max(1, Math.floor((100 - prev) / 10))
-                return Math.min(100, prev + increment)
+                if (prev >= 100) return 100
+
+                // Desired increment for 1s duration (approx 60fps or 20ms interval)
+                // 100% / (1000ms / 20ms) = 2% per tick
+                const step = 2
+                const nextPotential = prev + step
+
+                // Determine effective real progress. 
+                // If inactive and 0, we assume loading hasn't 'registered' fully or is instant. 
+                // We'll trust the simulation unless active tells us to wait.
+                // Actually, safeguard: let's cap at realProgress ONLY if active is true.
+                const effectiveReal = active ? realProgress : 100
+
+                // The displayed progress is the minimum of (Potential Simulated, Real Asset Progress)
+                // allowing it to flow smoothly but stop for assets.
+                // We add a small buffer (e.g. allow it to go slightly ahead? No, strict wait is better for "real feel")
+                return Math.min(nextPotential, Math.max(prev, effectiveReal))
             })
-        }, 50)
+        }, 20)
 
         return () => clearInterval(interval)
-    }, [])
+    }, [active, realProgress])
 
-    // Handle phase transitions
+    // Handle phases
     useEffect(() => {
         if (progress === 100 && phase === 'loading') {
-            // Wait a moment, then transition to complete
-            setTimeout(() => setPhase('complete'), 300)
-        }
-        if (phase === 'complete') {
-            // Text fades out, then reveal
-            setTimeout(() => setPhase('reveal'), 800)
-        }
-        if (phase === 'reveal') {
-            // After mountain animation, hide completely
-            setTimeout(() => setPhase('hidden'), 1500)
+            setPhase('complete')
+            setTimeout(() => setPhase('reveal'), 500) // Wait a bit before revealing
         }
     }, [progress, phase])
+
+    // Cleanup phase
+    useEffect(() => {
+        if (phase === 'reveal') {
+            // 1. Start Hero animations early (mid-reveal)
+            const startHeroTimer = setTimeout(() => {
+                setIsLoading(false)
+            }, 500)
+
+            // 2. Wait for full mountain animation to finish before unmounting (0.4 delay + 0.6 duration = 1.0s)
+            const hideTimer = setTimeout(() => {
+                setPhase('hidden')
+            }, 1100)
+
+            return () => {
+                clearTimeout(startHeroTimer)
+                clearTimeout(hideTimer)
+            }
+        }
+    }, [phase, setIsLoading])
 
     if (phase === 'hidden') return null
 

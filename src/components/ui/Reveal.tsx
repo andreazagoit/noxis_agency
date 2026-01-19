@@ -6,6 +6,7 @@ import { useRef, useEffect } from 'react'
 interface RevealProps extends HTMLMotionProps<'div'> {
     children: React.ReactNode
     width?: 'fit-content' | '100%'
+    height?: 'fit-content' | '100%'
     delay?: number
     duration?: number
     yOffset?: number
@@ -14,14 +15,15 @@ interface RevealProps extends HTMLMotionProps<'div'> {
 export const Reveal = ({
     children,
     width = 'fit-content',
+    height,
     delay = 0.25,
     duration = 0.5,
-    yOffset = 75,
+    yOffset = 20,
     className,
     ...props
 }: RevealProps) => {
     const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, margin: '-20%' }) // Trigger when 20% visible
+    const isInView = useInView(ref, { once: true, margin: '-10%' }) // Trigger when 10% visible (easier)
     const mainControls = useAnimation()
 
     useEffect(() => {
@@ -31,7 +33,7 @@ export const Reveal = ({
     }, [isInView, mainControls])
 
     return (
-        <div ref={ref} style={{ position: 'relative', width, overflow: 'hidden' }} className={className}>
+        <div ref={ref} style={{ position: 'relative', width, height, overflow: 'hidden' }} className={className}>
             <motion.div
                 variants={{
                     hidden: { opacity: 0, y: yOffset },
