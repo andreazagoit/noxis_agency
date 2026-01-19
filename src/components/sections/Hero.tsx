@@ -4,7 +4,7 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { GlassScene } from '../3d/GlassScene'
 import { Container } from '../layout/Container'
-import { Button } from '../ui/button'
+
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
@@ -79,8 +79,8 @@ export function Hero() {
               >
                 <h1 className="text-display text-left text-foreground leading-[0.85] tracking-tight">
                   Elevating the <br />
-                  <span className="text-primary font-medium">digital</span> through<br />
-                  beauty & ethics.
+                  digital through<br />
+                  <span className="text-primary font-medium">beauty</span> & <span className="text-primary font-medium">ethics</span>.
                 </h1>
               </motion.div>
             </div>
@@ -108,107 +108,8 @@ export function Hero() {
           </Container>
         </div>
 
-        {/* Section 2: Core Value Prop */}
-        <div
-          className="w-full flex items-center justify-center py-section"
-          style={{
-            minHeight: '100vh',
-          }}
-        >
-          <Container className="flex items-center justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: false, margin: '-20%' }}
-              className="w-full text-center"
-            >
-              <h2
-                className="text-display mix-blend-difference uppercase"
-              >
-                We don't build
-                <br />
-                <span className="text-muted-foreground opacity-50">
-                  disposable code.
-                </span>
-                <br />
-                <span className="text-primary">We build assets</span>
-                <br />
-                that improve lives.
-              </h2>
-            </motion.div>
-          </Container>
-        </div>
 
-        {/* Section 3: Manifesto Details */}
-        <div
-          className="w-full py-section"
-          style={{
-            minHeight: '100vh',
-          }}
-        >
-          <Container
-            className="flex flex-col items-center gap-fluid"
-          >
-            {/* Manifesto Block 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="max-w-5xl w-full flex flex-col md:flex-row items-start gap-20"
-            >
-              <div
-                className="flex-1"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1.5rem',
-                }}
-              >
-                <h3 className="text-subtitle">
-                  Ambition
-                  <br />
-                  <span className="text-primary">by definition.</span>
-                </h3>
-                <p className="text-body text-muted-foreground max-w-2xl">
-                  We don't build to just "make sites". We build to last.
-                  Our work is driven by a refusal of mediocrity and a commitment to
-                  excellence that defines our industry.
-                </p>
-              </div>
-            </motion.div>
 
-            {/* Manifesto Block 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="max-w-5xl w-full flex flex-col md:flex-row-reverse items-start gap-20"
-            >
-              <div
-                className="flex-1 text-right"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1.5rem',
-                }}
-              >
-                <h3 className="text-subtitle">
-                  Premium
-                  <br />
-                  <span className="text-primary">by essence.</span>
-                </h3>
-                <p className="text-body text-muted-foreground ml-auto max-w-2xl">
-                  Authentic premium is found in the details, the care, and the coherence.
-                  We reject shortcuts and dark patterns, focusing on real value
-                  perceivable by people.
-                </p>
-              </div>
-            </motion.div>
-          </Container>
-        </div>
-
-        {/* Section 4: Lead Text */}
         <div className="w-full h-auto flex items-center justify-center">
           <Container className="py-section flex items-center justify-center">
             <h2 className="text-display text-center">
@@ -259,33 +160,35 @@ export function Hero() {
 
               {/* Static Labels */}
               <div className="absolute inset-0 pointer-events-none">
-                {/* Development - Top on desktop, Top-Right on mobile */}
+                {/* Web - Top on desktop */}
                 <div className="absolute -top-8 -right-8 md:-top-10 md:right-auto md:left-1/2 md:-translate-x-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <span className="text-caption">Development</span>
+                  <span className="text-caption">Web</span>
                 </div>
 
-                {/* E-Commerce - Bottom on desktop, Bottom-Left on mobile */}
+                {/* Mobile - Bottom on desktop */}
                 <div className="absolute -bottom-8 -left-8 md:-bottom-10 md:left-1/2 md:-translate-x-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <span className="text-caption">E-Commerce</span>
+                  <span className="text-caption">Mobile</span>
                 </div>
 
-                {/* Design - Left on desktop, Top-Left on mobile */}
+                {/* Design - Left on desktop */}
                 <div className="absolute -top-8 -left-8 md:top-1/2 md:-left-10 md:-translate-x-full md:-translate-y-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                   <span className="text-caption">Design</span>
                 </div>
 
-                {/* SEO - Right on desktop, Bottom-Right on mobile */}
+                {/* Strategy - Right on desktop */}
                 <div className="absolute -bottom-8 -right-8 md:top-1/2 md:-right-10 md:translate-x-full md:-translate-y-1/2 flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  <span className="text-caption">SEO</span>
+                  <span className="text-caption">Strategy</span>
                 </div>
               </div>
             </div>
           </Container>
         </div>
+
+
       </div>
     </section>
   )

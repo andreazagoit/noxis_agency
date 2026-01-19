@@ -1,8 +1,10 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import { Container } from '../layout/Container'
+import { GlassCard } from '../ui/glass-card'
+import { GlassBadge } from '../ui/glass-badge'
 import { cn } from '../../lib/utils'
 
 interface Stage {
@@ -77,7 +79,7 @@ export function FeaturedWork() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-xs font-bold uppercase tracking-[0.3em] mb-4 text-black/60"
+                        className="text-caption mb-4 text-white/70"
                     >
                         How we forge
                     </motion.span>
@@ -86,21 +88,21 @@ export function FeaturedWork() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-[3rem] md:text-[5rem] font-bold text-black leading-tight tracking-tight"
+                        className="text-title text-white"
                     >
-                        Liquid Methodology<span className="opacity-20">.</span>
+                        Liquid <span className="italic">Methodology</span><span className="opacity-30">.</span>
                     </motion.h2>
                 </div>
 
                 <div className="relative max-w-6xl mx-auto">
                     {/* Vertical Timeline Axis */}
-                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-black/10 -translate-x-1/2 hidden md:block" />
+                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/20 -translate-x-1/2 hidden md:block" />
                     <motion.div
                         style={{ scaleY }}
-                        className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-black origin-top -translate-x-1/2 hidden md:block"
+                        className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white origin-top -translate-x-1/2 hidden md:block"
                     />
 
-                    <div className="space-y-48 relative">
+                    <div className="space-y-24 relative">
                         {PROCESS_STEPS.map((step, index) => (
                             <TimelineStep key={step.id} step={step} index={index} />
                         ))}
@@ -113,7 +115,6 @@ export function FeaturedWork() {
 
 function TimelineStep({ step, index }: { step: typeof PROCESS_STEPS[0], index: number }) {
     const isEven = index % 2 === 1
-    const [isHovered, setIsHovered] = useState(false)
 
     return (
         <div className={cn(
@@ -121,73 +122,45 @@ function TimelineStep({ step, index }: { step: typeof PROCESS_STEPS[0], index: n
             isEven ? "md:flex-row-reverse" : ""
         )}>
             {/* Node Marker */}
-            <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-black -translate-x-1/2 z-20 hidden md:block">
-                <div className="absolute inset-0 rounded-full bg-black animate-ping opacity-20" />
-            </div>
+            <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-white -translate-x-1/2 z-20 hidden md:block" />
 
-            {/* Card Wrapper */}
+            {/* Card */}
             <motion.div
-                initial={{ opacity: 0, x: isEven ? 50 : -50, y: 20 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className="w-full md:w-[46%] relative group"
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full md:w-[46%] group"
             >
-                {/* Technical Sheet Card */}
-                <div className={cn(
-                    "relative p-8 md:p-12 border-[0.5px] transition-all duration-700 overflow-hidden",
-                    "bg-black/2 dark:bg-white/5 backdrop-blur-[2px]",
-                    isHovered ? "border-black/30 dark:border-white/30" : "border-black/10 dark:border-white/10"
-                )}>
-                    {/* Liquid Glow Accent */}
-                    <AnimatePresence>
-                        {isHovered && (
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 0.15, scale: 1.2 }}
-                                exit={{ opacity: 0, scale: 0.8 }}
-                                className="absolute -top-1/2 -left-1/2 w-full h-full bg-black dark:bg-white rounded-full blur-[100px] pointer-events-none"
-                            />
-                        )}
-                    </AnimatePresence>
+                <GlassCard>
+                    {/* Step Number - Large Accent */}
+                    <span className="absolute top-6 right-8 font-heading text-[5rem] md:text-[7rem] leading-none text-white/10 dark:text-black/10 group-hover:text-white/20 dark:group-hover:text-black/20 transition-colors duration-300 select-none">
+                        {step.id}
+                    </span>
 
-                    {/* Corner Markers */}
-                    <div className="absolute top-0 left-0 w-2 h-2 border-l border-t border-black/20 dark:border-white/20" />
-                    <div className="absolute top-0 right-0 w-2 h-2 border-r border-t border-black/20 dark:border-white/20" />
-                    <div className="absolute bottom-0 left-0 w-2 h-2 border-l border-b border-black/20 dark:border-white/20" />
-                    <div className="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-black/20 dark:border-white/20" />
+                    {/* Content */}
+                    <div className="relative z-10">
+                        <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                            {step.title}
+                        </h3>
 
-                    {/* Step ID (Technical Look) */}
-                    <div className="flex items-baseline gap-4 mb-4">
-                        <span className="font-heading text-6xl md:text-8xl text-black/20 dark:text-white/20 group-hover:text-black/40 dark:group-hover:text-white/40 transition-colors duration-500">
-                            {step.id}
-                        </span>
-                        <div className="h-[1px] flex-grow bg-black/10 dark:bg-white/10" />
+                        <p className="text-white/80 text-sm md:text-base leading-relaxed mb-6">
+                            {step.description}
+                        </p>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2">
+                            {step.items.map((item) => (
+                                <GlassBadge key={item}>
+                                    {item}
+                                </GlassBadge>
+                            ))}
+                        </div>
                     </div>
-
-                    <h3 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-6 uppercase tracking-tight">
-                        {step.title}
-                    </h3>
-
-                    <p className="text-black/60 dark:text-zinc-400 leading-relaxed text-lg font-medium mb-10 text-pretty">
-                        {step.description}
-                    </p>
-
-                    {/* Points List */}
-                    <ul className="space-y-4">
-                        {step.items.map((item) => (
-                            <li key={item} className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.2em] text-black/40 dark:text-zinc-500 group-hover:text-black dark:group-hover:text-white transition-colors">
-                                <span className="w-4 h-[1px] bg-black/20 dark:bg-white/20" />
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                </GlassCard>
             </motion.div>
 
-            {/* Spacer for Desktop Alignment */}
+            {/* Spacer */}
             <div className="hidden md:block w-[46%]" />
         </div>
     )

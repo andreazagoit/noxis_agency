@@ -7,6 +7,8 @@ import { MountainSeparator } from '../components/ui/MountainSeparator'
 
 import { Quotes } from '../components/sections/Quotes'
 
+import { Vision } from '../components/sections/Vision'
+
 export const Route = createFileRoute('/')({
   component: Home,
 })
@@ -15,6 +17,7 @@ function Home() {
   return (
     <div className="relative">
       <Hero />
+      <Vision />
       <Partnership />
       <Services />
 

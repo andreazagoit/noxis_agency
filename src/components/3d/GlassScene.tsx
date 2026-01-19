@@ -28,7 +28,7 @@ function Particles({
   scrollYProgress: any
 }) {
   const ref = useRef<THREE.Points>(null)
-  const count = 5000
+  const count = 2500
 
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3)
@@ -48,8 +48,8 @@ function Particles({
 
     // Scroll interaction: rotation depends on time (continuous) AND progress (position)
     // This makes particles rotate backwards when scrolling up.
-    ref.current.rotation.y = time * 0.05 + progress * 5
-    ref.current.rotation.x = time * 0.02 + progress * 2
+    ref.current.rotation.y = time * 0.05 + progress * 1.0
+    ref.current.rotation.x = time * 0.02 + progress * 0.4
   })
 
   return (
@@ -128,7 +128,9 @@ function Geometries({
     distortion: 0,
     distortionScale: 0.5,
     temporalDistortion: 0.5,
-    color: "#ffffff"
+    color: "#ffffff",
+    resolution: 512, // Optimization
+    samples: 6,      // Optimization
   }
 
   // Registry helper
@@ -210,7 +212,7 @@ function SceneContent({ scrollYProgress }: { scrollYProgress: any }) {
     >
       <Canvas
         camera={{ position: [0, 0, 9], fov: 45 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]} // Optimization: Lower max DPR
         style={{ width: '100%', height: '100%' }}
       >
         <Suspense fallback={null}>

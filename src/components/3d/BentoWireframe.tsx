@@ -1,7 +1,7 @@
-import { Suspense, useRef } from 'react'
+import { Suspense, useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, Float, MeshTransmissionMaterial } from '@react-three/drei'
-import type * as THREE from 'three'
+import * as THREE from 'three'
 
 type GeometryType =
   | 'icosahedron'
@@ -22,11 +22,23 @@ function WireframeShape({
   rotationSpeed = 0.003,
 }: WireframeShapeProps) {
   const meshRef = useRef<THREE.Mesh>(null)
+  const [active, setActive] = useState(false)
 
-  useFrame(() => {
+  useEffect(() => {
+    setActive(true)
+  }, [])
+
+  useFrame((_state, delta) => {
     if (!meshRef.current) return
     meshRef.current.rotation.x += rotationSpeed
     meshRef.current.rotation.y += rotationSpeed * 1.5
+
+    // Smooth entrance scale
+    const targetScale = active ? 1 : 0
+    // Fix: Use inline object for lerp target to avoid needing NEW THREE.Vector3 if preferred, 
+    // BUT since we fixed the import, we can use THREE.Vector3 if we want, or just generic object.
+    // However, Three.js lerp expects a Vector3-like object.
+    meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), delta * 2.5)
   })
 
   const getGeometry = () => {
@@ -48,7 +60,7 @@ function WireframeShape({
 
   return (
     <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
-      <mesh ref={meshRef}>
+      <mesh ref={meshRef} scale={0}>
         {getGeometry()}
         <meshBasicMaterial color={color} wireframe transparent opacity={0.15} />
       </mesh>
@@ -65,11 +77,20 @@ function GlassShape({
   rotationSpeed?: number
 }) {
   const meshRef = useRef<THREE.Mesh>(null)
+  const [active, setActive] = useState(false)
 
-  useFrame(() => {
+  useEffect(() => {
+    setActive(true)
+  }, [])
+
+  useFrame((_state, delta) => {
     if (!meshRef.current) return
     meshRef.current.rotation.x += rotationSpeed
     meshRef.current.rotation.y += rotationSpeed * 1.5
+
+    // Smooth entrance scale
+    const targetScale = active ? 1.2 : 0
+    meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), delta * 2.5)
   })
 
   const getGeometry = () => {
@@ -91,7 +112,7 @@ function GlassShape({
 
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <mesh ref={meshRef} scale={1.2}>
+      <mesh ref={meshRef} scale={0}>
         {getGeometry()}
         <MeshTransmissionMaterial
           backside
@@ -101,10 +122,12 @@ function GlassShape({
           transmission={1}
           ior={1.5}
           chromaticAberration={0.3}
-          anisotropy={0.3}
+          anisotropy={0.1} // Optimization: Reduced anisotropy
           distortion={0}
           distortionScale={0.3}
           color="#ffffff"
+          resolution={256} // Optimization: Lower resolution for small cards
+          samples={4}      // Optimization: Fewer samples
         />
       </mesh>
     </Float>
@@ -132,7 +155,7 @@ export function BentoWireframe({
     <div className={`absolute inset-0 pointer-events-none ${className}`}>
       <Canvas
         camera={{ position: [0, 0, 3], fov: 50 }}
-        dpr={[1, 1.5]}
+        dpr={[1, 1.2]} // Optimization: Lower max DPR for small elements
         style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
