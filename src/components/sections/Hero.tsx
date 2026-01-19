@@ -65,7 +65,7 @@ export function Hero() {
       <div className="relative z-10" style={{ marginTop: '-100vh' }}>
         {/* Continuous Vertical Line */}
         <div
-          className="absolute top-0 left-1/2 w-px h-full -translate-x-1/2"
+          className="absolute top-0 left-1/2 w-px h-full -translate-x-1/2 z-[-1]"
           style={{
             background: 'linear-gradient(to bottom, var(--border) 80%, transparent 100%)'
           }}
@@ -158,7 +158,7 @@ export function Hero() {
         {/* Section 5: The Core (Graduated Target) */}
         <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
           {/* Horizontal Line - FULL WIDTH */}
-          <div className="absolute top-1/2 left-0 w-full h-px bg-border -translate-y-1/2" />
+          <div className="absolute top-1/2 left-0 w-full h-px bg-border -translate-y-1/2 z-[-1]" />
 
           <Container className="relative h-full w-full flex items-center justify-center">
             {/* Graduated Target Circle */}

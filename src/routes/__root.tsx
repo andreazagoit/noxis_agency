@@ -23,10 +23,57 @@ export const Route = createRootRoute({
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
+        content: 'width=device-width, initial-scale=1, maximum-scale=5',
       },
       {
-        title: 'Noxis Agency',
+        title: 'Noxis Agency | Premium Digital Products',
+      },
+      {
+        name: 'description',
+        content: 'We don\'t just write code; we forge assets. Noxis Agency creates digital products that are as powerful as they are beautiful through rigorous engineering and obsessive art direction.',
+      },
+      {
+        name: 'keywords',
+        content: 'Digital Agency, Web Design, Premium Websites, 3D Web, Awwwards, Creative Agency, Next.js, React, Three.js, Glassmorphism',
+      },
+      // Open Graph / Facebook
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:title',
+        content: 'Noxis Agency | Premium Digital Products',
+      },
+      {
+        property: 'og:description',
+        content: 'We don\'t just write code; we forge assets. Creating digital products that are as powerful as they are beautiful.',
+      },
+      {
+        property: 'og:image',
+        content: '/og-image.jpg', // Ensure this image exists in public folder
+      },
+      // Twitter
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:title',
+        content: 'Noxis Agency',
+      },
+      {
+        name: 'twitter:description',
+        content: 'We don\'t just write code; we forge assets. Creating digital products that are as powerful as they are beautiful.',
+      },
+      {
+        name: 'twitter:image',
+        content: '/og-image.jpg',
+      },
+      // Theme Color
+      {
+        name: 'theme-color',
+        content: '#000000', // Matches dark mode background
       },
     ],
     links: [
@@ -42,6 +89,19 @@ export const Route = createRootRoute({
       {
         rel: 'apple-touch-icon',
         href: '/apple-touch-icon.png',
+      },
+      {
+        rel: 'manifest',
+        href: '/manifest.json',
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossOrigin: 'anonymous', // vital for fonts
       },
     ],
   }),

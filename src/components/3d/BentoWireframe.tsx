@@ -1,4 +1,4 @@
-import { Suspense, useRef, useState, useEffect } from 'react'
+import { Suspense, useRef, useState, useEffect, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, Float, MeshTransmissionMaterial } from '@react-three/drei'
 import * as THREE from 'three'
@@ -28,6 +28,8 @@ function WireframeShape({
     setActive(true)
   }, [])
 
+  const vec = useMemo(() => new THREE.Vector3(), [])
+
   useFrame((_state, delta) => {
     if (!meshRef.current) return
     meshRef.current.rotation.x += rotationSpeed
@@ -35,10 +37,9 @@ function WireframeShape({
 
     // Smooth entrance scale
     const targetScale = active ? 1 : 0
-    // Fix: Use inline object for lerp target to avoid needing NEW THREE.Vector3 if preferred, 
-    // BUT since we fixed the import, we can use THREE.Vector3 if we want, or just generic object.
-    // However, Three.js lerp expects a Vector3-like object.
-    meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), delta * 2.5)
+    // Optimization: Reuse vector properly
+    vec.set(targetScale, targetScale, targetScale)
+    meshRef.current.scale.lerp(vec, delta * 2.5)
   })
 
   const getGeometry = () => {
@@ -83,6 +84,8 @@ function GlassShape({
     setActive(true)
   }, [])
 
+  const vec = useMemo(() => new THREE.Vector3(), [])
+
   useFrame((_state, delta) => {
     if (!meshRef.current) return
     meshRef.current.rotation.x += rotationSpeed
@@ -90,7 +93,9 @@ function GlassShape({
 
     // Smooth entrance scale
     const targetScale = active ? 1.2 : 0
-    meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), delta * 2.5)
+    // Optimization: Reuse vector properly
+    vec.set(targetScale, targetScale, targetScale)
+    meshRef.current.scale.lerp(vec, delta * 2.5)
   })
 
   const getGeometry = () => {
