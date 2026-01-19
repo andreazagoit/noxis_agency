@@ -3,18 +3,24 @@
 import { Container } from '../layout/Container'
 import { Reveal } from '../ui/Reveal'
 
+
 export function Vision() {
     return (
         <section id="manifesto" className="relative w-full py-section bg-background">
             <Container className="flex flex-col gap-32 md:gap-48">
                 {/* Manifesto Quote */}
-                <div className="w-full py-24 md:py-32 flex flex-col items-center text-center gap-8">
+                <div className="w-full py-24 md:py-32 flex flex-col items-center text-center gap-10">
+
+
                     <Reveal width="100%" yOffset={20}>
-                        <p className="text-3xl md:text-5xl font-bold leading-tight max-w-5xl text-balance mx-auto">
-                            <span className="text-foreground">Impact is engineered, not guessed.</span><br />
-                            <span className="text-foreground">We strip away the non-essential to reveal your brand's core.</span><br />
-                            <span className="text-foreground">Creating digital products that are as <span className="text-primary">powerful</span> as they are <span className="text-primary">beautiful</span>.</span>
-                        </p>
+                        <h2 className="font-heading text-5xl md:text-8xl font-bold uppercase leading-[0.9] max-w-6xl mx-auto tracking-tight">
+                            <span className="text-foreground block mb-2">Impact is engineered,</span>
+                            <span className="text-white/50 block mb-8">not guessed.</span>
+                            <div className="text-xl md:text-3xl font-sans normal-case font-medium text-white/80 max-w-3xl mx-auto leading-relaxed tracking-normal">
+                                We strip away the non-essential to reveal your brand's core.
+                                Creating digital products that are as powerful as they are beautiful.
+                            </div>
+                        </h2>
                     </Reveal>
                 </div>
 

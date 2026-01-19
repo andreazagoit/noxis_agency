@@ -27,22 +27,22 @@ export function Header() {
         </Link>
 
         {/* Static Navigation */}
-        <div className="flex items-center gap-6 text-sm font-medium text-muted-foreground">
+        <div className="flex items-center gap-6 text-sm font-medium text-white">
           <a
             href="#manifesto"
-            className="hover:text-foreground transition-colors"
+            className="hover:text-primary transition-colors"
           >
             Vision
           </a>
           <a
             href="#services"
-            className="hover:text-foreground transition-colors"
+            className="hover:text-primary transition-colors"
           >
             Services
           </a>
           <a
             href="#methodology"
-            className="hover:text-foreground transition-colors"
+            className="hover:text-primary transition-colors"
           >
             Method
           </a>
