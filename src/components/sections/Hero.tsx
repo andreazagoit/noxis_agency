@@ -77,9 +77,9 @@ export function Hero() {
                 transition={{ duration: 0.8 }}
                 className="w-full"
               >
-                <h1 className="text-display text-left text-foreground leading-[0.85] tracking-tighter">
+                <h1 className="text-display text-left text-foreground leading-[0.85] tracking-tight">
                   Elevating the <br />
-                  <span className="text-primary italic">digital</span> through<br />
+                  <span className="text-primary font-medium">digital</span> through<br />
                   beauty & ethics.
                 </h1>
               </motion.div>
@@ -97,12 +97,12 @@ export function Hero() {
                   We design and develop premium digital experiences where beauty, functionality, and ethics coexist.
                   Impacting the world through quality.
                 </p>
-                <Button
-                  size="lg"
-                  className="font-bold text-caption mt-8"
+                <a
+                  href="mailto:hello@noxis.agency"
+                  className="inline-block px-12 py-4 bg-primary text-primary-foreground font-bold text-caption rounded-full hover:scale-105 transition-transform duration-300 mt-8"
                 >
-                  Let's Talk
-                </Button>
+                  Start a Project
+                </a>
               </motion.div>
             </div>
           </Container>
@@ -128,7 +128,7 @@ export function Hero() {
               >
                 We don't build
                 <br />
-                <span className="text-muted-foreground opacity-50 italic">
+                <span className="text-muted-foreground opacity-50">
                   disposable code.
                 </span>
                 <br />
@@ -168,7 +168,7 @@ export function Hero() {
                 <h3 className="text-subtitle">
                   Ambition
                   <br />
-                  <span className="text-primary italic">by definition.</span>
+                  <span className="text-primary">by definition.</span>
                 </h3>
                 <p className="text-body text-muted-foreground max-w-2xl">
                   We don't build to just "make sites". We build to last.
@@ -196,7 +196,7 @@ export function Hero() {
                 <h3 className="text-subtitle">
                   Premium
                   <br />
-                  <span className="text-primary italic">by essence.</span>
+                  <span className="text-primary">by essence.</span>
                 </h3>
                 <p className="text-body text-muted-foreground ml-auto max-w-2xl">
                   Authentic premium is found in the details, the care, and the coherence.

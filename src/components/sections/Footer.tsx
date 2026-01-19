@@ -9,7 +9,7 @@ export function Footer() {
         {/* Main Content: Just Contacts & Slogan */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
           <div className="max-w-xl">
-            <h2 className="text-[2.5rem] md:text-[4rem] font-bold leading-none tracking-tighter mb-8 italic">
+            <h2 className="text-[2.5rem] md:text-[4rem] font-bold leading-none tracking-tight mb-8">
               Beyond <br />
               <span className="text-primary opacity-80">Digital Excellence.</span>
             </h2>

@@ -86,7 +86,7 @@ export function FeaturedWork() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-[3rem] md:text-[5rem] font-bold text-black leading-tight tracking-tighter"
+                        className="text-[3rem] md:text-[5rem] font-bold text-black leading-tight tracking-tight"
                     >
                         Liquid Methodology<span className="opacity-20">.</span>
                     </motion.h2>
@@ -167,7 +167,7 @@ function TimelineStep({ step, index }: { step: typeof PROCESS_STEPS[0], index: n
                         <div className="h-[1px] flex-grow bg-black/10 dark:bg-white/10" />
                     </div>
 
-                    <h3 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-6 uppercase tracking-tighter">
+                    <h3 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-6 uppercase tracking-tight">
                         {step.title}
                     </h3>
 

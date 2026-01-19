@@ -12,7 +12,7 @@ export function Partnership() {
           className="text-display mb-element"
         >
           Ready for a{' '}
-          <span className="text-primary italic">Partner</span>?
+          <span className="text-primary">Partner</span>?
         </motion.h2>
 
         <p className="text-body text-muted-foreground mb-element max-w-3xl mx-auto">

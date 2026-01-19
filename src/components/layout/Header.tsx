@@ -28,23 +28,19 @@ export function Header() {
           </div>
         </Link>
 
-        <div className="flex items-center gap-12 ml-auto">
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 text-nav text-foreground/70">
-            <a
-              href="#manifesto"
-              className="hover:text-foreground transition-colors"
-            >
-              Vision
-            </a>
-            <a
-              href="#services"
-              className="hover:text-foreground transition-colors"
-            >
-              Services
-            </a>
-          </div>
-
+        <div className="flex items-center gap-12 ml-auto text-nav text-foreground/70">
+          <a
+            href="#manifesto"
+            className="hidden md:block hover:text-foreground transition-colors"
+          >
+            Vision
+          </a>
+          <a
+            href="#services"
+            className="hidden md:block hover:text-foreground transition-colors"
+          >
+            Services
+          </a>
           <ThemeToggle />
         </div>
       </motion.nav>
