@@ -15,8 +15,8 @@ export function Vision() {
                     <Reveal width="100%" yOffset={20}>
                         <h2 className="font-heading text-5xl md:text-8xl font-bold uppercase leading-[0.9] max-w-6xl mx-auto tracking-tight">
                             <span className="text-foreground block mb-2">Impact is engineered,</span>
-                            <span className="text-white/50 block mb-8">not guessed.</span>
-                            <div className="text-xl md:text-3xl font-sans normal-case font-medium text-white/80 max-w-3xl mx-auto leading-relaxed tracking-normal">
+                            <span className="text-black/50 dark:text-white/50 block mb-8">not guessed.</span>
+                            <div className="text-xl md:text-3xl font-sans normal-case font-medium text-black/80 dark:text-white/80 max-w-3xl mx-auto leading-relaxed tracking-normal">
                                 We strip away the non-essential to reveal your brand's core.
                                 Creating digital products that are as powerful as they are beautiful.
                             </div>

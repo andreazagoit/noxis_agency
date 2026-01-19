@@ -90,10 +90,10 @@ export function FeaturedWork() {
 
                 <div className="relative max-w-6xl mx-auto">
                     {/* Vertical Timeline Axis */}
-                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/20 -translate-x-1/2 hidden md:block z-0" />
+                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/20 -translate-x-1/2 hidden md:block z-[-1]" />
                     <motion.div
                         style={{ scaleY }}
-                        className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white origin-top -translate-x-1/2 hidden md:block z-0"
+                        className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white origin-top -translate-x-1/2 hidden md:block z-[-1]"
                     />
 
                     <div className="space-y-8 md:space-y-24 relative">

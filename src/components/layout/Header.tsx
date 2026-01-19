@@ -48,7 +48,7 @@ export function Header() {
           </a>
         </div>
 
-        <div className="w-px h-4 bg-white/10" />
+        <div className="w-px h-4 bg-black/10 dark:bg-white/10" />
 
         <div className="pl-1 pr-1">
           <ThemeToggle />

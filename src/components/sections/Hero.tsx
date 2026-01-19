@@ -32,9 +32,9 @@ export function Hero() {
 
   return (
     <section ref={containerRef} className="relative w-full">
-      {/* Sticky 3D Backdrop - ON TOP visually, but pointer-events-none */}
+      {/* Sticky 3D Backdrop - MIDDLE Layer (0) on Mobile, TOP Layer (20) on Desktop */}
       <div
-        className="sticky top-0 z-20 pointer-events-none"
+        className="sticky top-0 z-0 md:z-20 pointer-events-none"
         style={{
           height: '100vh',
           width: '100%',
@@ -61,8 +61,8 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scrolling Content Flow - BEHIND */}
-      <div className="relative z-10" style={{ marginTop: '-100vh' }}>
+      {/* Scrolling Content Flow - BEHIND (No explicit Z here to allow children to use global Z context) */}
+      <div className="relative" style={{ marginTop: '-100vh' }}>
         {/* Continuous Vertical Line */}
         <div
           className="absolute top-0 left-1/2 w-px h-full -translate-x-1/2 z-[-1]"

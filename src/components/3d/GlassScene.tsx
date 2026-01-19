@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
   Center,
   Environment,
@@ -16,7 +16,7 @@ import { useLoading } from '../../context/LoadingContext'
 import { useTheme } from '../theme-provider'
 
 // Cached objects to avoid allocations in render loop
-const TARGET_SCALE_MOBILE = new THREE.Vector3(0.55, 0.55, 0.55)
+const TARGET_SCALE_MOBILE = new THREE.Vector3(0.7, 0.7, 0.7)
 const TARGET_SCALE_DESKTOP = new THREE.Vector3(0.85, 0.85, 0.85)
 const ZERO_SCALE = new THREE.Vector3(0, 0, 0)
 const TARGET_COLOR_LIGHT = new THREE.Color('#111111')
@@ -79,6 +79,8 @@ function Geometries({
 }) {
   const groupRef = useRef<THREE.Group>(null)
   const xGroupRef = useRef<THREE.Group>(null)
+  const { width } = useThree((state) => state.size)
+  const isMobile = width < 768
 
   // Material management
   const matRefs = useRef<Array<any>>([])
@@ -155,7 +157,7 @@ function Geometries({
     size: 2.5,
     height: 0.5, // Extrusion depth
     curveSegments: 12,
-    bevelEnabled: true,
+    bevelEnabled: false,
     bevelThickness: 0.05,
     bevelSize: 0.02,
     bevelOffset: 0,
@@ -170,12 +172,18 @@ function Geometries({
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
-      {/* X - DYNAMIC CENTER */}
       <group ref={xGroupRef} position={[0, 0, 0]}>
         <Center>
           <Text3D {...textProps}>
             X
-            <MeshTransmissionMaterial ref={addMatRef} {...commonMaterialProps} />
+            {isMobile && !isDark ? (
+              <meshBasicMaterial
+                wireframe
+                color={'#aaaaaa'}
+              />
+            ) : (
+              <MeshTransmissionMaterial ref={addMatRef} {...commonMaterialProps} />
+            )}
           </Text3D>
         </Center>
       </group>
