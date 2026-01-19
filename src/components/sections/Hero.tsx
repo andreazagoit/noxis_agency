@@ -30,7 +30,7 @@ export function Hero() {
 
   return (
     <section ref={containerRef} className="relative w-full">
-      {/* Sticky 3D Backdrop - ON TOP NOW */}
+      {/* Sticky 3D Backdrop - ON TOP visually, but pointer-events-none */}
       <div
         className="sticky top-0 z-20 pointer-events-none"
         style={{
@@ -68,7 +68,7 @@ export function Hero() {
 
         {/* Section 1: Split Screen Hero */}
         <div className="w-full min-h-screen flex items-center">
-          <Container className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center py-8 md:py-0">
+          <Container className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 items-center py-8 md:py-0">
             {/* Title - First on mobile, Right on desktop */}
             <div className="flex items-center md:pl-0 order-1 md:order-2">
               <motion.div
@@ -78,9 +78,10 @@ export function Hero() {
                 className="w-full"
               >
                 <h1 className="text-display text-left text-foreground leading-[0.85] tracking-tight">
-                  Elevating the <br />
-                  digital through<br />
-                  <span className="text-primary font-medium">beauty</span> & <span className="text-primary font-medium">ethics</span>.
+                  Your Brand <br />
+                  <span className="text-primary font-medium">Deserves</span> More <br />
+                  Than a Pretty <br />
+                  Website.
                 </h1>
               </motion.div>
             </div>
@@ -91,15 +92,14 @@ export function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-col items-start gap-6 md:max-w-[50%]"
+                className="flex flex-col items-start gap-4 md:gap-6 md:max-w-[50%]"
               >
                 <p className="text-body text-left text-muted-foreground font-medium">
-                  We design and develop premium digital experiences where beauty, functionality, and ethics coexist.
-                  Impacting the world through quality.
+                  We design immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero fluff.
                 </p>
                 <a
                   href="mailto:hello@noxis.agency"
-                  className="inline-block px-12 py-4 bg-primary text-primary-foreground font-bold text-caption rounded-full hover:scale-105 transition-transform duration-300 mt-8"
+                  className="inline-block px-12 py-4 bg-primary text-primary-foreground font-bold text-caption rounded-full hover:scale-105 transition-transform duration-300 md:mt-4"
                 >
                   Start a Project
                 </a>
@@ -162,25 +162,53 @@ export function Hero() {
               <div className="absolute inset-0 pointer-events-none">
                 {/* Web - Top on desktop */}
                 <div className="absolute -top-8 -right-8 md:-top-10 md:right-auto md:left-1/2 md:-translate-x-1/2 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <div className="relative flex items-center justify-center">
+                    <motion.div
+                      className="absolute w-4 h-4 rounded-full bg-primary"
+                      animate={{ scale: [0.5, 1.2, 1.8], opacity: [0, 0.5, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0 }}
+                    />
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary relative z-10" />
+                  </div>
                   <span className="text-caption">Web</span>
                 </div>
 
                 {/* Mobile - Bottom on desktop */}
                 <div className="absolute -bottom-8 -left-8 md:-bottom-10 md:left-1/2 md:-translate-x-1/2 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <div className="relative flex items-center justify-center">
+                    <motion.div
+                      className="absolute w-4 h-4 rounded-full bg-primary"
+                      animate={{ scale: [0.5, 1.2, 1.8], opacity: [0, 0.5, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
+                    />
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary relative z-10" />
+                  </div>
                   <span className="text-caption">Mobile</span>
                 </div>
 
                 {/* Design - Left on desktop */}
                 <div className="absolute -top-8 -left-8 md:top-1/2 md:-left-10 md:-translate-x-full md:-translate-y-1/2 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <div className="relative flex items-center justify-center">
+                    <motion.div
+                      className="absolute w-4 h-4 rounded-full bg-primary"
+                      animate={{ scale: [0.5, 1.2, 1.8], opacity: [0, 0.5, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
+                    />
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary relative z-10" />
+                  </div>
                   <span className="text-caption">Design</span>
                 </div>
 
                 {/* Strategy - Right on desktop */}
                 <div className="absolute -bottom-8 -right-8 md:top-1/2 md:-right-10 md:translate-x-full md:-translate-y-1/2 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <div className="relative flex items-center justify-center">
+                    <motion.div
+                      className="absolute w-4 h-4 rounded-full bg-primary"
+                      animate={{ scale: [0.5, 1.2, 1.8], opacity: [0, 0.5, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1.5 }}
+                    />
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary relative z-10" />
+                  </div>
                   <span className="text-caption">Strategy</span>
                 </div>
               </div>

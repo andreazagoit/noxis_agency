@@ -11,6 +11,7 @@ import { Header } from '../components/layout/Header'
 import { Footer } from '../components/sections/Footer'
 import { ThemeProvider } from '../components/theme-provider'
 import { CustomScrollbar } from '../components/ui/CustomScrollbar'
+import { LoadingScreen } from '../components/ui/LoadingScreen'
 
 import appCss from '../styles.css?url'
 
@@ -56,6 +57,7 @@ function RootDocument() {
       </head>
       <body>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <LoadingScreen />
           <SmoothScroll>
             <CustomScrollbar />
             <Header />

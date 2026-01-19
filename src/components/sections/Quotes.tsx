@@ -34,58 +34,67 @@ function AnimatedText({
     const chars = text.split('')
     const charCount = chars.length
 
+    // Split text into words, keeping track of character positions
+    const words = text.split(' ')
+    let charIndex = 0
+
     return (
-        <span className="inline-block overflow-hidden">
-            {chars.map((char, i) => {
-                // Normalized position in the text (0 to 1)
-                const charPos = i / charCount
-                const overlap = 0.7 // Higher overlap = more letters animating together
-
-                // Appear phase (0 to 0.5 of progress) - clamped to segment
-                const appearStart = charPos * 0.5
-                const appearEnd = Math.min((charPos + overlap) * 0.5, 0.5)
-
-                // Disappear phase (0.5 to 1 of progress) - clamped to segment
-                const disappearStart = 0.5 + charPos * 0.5
-                const disappearEnd = Math.min(0.5 + (charPos + overlap) * 0.5, 1.0)
-
-                let charOpacity: MotionValue<number>
-                let charY: MotionValue<number>
-
-                if (isFirst) {
-                    // First item: start visible, only disappear
-                    charOpacity = useTransform(progress, [disappearStart, disappearEnd], [1, 0], { ease: easeOut })
-                    charY = useTransform(progress, [disappearStart, disappearEnd], [0, -20], { ease: easeOut })
-                } else if (isLast) {
-                    // Last item: only appear, stay visible
-                    charOpacity = useTransform(progress, [appearStart, appearEnd], [0, 1], { ease: easeOut })
-                    charY = useTransform(progress, [appearStart, appearEnd], [20, 0], { ease: easeOut })
-                } else {
-                    // Middle items: appear then disappear
-                    charOpacity = useTransform(
-                        progress,
-                        [appearStart, appearEnd, disappearStart, disappearEnd],
-                        [0, 1, 1, 0]
-                    )
-                    charY = useTransform(
-                        progress,
-                        [appearStart, appearEnd, disappearStart, disappearEnd],
-                        [20, 0, 0, -20]
-                    )
-                }
+        <span className="inline">
+            {words.map((word, wordIndex) => {
+                const wordChars = word.split('')
+                const wordStartIndex = charIndex
+                charIndex += word.length + 1 // +1 for space
 
                 return (
-                    <motion.span
-                        key={i}
-                        style={{
-                            opacity: charOpacity,
-                            y: charY,
-                            display: 'inline-block',
-                            willChange: 'transform, opacity'
-                        }}
-                    >
-                        {char === ' ' ? '\u00A0' : char}
-                    </motion.span>
+                    <span key={wordIndex} className="inline-block whitespace-nowrap">
+                        {wordChars.map((char, i) => {
+                            const globalCharIndex = wordStartIndex + i
+                            const charPos = globalCharIndex / charCount
+                            const overlap = 0.7
+
+                            const appearStart = charPos * 0.5
+                            const appearEnd = Math.min((charPos + overlap) * 0.5, 0.5)
+                            const disappearStart = 0.5 + charPos * 0.5
+                            const disappearEnd = Math.min(0.5 + (charPos + overlap) * 0.5, 1.0)
+
+                            let charOpacity: MotionValue<number>
+                            let charY: MotionValue<number>
+
+                            if (isFirst) {
+                                charOpacity = useTransform(progress, [disappearStart, disappearEnd], [1, 0], { ease: easeOut })
+                                charY = useTransform(progress, [disappearStart, disappearEnd], [0, -20], { ease: easeOut })
+                            } else if (isLast) {
+                                charOpacity = useTransform(progress, [appearStart, appearEnd], [0, 1], { ease: easeOut })
+                                charY = useTransform(progress, [appearStart, appearEnd], [20, 0], { ease: easeOut })
+                            } else {
+                                charOpacity = useTransform(
+                                    progress,
+                                    [appearStart, appearEnd, disappearStart, disappearEnd],
+                                    [0, 1, 1, 0]
+                                )
+                                charY = useTransform(
+                                    progress,
+                                    [appearStart, appearEnd, disappearStart, disappearEnd],
+                                    [20, 0, 0, -20]
+                                )
+                            }
+
+                            return (
+                                <motion.span
+                                    key={i}
+                                    style={{
+                                        opacity: charOpacity,
+                                        y: charY,
+                                        display: 'inline-block',
+                                        willChange: 'transform, opacity'
+                                    }}
+                                >
+                                    {char}
+                                </motion.span>
+                            )
+                        })}
+                        {wordIndex < words.length - 1 && <span>&nbsp;</span>}
+                    </span>
                 )
             })}
         </span>
@@ -153,19 +162,19 @@ export function Quotes({
             <div
                 className="sticky top-0 h-screen w-full flex flex-col items-center justify-center"
             >
-                <Container className="relative z-20 flex flex-col items-center justify-center h-full w-full">
+                <Container className="relative z-20 grid place-items-center h-full w-full px-[10vw] md:px-[5vw]">
                     {/* Corner Markers */}
-                    <PlusMarker className="top-[5vw] left-[5vw] -translate-x-1/2 -translate-y-1/2" />
-                    <PlusMarker className="top-[5vw] right-[5vw] translate-x-1/2 -translate-y-1/2" />
-                    <PlusMarker className="bottom-[5vw] left-[5vw] -translate-x-1/2 translate-y-1/2" />
-                    <PlusMarker className="bottom-[5vw] right-[5vw] translate-x-1/2 translate-y-1/2" />
+                    <PlusMarker className="top-[10vw] left-[10vw] md:top-[5vw] md:left-[5vw] -translate-x-1/2 -translate-y-1/2" />
+                    <PlusMarker className="top-[10vw] right-[10vw] md:top-[5vw] md:right-[5vw] translate-x-1/2 -translate-y-1/2" />
+                    <PlusMarker className="bottom-[10vw] left-[10vw] md:bottom-[5vw] md:left-[5vw] -translate-x-1/2 translate-y-1/2" />
+                    <PlusMarker className="bottom-[10vw] right-[10vw] md:bottom-[5vw] md:right-[5vw] translate-x-1/2 translate-y-1/2" />
 
                     {/* Animated Texts */}
                     {items.map((text, i) => (
                         <motion.h2
                             key={i}
                             style={{ opacity: containerOpacities[i] }}
-                            className="absolute text-display text-center break-words max-w-[95vw]"
+                            className="col-start-1 row-start-1 text-display text-center break-words w-full"
                         >
                             <AnimatedText
                                 text={text}

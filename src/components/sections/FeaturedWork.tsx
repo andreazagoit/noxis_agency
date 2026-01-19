@@ -81,16 +81,16 @@ export function FeaturedWork() {
                         viewport={{ once: true }}
                         className="text-caption mb-4 text-white/70"
                     >
-                        How we forge
+                        From chaos to clarity
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-title text-white"
+                        className="text-display text-white"
                     >
-                        Liquid <span className="italic">Methodology</span><span className="opacity-30">.</span>
+                        The <span className="italic">Process</span><span className="opacity-30">.</span>
                     </motion.h2>
                 </div>
 
@@ -102,7 +102,7 @@ export function FeaturedWork() {
                         className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white origin-top -translate-x-1/2 hidden md:block"
                     />
 
-                    <div className="space-y-24 relative">
+                    <div className="space-y-8 md:space-y-24 relative">
                         {PROCESS_STEPS.map((step, index) => (
                             <TimelineStep key={step.id} step={step} index={index} />
                         ))}
@@ -121,8 +121,15 @@ function TimelineStep({ step, index }: { step: typeof PROCESS_STEPS[0], index: n
             "relative flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0",
             isEven ? "md:flex-row-reverse" : ""
         )}>
-            {/* Node Marker */}
-            <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-white -translate-x-1/2 z-20 hidden md:block" />
+            {/* Node Marker with Ripple */}
+            <div className="absolute left-4 md:left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center justify-center">
+                <motion.div
+                    className="absolute w-6 h-6 rounded-full bg-white"
+                    animate={{ scale: [0.5, 1.2, 1.8], opacity: [0, 0.4, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: index * 0.3 }}
+                />
+                <div className="w-3 h-3 rounded-full bg-white relative z-10" />
+            </div>
 
             {/* Card */}
             <motion.div

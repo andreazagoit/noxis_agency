@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { Reveal } from '../ui/Reveal'
 import { BentoWireframe } from '../3d/BentoWireframe'
 import { Container } from '../layout/Container'
 
@@ -64,27 +64,26 @@ export function Services() {
   return (
     <section id="services">
       <Container className="py-section">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-element"
-        >
-          <h2 className="text-title mb-element">
-            Premium <br />
-            <span className="text-primary italic">Digital Products.</span>
-          </h2>
-          <p className="text-body max-w-xl text-muted-foreground">
-            We unite high-level design, solid technology, and professional ethics
-            to create products that are just, useful, and reliable.
-          </p>
-        </motion.div>
+        <Reveal width="100%" className="mb-element">
+          <div className="mb-element">
+            <h2 className="text-title mb-element">
+              Premium <br />
+              <span className="text-primary italic">Digital Products.</span>
+            </h2>
+            <p className="text-body max-w-xl text-muted-foreground">
+              We unite high-level design, solid technology, and professional ethics
+              to create products that are just, useful, and reliable.
+            </p>
+          </div>
+        </Reveal>
 
         {/* Bento Grid - 3 columns, auto rows */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-element auto-rows-[240px]">
           {bentoItems.map((item, index) => (
-            <div
+            <Reveal
               key={index}
+              delay={index * 0.1} // Staggered delay based on index
+              duration={0.6}
               className={`
                                 group relative overflow-hidden rounded-3xl
                                 ${item.span}
@@ -94,9 +93,10 @@ export function Services() {
                 }
                                 transition-all duration-500
                             `}
+              style={{ display: 'block' }} // Ensure Reveal wrapper behaves correctly in grid
             >
               {/* Content Layout */}
-              <div className="relative h-full">
+              <div className="relative h-full w-full">
                 {/* 
                    Distinct Layouts based on Card Type & Screen Size:
                    1. Mobile (All): Text Top, 3D Bottom
@@ -167,7 +167,7 @@ export function Services() {
                   )
                 })()}
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Container>

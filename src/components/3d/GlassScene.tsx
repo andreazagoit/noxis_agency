@@ -213,7 +213,7 @@ function SceneContent({ scrollYProgress }: { scrollYProgress: any }) {
       <Canvas
         camera={{ position: [0, 0, 9], fov: 45 }}
         dpr={[1, 1.5]} // Optimization: Lower max DPR
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
       >
         <Suspense fallback={null}>
           <Environment preset="studio" />
