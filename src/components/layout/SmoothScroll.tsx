@@ -13,7 +13,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
         smoothWheel: true,
       }}
     >
-      <div className="w-full min-h-screen">{children}</div>
+      <div className="relative w-full min-h-screen">{children}</div>
     </ReactLenis>
   )
 }

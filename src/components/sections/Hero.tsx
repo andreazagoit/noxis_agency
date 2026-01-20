@@ -177,8 +177,8 @@ export function Hero() {
                   // Calculate position as percentage of container (circle) size
                   const angle = i * 30
                   const radius = 50 // percentage of container size - exactly on edge
-                  const x = Math.sin((angle * Math.PI) / 180) * radius
-                  const y = -Math.cos((angle * Math.PI) / 180) * radius
+                  const x = (Math.sin((angle * Math.PI) / 180) * radius).toFixed(5)
+                  const y = (-Math.cos((angle * Math.PI) / 180) * radius).toFixed(5)
                   return (
                     <div
                       key={i}

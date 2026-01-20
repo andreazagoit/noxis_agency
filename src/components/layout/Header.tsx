@@ -9,7 +9,7 @@ export function Header() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-auto flex items-center gap-6 p-2 pr-2 pl-6 rounded-full border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-md shadow-lg"
+        className="pointer-events-auto flex items-center gap-5 p-2 pr-2 pl-6 rounded-full border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-md shadow-lg"
       >
         <Link
           to="/"
@@ -50,7 +50,7 @@ export function Header() {
 
         <div className="w-px h-4 bg-black/10 dark:bg-white/10" />
 
-        <div className="pl-1 pr-1">
+        <div className="ml-[-8px]">
           <ThemeToggle />
         </div>
       </motion.nav>

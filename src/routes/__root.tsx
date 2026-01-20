@@ -1,4 +1,5 @@
 import {
+  Link,
   HeadContent,
   Outlet,
   Scripts,
@@ -107,6 +108,7 @@ export const Route = createRootRoute({
   }),
 
   component: RootDocument,
+  notFoundComponent: NotFound,
 })
 
 import { LoadingProvider } from '../context/LoadingContext'
@@ -126,7 +128,7 @@ function RootDocument() {
             <SmoothScroll>
               <CustomScrollbar />
               <Header />
-              <main className="min-h-screen">
+              <main className="relative min-h-screen">
                 <Outlet />
               </main>
               <Footer />
@@ -147,5 +149,21 @@ function RootDocument() {
         <Scripts />
       </body>
     </html>
+  )
+}
+function NotFound() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+      <h1 className="text-display text-primary mb-4">404</h1>
+      <p className="text-body text-muted-foreground mb-8">
+        The page you are looking for has been moved or does not exist.
+      </p>
+      <Link
+        to="/"
+        className="px-8 py-3 bg-foreground text-background rounded-full font-medium hover:scale-105 transition-transform"
+      >
+        Go Back Home
+      </Link>
+    </div>
   )
 }
