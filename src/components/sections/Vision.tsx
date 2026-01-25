@@ -17,7 +17,7 @@ export function Vision() {
                             <span className="text-foreground block mb-2">Impact is engineered,</span>
                             <span className="text-black/50 dark:text-white/50 block mb-8">not guessed.</span>
                             <div className="text-xl md:text-3xl font-sans normal-case font-medium text-black/80 dark:text-white/80 max-w-3xl mx-auto leading-relaxed tracking-normal">
-                                We strip away the non-essential to reveal your brand's core.
+                                Stripping away the non-essential to reveal your brand's core.
                                 Creating digital products that are as powerful as they are beautiful.
                             </div>
                         </h2>
@@ -41,7 +41,7 @@ export function Vision() {
                     <div className="md:col-span-8 md:pl-12 pt-4">
                         <Reveal delay={0.3} width="100%">
                             <p className="text-2xl md:text-4xl font-medium leading-tight text-foreground">
-                                To redefine the benchmark of digital products. We envision a web where speed never compromises soul, and every interaction feels inevitable. Eliminating the unnecessary to reveal the essential.
+                                To redefine the benchmark of digital products. Envisioning a web where speed never compromises soul, and every interaction feels inevitable. Eliminating the unnecessary to reveal the essential.
                             </p>
                         </Reveal>
                     </div>
@@ -63,7 +63,7 @@ export function Vision() {
                     <div className="md:col-span-8 md:pl-12 pt-4">
                         <Reveal delay={0.3} width="100%">
                             <p className="text-2xl md:text-4xl font-medium leading-tight text-foreground">
-                                We don't just write code; we forge assets. Through rigorous engineering and obsessive art direction, we turn complex problems into seamless, reliable solutions. We craft the tools that power your future.
+                                I don't just write code; I forge assets. Through rigorous engineering and obsessive art direction, I turn complex problems into seamless, reliable solutions. Crafting the tools that power your future.
                             </p>
                         </Reveal>
                     </div>

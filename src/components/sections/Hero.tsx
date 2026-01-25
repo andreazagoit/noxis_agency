@@ -6,6 +6,7 @@ import { GlassScene } from '../3d/GlassScene'
 import { Container } from '../layout/Container'
 import { useLoading } from '../../context/LoadingContext'
 import { CTAButton } from '../ui/CTAButton'
+import { BrandSlider } from '../ui/BrandSlider'
 
 
 export function Hero() {
@@ -73,8 +74,8 @@ export function Hero() {
         />
 
         {/* Section 1: Split Screen Hero */}
-        <div className="w-full min-h-screen flex items-center">
-          <Container className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 items-center py-8 md:py-0">
+        <div className="w-full min-h-screen flex items-center justify-center relative overflow-hidden">
+          <Container className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 items-center">
             {/* Title - First on mobile, Right on desktop */}
             <div className="flex items-center md:pl-0 order-1 md:order-2">
               <div className="w-full">
@@ -129,7 +130,7 @@ export function Hero() {
                     animate={isLoading ? { y: "100%", opacity: 0 } : { y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
                   >
-                    We design immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero limits.
+                    Designing immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero limits.
                   </motion.p>
                 </div>
                 <div>
@@ -151,12 +152,14 @@ export function Hero() {
           </Container>
         </div>
 
+        <BrandSlider />
 
 
-        <div className="w-full h-auto flex items-center justify-center">
+
+        <div className="w-full h-auto flex items-center justify-center pt-32 md:pt-48">
           <Container className="py-section flex items-center justify-center">
             <h2 className="text-display text-center">
-              We Are <span className="text-primary">Good</span> At
+              Core <span className="text-primary">Expertise</span>
             </h2>
           </Container>
         </div>

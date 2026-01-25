@@ -15,23 +15,42 @@ interface CTAButtonProps {
     transition?: any
 }
 
-// Animated text component with staggered letter animation
-function AnimatedText({ text, direction }: { text: string; direction: 'in' | 'out' }) {
-    const letters = text.split('')
+// Staggered letters variants
+const letterVariants = {
+    initial: { y: 10, opacity: 0 },
+    animate: (i: number) => ({
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.2,
+            delay: i * 0.012,
+            ease: [0.22, 1, 0.36, 1] as const
+        }
+    }),
+    exit: (i: number) => ({
+        y: -10,
+        opacity: 0,
+        transition: {
+            duration: 0.2,
+            delay: i * 0.008,
+            ease: [0.22, 1, 0.36, 1] as const
+        }
+    })
+}
 
+function AnimatedText({ text }: { text: string }) {
+    const letters = text.split('')
     return (
-        <span className="inline-flex">
+        <span className="inline-flex overflow-hidden">
             {letters.map((letter, i) => (
                 <motion.span
                     key={i}
-                    initial={{ y: direction === 'in' ? 10 : 0, opacity: direction === 'in' ? 0 : 1 }}
-                    animate={{ y: direction === 'in' ? 0 : -10, opacity: direction === 'in' ? 1 : 0 }}
-                    transition={{
-                        duration: 0.2,
-                        delay: i * 0.012,
-                        ease: [0.22, 1, 0.36, 1]
-                    }}
-                    style={{ willChange: 'transform, opacity' }}
+                    custom={i}
+                    variants={letterVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="inline-block"
                 >
                     {letter === ' ' ? '\u00A0' : letter}
                 </motion.span>
@@ -46,60 +65,43 @@ export function CTAButton({
     className,
     children,
     initial,
-    animate,
+    animate: customAnimate,
     transition: customTransition,
 }: CTAButtonProps) {
     const [isHovered, setIsHovered] = useState(false)
     const [displayState, setDisplayState] = useState<'default' | 'email' | 'copied'>('default')
-    const [animDirection, setAnimDirection] = useState<'in' | 'out'>('in')
     const [isMobile, setIsMobile] = useState(false)
     const containerRef = useRef<HTMLDivElement>(null)
 
-    // Detect mobile and set initial state
+    // Detect mobile
     useEffect(() => {
         const checkMobile = () => {
             const mobile = window.innerWidth < 768
             setIsMobile(mobile)
-            if (mobile) {
-                setDisplayState('email')
-                setAnimDirection('in')
-            } else {
-                setDisplayState('default')
-                setAnimDirection('in')
-            }
+            if (mobile) setDisplayState('email')
         }
-
         checkMobile()
         window.addEventListener('resize', checkMobile)
         return () => window.removeEventListener('resize', checkMobile)
     }, [])
+
+    // State logic based on hover/interaction
+    useEffect(() => {
+        if (isMobile) return
+        if (displayState === 'copied') return // Prevent interrupting copy state
+
+        if (isHovered) {
+            setDisplayState('email')
+        } else {
+            setDisplayState('default')
+        }
+    }, [isHovered, displayState, isMobile])
 
     // Magnetic effect
     const x = useMotionValue(0)
     const y = useMotionValue(0)
     const springX = useSpring(x, { damping: 20, stiffness: 200 })
     const springY = useSpring(y, { damping: 20, stiffness: 200 })
-
-    // Handle hover state changes - only on desktop
-    useEffect(() => {
-        if (isMobile) return
-
-        if (isHovered && displayState === 'default') {
-            setAnimDirection('out')
-            const timer = setTimeout(() => {
-                setDisplayState('email')
-                setAnimDirection('in')
-            }, 120)
-            return () => clearTimeout(timer)
-        } else if (!isHovered && (displayState === 'email' || displayState === 'copied')) {
-            setAnimDirection('out')
-            const timer = setTimeout(() => {
-                setDisplayState('default')
-                setAnimDirection('in')
-            }, 120)
-            return () => clearTimeout(timer)
-        }
-    }, [isHovered, displayState, isMobile])
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (isMobile || !containerRef.current) return
@@ -120,25 +122,17 @@ export function CTAButton({
         if (displayState === 'copied') return
         try {
             await navigator.clipboard.writeText(email)
-            setAnimDirection('out')
-            setTimeout(() => {
-                setDisplayState('copied')
-                setAnimDirection('in')
-            }, 120)
+            setDisplayState('copied')
 
-            // Return to appropriate state after 2 seconds
+            // Revert state after 2 seconds
             setTimeout(() => {
-                setAnimDirection('out')
-                setTimeout(() => {
-                    if (isMobile) {
-                        setDisplayState('email')
-                    } else if (isHovered) {
-                        setDisplayState('email')
-                    } else {
-                        setDisplayState('default')
-                    }
-                    setAnimDirection('in')
-                }, 120)
+                if (isMobile) {
+                    setDisplayState('email')
+                } else if (isHovered) {
+                    setDisplayState('email')
+                } else {
+                    setDisplayState('default')
+                }
             }, 2000)
         } catch (err) {
             console.error('Failed to copy:', err)
@@ -148,7 +142,7 @@ export function CTAButton({
     const buttonText = typeof children === 'string' ? children : 'Start a Project'
 
     const getBgColor = () => {
-        if (displayState === 'copied') return 'oklch(0.627 0.194 149.21)'
+        if (displayState === 'copied') return 'oklch(0.627 0.194 149.21)' // Fixed Green for copy
         if (variant === 'primary') return 'var(--primary)'
         if (variant === 'light') return 'var(--foreground)'
         return 'var(--background)'
@@ -176,71 +170,68 @@ export function CTAButton({
                 initial={initial}
                 animate={{
                     backgroundColor: getBgColor(),
-                    ...(animate || {})
+                    ...(customAnimate || {})
                 }}
                 layout
                 transition={{
                     backgroundColor: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
                     layout: { type: "spring", stiffness: 400, damping: 30 },
-                    ...(customTransition as any || {})
+                    ...(customTransition || {})
                 }}
             >
-                <AnimatePresence mode="wait" initial={false}>
-                    {displayState === 'default' && (
-                        <motion.div
-                            key="default"
-                            className="px-8 md:px-12 py-3 md:py-4 whitespace-nowrap"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.1, ease: "easeOut" }}
-                        >
-                            <AnimatedText text={buttonText} direction={animDirection} />
-                        </motion.div>
-                    )}
-
-                    {displayState === 'email' && (
-                        <motion.div
-                            key="email"
-                            className="flex items-center gap-3 px-8 md:px-12 py-3 md:py-4 whitespace-nowrap"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.1, ease: "easeOut" }}
-                        >
-                            <AnimatedText text={email} direction={animDirection} />
-
+                <div className="px-8 md:px-12 py-3 md:py-4 flex items-center justify-center min-h-[48px] md:min-h-[56px]">
+                    <AnimatePresence mode="wait" initial={false}>
+                        {displayState === 'default' && (
                             <motion.div
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                                key="default"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="whitespace-nowrap"
                             >
-                                <Copy size={16} />
+                                <AnimatedText text={buttonText} />
                             </motion.div>
-                        </motion.div>
-                    )}
+                        )}
 
-                    {displayState === 'copied' && (
-                        <motion.div
-                            key="copied"
-                            className="flex items-center gap-3 px-8 md:px-12 py-3 md:py-4 whitespace-nowrap"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.1, ease: "easeOut" }}
-                        >
-                            <AnimatedText text="Copied to clipboard" direction={animDirection} />
-
+                        {displayState === 'email' && (
                             <motion.div
-                                initial={{ scale: 0, rotate: -45 }}
-                                animate={{ scale: 1, rotate: 0 }}
-                                transition={{ type: "spring", stiffness: 500, damping: 20 }}
+                                key="email"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="flex items-center gap-3 whitespace-nowrap"
                             >
-                                <Check size={18} />
+                                <AnimatedText text={email} />
+                                <motion.div
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                                >
+                                    <Copy size={16} />
+                                </motion.div>
                             </motion.div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                        )}
+
+                        {displayState === 'copied' && (
+                            <motion.div
+                                key="copied"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="flex items-center gap-3 whitespace-nowrap"
+                            >
+                                <AnimatedText text="Copied!" />
+                                <motion.div
+                                    initial={{ scale: 0, rotate: -45 }}
+                                    animate={{ scale: 1, rotate: 0 }}
+                                    transition={{ type: "spring", stiffness: 500, damping: 20 }}
+                                >
+                                    <Check size={18} />
+                                </motion.div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
             </motion.div>
         </LayoutGroup>
     )

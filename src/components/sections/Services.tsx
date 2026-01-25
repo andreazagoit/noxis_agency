@@ -19,14 +19,14 @@ const bentoItems: Array<{
 }> = [
     {
       title: 'Digital Strategy & Vision',
-      description: 'We don\'t just build products; we build businesses. From market analysis to long-term roadmaps, we define the trajectory that positions your brand as a market leader.',
+      description: 'Building more than just products. From market analysis to long-term roadmaps, I define the trajectory that positions your brand as a market leader.',
       span: 'md:col-span-2 md:row-span-2',
       accent: true,
       geometry: 'icosahedron',
     },
     {
       title: 'Creative Excellence',
-      description: 'Design that transcends trends. We craft visual identities and user interfaces that are timeless, bold, and meticulously detailed to create lasting emotional connections.',
+      description: 'Design that transcends trends. I craft visual identities and user interfaces that are timeless, bold, and meticulously detailed to create lasting emotional connections.',
       span: 'md:col-span-1 md:row-span-2',
       geometry: 'torusKnot',
     },
@@ -71,7 +71,7 @@ export function Services() {
               <span className="text-primary italic">Digital Products.</span>
             </h2>
             <p className="text-body max-w-xl text-muted-foreground">
-              We unite high-level design, solid technology, and professional ethics
+              Uniting high-level design, solid technology, and professional ethics
               to create products that are just, useful, and reliable.
             </p>
           </div>
