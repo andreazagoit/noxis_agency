@@ -17,7 +17,7 @@ export function Footer() {
 
           <div className="flex flex-col gap-6">
             <span className="text-[0.6rem] uppercase tracking-[0.3em] font-bold text-zinc-500">Get in touch</span>
-            <a href="mailto:hello@noxis.agency" className="text-[1.5rem] md:text-[2rem] font-medium hover:text-primary transition-colors tracking-tight">
+            <a href="mailto:hello@noxis.agency" className="text-[1.5rem] md:text-[2rem] font-medium hover:underline underline-offset-8 decoration-white transition-all tracking-tight text-white">
               hello@noxis.agency
             </a>
           </div>
