@@ -1,5 +1,6 @@
 import { Reveal } from '../ui/Reveal'
 import { Container } from '../layout/Container'
+import { CTAButton } from '../ui/CTAButton'
 
 export function Partnership() {
   return (
@@ -20,12 +21,9 @@ export function Partnership() {
         </Reveal>
 
         <Reveal width="100%" delay={0.2}>
-          <a
-            href="mailto:hello@noxis.agency"
-            className="inline-block px-12 py-4 bg-foreground text-background font-bold text-caption rounded-full hover:scale-105 transition-transform duration-300"
-          >
+          <CTAButton variant="dark">
             Start a Project
-          </a>
+          </CTAButton>
         </Reveal>
       </Container>
     </section>

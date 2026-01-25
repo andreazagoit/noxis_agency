@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { GlassScene } from '../3d/GlassScene'
 import { Container } from '../layout/Container'
 import { useLoading } from '../../context/LoadingContext'
+import { CTAButton } from '../ui/CTAButton'
 
 
 export function Hero() {
@@ -131,15 +132,15 @@ export function Hero() {
                     We design immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero fluff.
                   </motion.p>
                 </div>
-                <motion.a
-                  href="mailto:hello@noxis.agency"
-                  className="inline-block px-12 py-4 bg-primary text-primary-foreground font-bold text-caption rounded-full hover:scale-105 transition-transform duration-300 md:mt-4"
+                <CTAButton
+                  variant="primary"
+                  className="md:mt-4"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isLoading ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, ease: "backOut", delay: 1 }}
                 >
                   Start a Project
-                </motion.a>
+                </CTAButton>
               </div>
             </div>
           </Container>
