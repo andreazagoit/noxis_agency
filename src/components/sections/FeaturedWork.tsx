@@ -59,8 +59,9 @@ export function FeaturedWork() {
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        offset: ["start end", "end start"]
+        offset: ["start center", "end center"]
     })
+
 
     const scaleY = useSpring(scrollYProgress, {
         stiffness: 100,
@@ -78,10 +79,10 @@ export function FeaturedWork() {
                 <div className="flex flex-col items-center mb-32 text-center">
                     <Reveal width="100%">
                         <div className="flex flex-col items-center">
-                            <span className="text-caption mb-4 text-white/70">
+                            <span className="text-caption mb-4 text-white selection:bg-white selection:text-primary">
                                 From chaos to clarity
                             </span>
-                            <h2 className="text-display text-white">
+                            <h2 className="text-display text-white selection:bg-white selection:text-primary">
                                 The <span className="italic">Process</span><span className="opacity-30">.</span>
                             </h2>
                         </div>
@@ -90,10 +91,10 @@ export function FeaturedWork() {
 
                 <div className="relative max-w-6xl mx-auto">
                     {/* Vertical Timeline Axis */}
-                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/20 -translate-x-1/2 hidden md:block z-[-1]" />
+                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/20 -translate-x-1/2 z-0" />
                     <motion.div
                         style={{ scaleY }}
-                        className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white origin-top -translate-x-1/2 hidden md:block z-[-1]"
+                        className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white origin-top -translate-x-1/2 z-0"
                     />
 
                     <div className="space-y-8 md:space-y-24 relative">

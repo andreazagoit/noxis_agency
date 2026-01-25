@@ -129,18 +129,23 @@ export function Hero() {
                     animate={isLoading ? { y: "100%", opacity: 0 } : { y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
                   >
-                    We design immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero fluff.
+                    We design immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero limits.
                   </motion.p>
                 </div>
-                <CTAButton
-                  variant="primary"
-                  className="md:mt-4"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isLoading ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, ease: "backOut", delay: 1 }}
-                >
-                  Start a Project
-                </CTAButton>
+                <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={isLoading ? { y: "100%", opacity: 0 } : { y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.9 }}
+                  >
+                    <CTAButton
+                      variant="primary"
+                      className="md:mt-4"
+                    >
+                      Start a Project
+                    </CTAButton>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </Container>

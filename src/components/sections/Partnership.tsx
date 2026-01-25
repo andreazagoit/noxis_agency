@@ -21,7 +21,7 @@ export function Partnership() {
         </Reveal>
 
         <Reveal width="100%" delay={0.2}>
-          <CTAButton variant="dark">
+          <CTAButton variant="light">
             Start a Project
           </CTAButton>
         </Reveal>
