@@ -148,10 +148,10 @@ export function CTAButton({
     const buttonText = typeof children === 'string' ? children : 'Start a Project'
 
     const getBgColor = () => {
-        if (displayState === 'copied') return 'oklch(0.627 0.194 149.21)' // Tailwind green-500 equivalent in OKLCH
-        if (variant === 'primary') return 'oklch(0.65 0.22 35)' // Exact Brand Orange
-        if (variant === 'light') return 'oklch(1 0 0)'
-        return 'oklch(0.1 0 0)' // Deep Black
+        if (displayState === 'copied') return 'oklch(0.627 0.194 149.21)'
+        if (variant === 'primary') return 'var(--primary)'
+        if (variant === 'light') return 'var(--foreground)'
+        return 'var(--background)'
     }
 
     return (
@@ -159,8 +159,8 @@ export function CTAButton({
             <motion.div
                 ref={containerRef}
                 className={cn(
-                    "inline-flex items-center font-bold text-caption rounded-full cursor-pointer select-none uppercase tracking-wide overflow-hidden",
-                    displayState === 'copied' ? "text-white" : variant === 'primary' ? "text-primary-foreground" : variant === 'light' ? "text-black" : "text-background",
+                    "inline-flex items-center font-bold text-caption rounded-full cursor-pointer select-none uppercase tracking-wide",
+                    displayState === 'copied' ? "text-white" : variant === 'primary' ? "text-white" : variant === 'light' ? "text-background" : "text-foreground",
                     className
                 )}
                 style={{

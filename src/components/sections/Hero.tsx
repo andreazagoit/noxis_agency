@@ -132,10 +132,10 @@ export function Hero() {
                     We design immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero limits.
                   </motion.p>
                 </div>
-                <div className="overflow-hidden">
+                <div>
                   <motion.div
-                    initial={{ y: "100%", opacity: 0 }}
-                    animate={isLoading ? { y: "100%", opacity: 0 } : { y: 0, opacity: 1 }}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={isLoading ? { y: 20, opacity: 0 } : { y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.9 }}
                   >
                     <CTAButton

@@ -20,8 +20,9 @@ export const Reveal = ({
     duration = 0.5,
     yOffset = 20,
     className,
+    overflowVisible = false,
     ...props
-}: RevealProps) => {
+}: RevealProps & { overflowVisible?: boolean }) => {
     const ref = useRef(null)
     const isInView = useInView(ref, { once: true, margin: '-10%' }) // Trigger when 10% visible (easier)
     const mainControls = useAnimation()
@@ -33,7 +34,7 @@ export const Reveal = ({
     }, [isInView, mainControls])
 
     return (
-        <div ref={ref} style={{ position: 'relative', width, height, overflow: 'hidden' }} className={className}>
+        <div ref={ref} style={{ position: 'relative', width, height, overflow: overflowVisible ? 'visible' : 'hidden' }} className={className}>
             <motion.div
                 variants={{
                     hidden: { opacity: 0, y: yOffset },

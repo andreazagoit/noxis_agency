@@ -4,7 +4,7 @@ import { CTAButton } from '../ui/CTAButton'
 
 export function Partnership() {
   return (
-    <section>
+    <section id="partner">
       <Container className="text-center py-section">
         <Reveal width="100%">
           <h2 className="text-display mb-element">
@@ -20,7 +20,7 @@ export function Partnership() {
           </p>
         </Reveal>
 
-        <Reveal width="100%" delay={0.2}>
+        <Reveal width="100%" delay={0.2} overflowVisible>
           <CTAButton variant="light">
             Start a Project
           </CTAButton>

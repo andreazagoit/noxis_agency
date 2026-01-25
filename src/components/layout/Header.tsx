@@ -27,24 +27,24 @@ export function Header() {
         </Link>
 
         {/* Static Navigation */}
-        <div className="flex items-center gap-6 text-sm font-medium text-black dark:text-white">
-          <a
-            href="#manifesto"
-            className="hover:text-primary transition-colors"
-          >
-            Vision
-          </a>
+        <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-black dark:text-white">
           <a
             href="#services"
-            className="hover:text-primary transition-colors"
+            className="hover:text-zinc-500/80 dark:hover:text-zinc-400 transition-colors"
           >
-            Services
+            Expertise
           </a>
           <a
             href="#methodology"
-            className="hover:text-primary transition-colors"
+            className="hover:text-zinc-500/80 dark:hover:text-zinc-400 transition-colors"
           >
-            Method
+            Process
+          </a>
+          <a
+            href="#partner"
+            className="hover:text-zinc-500/80 dark:hover:text-zinc-400 transition-colors"
+          >
+            Partner
           </a>
         </div>
 
