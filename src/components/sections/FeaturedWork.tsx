@@ -90,16 +90,10 @@ export function FeaturedWork() {
                 </div>
 
                 <div className="relative max-w-6xl mx-auto">
-                    {/* Vertical Timeline Axis */}
-                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/20 -translate-x-1/2 z-0" />
-                    <motion.div
-                        style={{ scaleY }}
-                        className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white origin-top -translate-x-1/2 z-0"
-                    />
 
                     <div className="space-y-8 md:space-y-24 relative">
                         {PROCESS_STEPS.map((step, index) => (
-                            <TimelineStep key={step.id} step={step} index={index} />
+                            <TimelineStep key={step.id} step={step} index={index} isLast={index === PROCESS_STEPS.length - 1} />
                         ))}
                     </div>
                 </div>
@@ -108,16 +102,16 @@ export function FeaturedWork() {
     )
 }
 
-function TimelineStep({ step, index }: { step: typeof PROCESS_STEPS[0], index: number }) {
+function TimelineStep({ step, index, isLast }: { step: typeof PROCESS_STEPS[0], index: number, isLast: boolean }) {
     const isEven = index % 2 === 1
 
     return (
         <div className={cn(
-            "relative flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0",
+            "relative flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-0 pl-16 md:pl-0",
             isEven ? "md:flex-row-reverse" : ""
         )}>
             {/* Node Marker with Ripple */}
-            <div className="absolute left-4 md:left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center justify-center">
+            <div className="absolute left-4 md:left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
                 <motion.div
                     className="absolute w-6 h-6 rounded-full bg-white"
                     animate={{ scale: [0.5, 1.2, 1.8], opacity: [0, 0.4, 0] }}
@@ -125,6 +119,11 @@ function TimelineStep({ step, index }: { step: typeof PROCESS_STEPS[0], index: n
                 />
                 <div className="w-3 h-3 rounded-full bg-white relative z-10" />
             </div>
+
+            {/* Connecting Line to Next Step */}
+            {!isLast && (
+                <div className="absolute left-4 md:left-1/2 top-1/2 w-[1px] bg-white/30 -translate-x-1/2 h-[calc(100%+2rem)] md:h-[calc(100%+6rem)] z-0" />
+            )}
 
             {/* Card Wrapper handled by div to avoid Reveal style conflict */}
             <div className="w-full md:w-[46%] group">
