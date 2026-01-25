@@ -16,18 +16,16 @@ import { useLoading } from '../../context/LoadingContext'
 import { useTheme } from '../theme-provider'
 
 // Cached objects to avoid allocations in render loop
-const TARGET_SCALE_MOBILE = new THREE.Vector3(0.7, 0.7, 0.7)
+const TARGET_SCALE_MOBILE = new THREE.Vector3(0.55, 0.55, 0.55)
 const TARGET_SCALE_DESKTOP = new THREE.Vector3(0.85, 0.85, 0.85)
 const ZERO_SCALE = new THREE.Vector3(0, 0, 0)
-const TARGET_COLOR_LIGHT = new THREE.Color('#111111')
+const TARGET_COLOR_LIGHT = new THREE.Color('#ffffff') // Was #111111, now white for "cangiante"
 const TARGET_COLOR_DARK = new THREE.Color('#ffffff')
 
 function Particles({
   isDark,
-  scrollYProgress,
 }: {
   isDark: boolean
-  scrollYProgress: any
 }) {
   const ref = useRef<THREE.Points>(null)
   const count = 2500
@@ -45,24 +43,21 @@ function Particles({
   useFrame((state) => {
     if (!ref.current) return
     const time = state.clock.getElapsedTime()
-    // Get scroll progress (0 to 1)
-    const progress = scrollYProgress ? scrollYProgress.get() : 0
 
-    // Scroll interaction: rotation depends on time (continuous) AND progress (position)
-    // This makes particles rotate backwards when scrolling up.
-    ref.current.rotation.y = time * 0.05 + progress * 1.0
-    ref.current.rotation.x = time * 0.02 + progress * 0.4
+    // Scroll interaction removed for simplicity/performance in this version
+    ref.current.rotation.y = time * 0.05
+    ref.current.rotation.x = time * 0.02
   })
 
   return (
     <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
-        color={isDark ? '#ffffff' : '#111111'}
+        color="#ffffff" // Always white for better visibility
         size={0.04}
         sizeAttenuation={true}
         depthWrite={false}
-        opacity={0.6}
+        opacity={isDark ? 0.6 : 0.4} // Slightly dimmer in light mode but still visible
       />
     </Points>
   )
@@ -70,55 +65,49 @@ function Particles({
 
 function Geometries({
   isDark,
-  scrollYProgress,
   isLoading,
 }: {
   isDark: boolean
-  scrollYProgress: any
   isLoading: boolean
 }) {
   const groupRef = useRef<THREE.Group>(null)
   const xGroupRef = useRef<THREE.Group>(null)
-  const { width } = useThree((state) => state.size)
-  const isMobile = width < 768
-
+  const { size } = useThree()
+  const isMobile = size.width < 768
   // Material management
   const matRefs = useRef<Array<any>>([])
-
-  const [hovered, setHovered] = useState(false)
 
   useFrame((state) => {
     if (!groupRef.current) return
 
     const time = state.clock.getElapsedTime()
-    const progress = scrollYProgress ? scrollYProgress.get() : 0
 
     // Entrance Scale - smaller on mobile
-    const isMobile = state.size.width < 768
     const baseScale = isMobile ? TARGET_SCALE_MOBILE : TARGET_SCALE_DESKTOP
 
     // Animate scale: Stay at 0 if loading, grow to baseScale if loaded
     const targetScale = isLoading ? ZERO_SCALE : baseScale
     groupRef.current.scale.lerp(targetScale, 0.05)
 
-    // DYNAMIC X ANIMATION
     if (xGroupRef.current) {
-      // Rotates ONLY on Y axis
-      // Constant rotation without scroll acceleration
-      xGroupRef.current.rotation.x = 0
       xGroupRef.current.rotation.y = time * 0.2
-      xGroupRef.current.rotation.z = 0
     }
 
     // --- MATERIAL ALCHEMY (Shared) ---
-    const targetAberration = hovered ? 2 : THREE.MathUtils.lerp(0.5, 1.5, progress)
-    const targetDistortion = hovered ? 0.5 : THREE.MathUtils.lerp(0, 0.8, progress)
-    const targetColor = isDark ? TARGET_COLOR_DARK : TARGET_COLOR_LIGHT
+    const isActuallyDark = isDark // Closure over prop
+
+    // Different characteristics for Light (Iridescent/Pearl) vs Dark (Clean Glass)
+    const targetColor = isActuallyDark ? TARGET_COLOR_DARK : TARGET_COLOR_LIGHT
+    const targetIridescence = isActuallyDark ? 0.3 : 1.0
 
     matRefs.current.forEach((mat) => {
       if (mat) {
-        mat.chromaticAberration = THREE.MathUtils.lerp(mat.chromaticAberration, targetAberration, 0.1)
-        mat.distortion = THREE.MathUtils.lerp(mat.distortion, targetDistortion, 0.1)
+        if ('iridescence' in mat) {
+          mat.iridescence = THREE.MathUtils.lerp(mat.iridescence, targetIridescence, 0.1)
+        }
+        if ('chromaticAberration' in mat) {
+          mat.chromaticAberration = THREE.MathUtils.lerp(mat.chromaticAberration, isActuallyDark ? 1.5 : 5, 0.1)
+        }
         mat.color.lerp(targetColor, 0.05)
       }
     })
@@ -126,7 +115,22 @@ function Geometries({
 
   // ... (rest of Geometries content: commonMaterialProps, addMatRef, fontUrl, textProps, return JSX) ...
 
-  const commonMaterialProps = {
+  const commonPhysicalProps = {
+    roughness: 0.05,
+    metalness: 0.05,
+    reflectivity: 1,
+    clearcoat: 1,
+    clearcoatRoughness: 0.1,
+    iridescence: 1,
+    iridescenceIOR: 1.8,
+    iridescenceThicknessRange: [200, 800] as [number, number],
+    sheen: 0.5,
+    sheenRoughness: 0.2,
+    sheenColor: new THREE.Color("#ffffff"),
+    color: "#ffffff",
+  }
+
+  const commonTransmissionProps = {
     backside: true,
     backsideThickness: 1.5,
     thickness: 2,
@@ -139,8 +143,6 @@ function Geometries({
     distortionScale: 0.5,
     temporalDistortion: 0.5,
     color: "#ffffff",
-    resolution: 512, // Optimization
-    samples: 6,      // Optimization
   }
 
   // Registry helper
@@ -169,20 +171,23 @@ function Geometries({
       ref={groupRef}
       position={[0, 0, 0]}
       scale={[0, 0, 0]}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
     >
       <group ref={xGroupRef} position={[0, 0, 0]}>
         <Center>
           <Text3D {...textProps}>
             X
-            {isMobile && !isDark ? (
-              <meshBasicMaterial
-                wireframe
-                color={'#aaaaaa'}
+            {isDark ? (
+              <MeshTransmissionMaterial
+                ref={addMatRef}
+                {...commonTransmissionProps}
+                resolution={512}
+                samples={6}
               />
             ) : (
-              <MeshTransmissionMaterial ref={addMatRef} {...commonMaterialProps} />
+              <meshPhysicalMaterial
+                ref={addMatRef}
+                {...commonPhysicalProps}
+              />
             )}
           </Text3D>
         </Center>
@@ -191,7 +196,7 @@ function Geometries({
   )
 }
 
-function SceneContent({ scrollYProgress }: { scrollYProgress: any }) {
+function SceneContent() {
   const { theme } = useTheme()
   const { isLoading } = useLoading()
   const [isDark, setIsDark] = useState(true)
@@ -234,14 +239,20 @@ function SceneContent({ scrollYProgress }: { scrollYProgress: any }) {
       >
         <Suspense fallback={null}>
           <Environment preset="studio" />
-          <Particles isDark={isDark} scrollYProgress={scrollYProgress} />
-          <Geometries isDark={isDark} scrollYProgress={scrollYProgress} isLoading={isLoading} />
+          <Particles isDark={isDark} />
+          <Geometries isDark={isDark} isLoading={isLoading} />
           <ambientLight intensity={0.5} />
+
+          {/* Enhanced Lighting for Iridescence */}
+          <pointLight position={[2, 2, 2]} intensity={2} color="#ffffff" />
+          <pointLight position={[-2, -2, 2]} intensity={1.5} color="#ffffff" />
+          <pointLight position={[0, 5, 0]} intensity={1} color="#ffffff" />
+
           <spotLight
-            position={[10, 10, 10]}
-            angle={0.15}
+            position={[5, 5, 5]}
+            angle={0.25}
             penumbra={1}
-            intensity={1}
+            intensity={2}
           />
         </Suspense>
       </Canvas>
@@ -249,6 +260,6 @@ function SceneContent({ scrollYProgress }: { scrollYProgress: any }) {
   )
 }
 
-export function GlassScene({ scrollYProgress }: { scrollYProgress?: any }) {
-  return <SceneContent scrollYProgress={scrollYProgress} />
+export function GlassScene() {
+  return <SceneContent />
 }

@@ -26,13 +26,12 @@ function Home() {
       {/* Orange Section */}
       <FeaturedWork />
 
-      {/* Black Mountain Separator */}
-      <MountainSeparator topColor="bg-primary" bottomColor="bg-black" />
-      {/* Black Section - Quotes */}
+      {/* Bottom Section - Quotes */}
+      <MountainSeparator topColor="bg-primary" bottomColor="bg-background" />
       <Quotes
         items={["BUILD DIFFERENT", "DESIGN WITH PURPOSE", "CODE WITH PASSION", "CREATE WITH VISION", "INNOVATE ALWAYS"]}
-        backgroundColor="bg-black"
-        textColor="text-white"
+        backgroundColor="bg-background"
+        textColor="text-foreground"
         className="mt-0"
       />
     </div>

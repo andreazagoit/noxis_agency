@@ -1,8 +1,24 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useLocation } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
+import { useLenis } from 'lenis/react'
 import { ThemeToggle } from '../ui/ThemeToggle'
 
 export function Header() {
+  const lenis = useLenis()
+  const { pathname } = useLocation()
+
+  const handleScroll = (id: string) => (e: React.MouseEvent) => {
+    // Only intercept if we are on the home page
+    if (pathname === '/') {
+      e.preventDefault()
+      if (id === 'top') {
+        lenis?.scrollTo(0)
+      } else {
+        lenis?.scrollTo(id, { offset: 0 })
+      }
+    }
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] flex justify-center pt-6 px-4 pointer-events-none">
       <motion.nav
@@ -13,6 +29,7 @@ export function Header() {
       >
         <Link
           to="/"
+          onClick={handleScroll('top')}
           className="flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
         >
           <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-primary overflow-hidden shadow-inner">
@@ -29,22 +46,25 @@ export function Header() {
         {/* Static Navigation */}
         <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-black dark:text-white">
           <a
-            href="#services"
+            href="/#manifesto"
+            onClick={handleScroll('#manifesto')}
             className="hover:text-zinc-500/80 dark:hover:text-zinc-400 transition-colors"
           >
-            Expertise
+            Vision
           </a>
           <a
-            href="#methodology"
+            href="/#services"
+            onClick={handleScroll('#services')}
             className="hover:text-zinc-500/80 dark:hover:text-zinc-400 transition-colors"
           >
-            Process
+            Services
           </a>
           <a
-            href="#partner"
+            href="/#methodology"
+            onClick={handleScroll('#methodology')}
             className="hover:text-zinc-500/80 dark:hover:text-zinc-400 transition-colors"
           >
-            Partner
+            Method
           </a>
         </div>
 

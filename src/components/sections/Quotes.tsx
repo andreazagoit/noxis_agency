@@ -14,8 +14,8 @@ interface QuotesProps {
 
 const PlusMarker = ({ className }: { className?: string }) => (
     <div className={cn("absolute w-8 h-8", className)}>
-        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-white -translate-y-1/2" />
-        <div className="absolute left-1/2 top-0 h-full w-[2px] bg-white -translate-x-1/2" />
+        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-foreground -translate-y-1/2" />
+        <div className="absolute left-1/2 top-0 h-full w-[2px] bg-foreground -translate-x-1/2" />
     </div>
 )
 

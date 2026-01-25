@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { GlassScene } from '../3d/GlassScene'
 import { Container } from '../layout/Container'
@@ -20,17 +20,6 @@ export function Hero() {
     }, 3000)
     return () => clearInterval(interval)
   }, [])
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  })
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  })
 
   return (
     <section ref={containerRef} className="relative w-full">
@@ -59,7 +48,7 @@ export function Hero() {
           animate={isLoading ? { opacity: 0 } : { opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         >
-          <GlassScene scrollYProgress={smoothProgress} />
+          <GlassScene />
         </motion.div>
       </div>
 

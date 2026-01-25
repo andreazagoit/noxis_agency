@@ -1,6 +1,8 @@
 'use client'
 
-import Marquee from 'react-fast-marquee'
+// Fix for SSR CJS/ESM interop
+import FastMarquee from 'react-fast-marquee'
+const Marquee = (FastMarquee as any).default || FastMarquee
 import { Container } from '../layout/Container'
 import { cn } from '@/lib/utils'
 
