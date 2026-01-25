@@ -141,7 +141,7 @@ export function Hero() {
                   >
                     <CTAButton
                       variant="primary"
-                      className="md:mt-4"
+                      className="mt-8 md:mt-4"
                     >
                       Start a Project
                     </CTAButton>
