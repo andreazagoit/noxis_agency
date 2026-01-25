@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useMotionValue, useSpring, AnimatePresence, LayoutGroup } from 'framer-motion'
-import { useState, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { Copy, Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -13,50 +13,6 @@ interface CTAButtonProps {
     initial?: any
     animate?: any
     transition?: any
-}
-
-// Staggered letters variants
-const letterVariants = {
-    initial: { y: 10, opacity: 0 },
-    animate: (i: number) => ({
-        y: 0,
-        opacity: 1,
-        transition: {
-            duration: 0.2,
-            delay: i * 0.012,
-            ease: [0.22, 1, 0.36, 1] as const
-        }
-    }),
-    exit: (i: number) => ({
-        y: -10,
-        opacity: 0,
-        transition: {
-            duration: 0.2,
-            delay: i * 0.008,
-            ease: [0.22, 1, 0.36, 1] as const
-        }
-    })
-}
-
-function AnimatedText({ text }: { text: string }) {
-    const letters = text.split('')
-    return (
-        <span className="inline-flex overflow-hidden">
-            {letters.map((letter, i) => (
-                <motion.span
-                    key={i}
-                    custom={i}
-                    variants={letterVariants}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    className="inline-block"
-                >
-                    {letter === ' ' ? '\u00A0' : letter}
-                </motion.span>
-            ))}
-        </span>
-    )
 }
 
 export function CTAButton({
@@ -71,7 +27,6 @@ export function CTAButton({
     const [isHovered, setIsHovered] = useState(false)
     const [displayState, setDisplayState] = useState<'default' | 'email' | 'copied'>('default')
     const [isMobile, setIsMobile] = useState(false)
-    const containerRef = useRef<HTMLDivElement>(null)
 
     // Detect mobile
     useEffect(() => {
@@ -96,27 +51,6 @@ export function CTAButton({
             setDisplayState('default')
         }
     }, [isHovered, displayState, isMobile])
-
-    // Magnetic effect
-    const x = useMotionValue(0)
-    const y = useMotionValue(0)
-    const springX = useSpring(x, { damping: 20, stiffness: 200 })
-    const springY = useSpring(y, { damping: 20, stiffness: 200 })
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (isMobile || !containerRef.current) return
-        const rect = containerRef.current.getBoundingClientRect()
-        const centerX = rect.left + rect.width / 2
-        const centerY = rect.top + rect.height / 2
-        x.set((e.clientX - centerX) * 0.12)
-        y.set((e.clientY - centerY) * 0.12)
-    }
-
-    const handleMouseLeave = () => {
-        x.set(0)
-        y.set(0)
-        setIsHovered(false)
-    }
 
     const handleCopy = async () => {
         if (displayState === 'copied') return
@@ -149,90 +83,45 @@ export function CTAButton({
     }
 
     return (
-        <LayoutGroup>
-            <motion.div
-                ref={containerRef}
-                className={cn(
-                    "inline-flex items-center font-bold text-caption rounded-full cursor-pointer select-none uppercase tracking-wide",
-                    displayState === 'copied' ? "text-white" : variant === 'primary' ? "text-white" : variant === 'light' ? "text-background" : "text-foreground",
-                    className
+        <motion.div
+            className={cn(
+                "inline-flex items-center font-bold text-caption rounded-full cursor-pointer select-none uppercase tracking-wide overflow-hidden relative z-10 transition-colors duration-300",
+                displayState === 'copied' ? "text-white" : variant === 'primary' ? "text-white" : variant === 'light' ? "text-background" : "text-foreground",
+                className
+            )}
+            style={{
+                borderRadius: 9999,
+                backgroundColor: getBgColor()
+            }}
+            onMouseEnter={() => !isMobile && setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={handleCopy}
+            initial={initial}
+            animate={customAnimate}
+            layout
+            transition={{ layout: { duration: 0.3, type: "spring", stiffness: 300, damping: 30 }, ...customTransition }}
+        >
+            <div className="px-8 md:px-12 py-3 md:py-4 flex items-center justify-center min-h-[48px] md:min-h-[56px] relative">
+                {displayState === 'default' && (
+                    <div className="whitespace-nowrap flex items-center justify-center">
+                        {buttonText}
+                    </div>
                 )}
-                style={{
-                    x: springX,
-                    y: springY,
-                    borderRadius: 9999,
-                    willChange: 'transform, background-color'
-                }}
-                onMouseMove={handleMouseMove}
-                onMouseEnter={() => !isMobile && setIsHovered(true)}
-                onMouseLeave={handleMouseLeave}
-                onClick={handleCopy}
-                initial={initial}
-                animate={{
-                    backgroundColor: getBgColor(),
-                    ...(customAnimate || {})
-                }}
-                layout
-                transition={{
-                    backgroundColor: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-                    layout: { type: "spring", stiffness: 400, damping: 30 },
-                    ...(customTransition || {})
-                }}
-            >
-                <div className="px-8 md:px-12 py-3 md:py-4 flex items-center justify-center min-h-[48px] md:min-h-[56px]">
-                    <AnimatePresence mode="wait" initial={false}>
-                        {displayState === 'default' && (
-                            <motion.div
-                                key="default"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="whitespace-nowrap"
-                            >
-                                <AnimatedText text={buttonText} />
-                            </motion.div>
-                        )}
 
-                        {displayState === 'email' && (
-                            <motion.div
-                                key="email"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="flex items-center gap-3 whitespace-nowrap"
-                            >
-                                <AnimatedText text={email} />
-                                <motion.div
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                                >
-                                    <Copy size={16} />
-                                </motion.div>
-                            </motion.div>
-                        )}
+                {displayState === 'email' && (
+                    <div className="flex items-center gap-3 whitespace-nowrap justify-center">
+                        {email}
+                        <Copy size={16} />
+                    </div>
+                )}
 
-                        {displayState === 'copied' && (
-                            <motion.div
-                                key="copied"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="flex items-center gap-3 whitespace-nowrap"
-                            >
-                                <AnimatedText text="Copied!" />
-                                <motion.div
-                                    initial={{ scale: 0, rotate: -45 }}
-                                    animate={{ scale: 1, rotate: 0 }}
-                                    transition={{ type: "spring", stiffness: 500, damping: 20 }}
-                                >
-                                    <Check size={18} />
-                                </motion.div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
-            </motion.div>
-        </LayoutGroup>
+                {displayState === 'copied' && (
+                    <div className="flex items-center gap-3 whitespace-nowrap justify-center">
+                        Copied!
+                        <Check size={18} />
+                    </div>
+                )}
+            </div>
+        </motion.div>
     )
 }
