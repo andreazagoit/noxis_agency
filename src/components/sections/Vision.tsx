@@ -17,8 +17,8 @@ export function Vision() {
                             <span className="text-foreground block mb-2">Impact is engineered,</span>
                             <span className="text-black/50 dark:text-white/50 block mb-8">not guessed.</span>
                             <div className="text-xl md:text-3xl font-sans normal-case font-medium text-black/80 dark:text-white/80 max-w-3xl mx-auto leading-relaxed tracking-normal">
-                                Stripping away the non-essential to reveal your brand's core.
-                                Creating digital products that are as powerful as they are beautiful.
+                                Design without functionality is hollow. Functionality without design is incomplete.
+                                We build digital products that respect both and the people who use them.
                             </div>
                         </h2>
                     </Reveal>
@@ -41,7 +41,7 @@ export function Vision() {
                     <div className="md:col-span-8 md:pl-12 pt-4">
                         <Reveal delay={0.3} width="100%">
                             <p className="text-2xl md:text-4xl font-medium leading-tight text-foreground">
-                                To redefine the benchmark of digital products. Envisioning a web where speed never compromises soul, and every interaction feels inevitable. Eliminating the unnecessary to reveal the essential.
+                                We envision a digital world where every product is beautiful, functional, and ethically responsible. We aim to prove that technology can be a force for good, improving people's lives without shortcuts or compromises. Our ambition is to become a benchmark for excellence, where design and technology merge into premium digital experiences that leave a lasting positive impact.
                             </p>
                         </Reveal>
                     </div>
@@ -63,7 +63,7 @@ export function Vision() {
                     <div className="md:col-span-8 md:pl-12 pt-4">
                         <Reveal delay={0.3} width="100%">
                             <p className="text-2xl md:text-4xl font-medium leading-tight text-foreground">
-                                I don't just write code; I forge assets. Through rigorous engineering and obsessive art direction, I turn complex problems into seamless, reliable solutions. Crafting the tools that power your future.
+                                We create web and mobile solutions of the highest quality, combining innovative design, flawless functionality, and obsessive attention to detail. Every project is born from respect for people and our clients' values. We reject shortcuts and unethical practices, collaborating with those who share our vision to produce digital tools that are truly useful, ethical, and sustainable. Our mission is to transform ideas into premium digital experiences that empower people and generate concrete value.
                             </p>
                         </Reveal>
                     </div>

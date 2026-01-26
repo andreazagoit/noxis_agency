@@ -15,8 +15,8 @@ export function Partnership() {
 
         <Reveal width="100%" delay={0.1}>
           <p className="text-body text-muted-foreground mb-element max-w-3xl mx-auto">
-            I only collaborate with brands that share my vision for quality and ethics.
-            We're not just suppliers; we are partners in building your digital legacy.
+            We work with brands to turn their ideas into effective digital products.
+            By combining design and engineering, we help you connect with your audience and achieve meaningful results. Let's build something great together.
           </p>
         </Reveal>
 

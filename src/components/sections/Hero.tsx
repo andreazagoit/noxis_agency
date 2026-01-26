@@ -113,7 +113,7 @@ export function Hero() {
             <div className="flex flex-col justify-center md:pr-0 order-2 md:order-1">
               <div className="flex flex-col items-start gap-4 md:gap-6 md:max-w-[50%]">
                 <p className="text-body text-left text-muted-foreground font-medium flex flex-wrap gap-x-[0.35em] gap-y-0">
-                  {"Designing immersive, motion-driven websites that command attention and guide users to act. Clean builds. Sharp strategy. Zero limits.".split(' ').map((word, i) => (
+                  {"Designing immersive, motion-driven experiences that command attention and guide users to act. Clean builds. Sharp strategy. Zero limits.".split(' ').map((word, i) => (
                     <span key={i} className="inline-block overflow-hidden py-1 -my-1">
                       <motion.span
                         className="inline-block"

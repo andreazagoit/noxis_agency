@@ -36,7 +36,7 @@ export function Footer() {
             <div className="flex items-center gap-6">
               <span>© 2026 Andrea Zago</span>
               <span className="w-1 h-1 rounded-full bg-border" />
-              <span>P.IVA 05668260283 — C.F. zgandr97c22b563e</span>
+              <span>P.IVA 05668260283 | C.F. zgandr97c22b563e</span>
             </div>
 
             <div className="flex items-center gap-6">

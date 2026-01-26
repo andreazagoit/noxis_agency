@@ -31,7 +31,7 @@ export const Route = createRootRoute({
       },
       {
         name: 'description',
-        content: 'We don\'t just write code; we forge assets. Noxis Agency creates digital products that are as powerful as they are beautiful through rigorous engineering and obsessive art direction.',
+        content: 'We don\'t just write code. We forge assets. Noxis Agency creates digital products that are as powerful as they are beautiful through rigorous engineering and obsessive art direction.',
       },
       {
         name: 'keywords',
@@ -48,7 +48,7 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:description',
-        content: 'We don\'t just write code; we forge assets. Creating digital products that are as powerful as they are beautiful.',
+        content: 'We don\'t just write code. We forge assets. Creating digital products that are as powerful as they are beautiful.',
       },
       {
         property: 'og:image',
@@ -65,7 +65,7 @@ export const Route = createRootRoute({
       },
       {
         name: 'twitter:description',
-        content: 'We don\'t just write code; we forge assets. Creating digital products that are as powerful as they are beautiful.',
+        content: 'We don\'t just write code. We forge assets. Creating digital products that are as powerful as they are beautiful.',
       },
       {
         name: 'twitter:image',

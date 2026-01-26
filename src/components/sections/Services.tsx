@@ -70,10 +70,7 @@ export function Services() {
               Premium <br />
               <span className="text-primary italic">Digital Products.</span>
             </h2>
-            <p className="text-body max-w-xl text-muted-foreground">
-              Uniting high-level design, solid technology, and professional ethics
-              to create products that are just, useful, and reliable.
-            </p>
+
           </div>
         </Reveal>
 
