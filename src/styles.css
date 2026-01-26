@@ -192,6 +192,12 @@
     font-weight: 400;
   }
 
+  .text-lead {
+    @apply text-xl md:text-2xl lg:text-3xl font-medium leading-snug transition-colors duration-300;
+    @apply text-muted-foreground/90;
+    letter-spacing: -0.01em;
+  }
+
   @media (min-width: 768px) {
     .text-body {
       font-size: 1.2vw;
@@ -222,6 +228,16 @@
     .text-nav {
       font-size: 0.75vw;
     }
+  }
+
+  .text-card-title {
+    @apply font-bold tracking-tight leading-tight transition-colors duration-300;
+  }
+
+  .text-card-body {
+    @apply text-sm md:text-base font-medium leading-relaxed transition-colors duration-300;
+    @apply text-muted-foreground/90;
+    letter-spacing: -0.01em;
   }
 
   /* Spacing */

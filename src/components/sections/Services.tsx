@@ -19,14 +19,14 @@ const bentoItems: Array<{
 }> = [
     {
       title: 'Web Development',
-      description: 'High-performance web platforms built with modern architectures. Fast, SEO-optimized, and cutting-edge.',
+      description: 'Forging high-performance web platforms with surgical precision and modern architectures. We bridge the gap between complex engineering and obsessive art direction to create digital assets that are as powerful as they are beautiful.',
       span: 'md:col-span-2 md:row-span-2',
       accent: true,
       geometry: 'icosahedron',
     },
     {
       title: 'UX/UI Design',
-      description: 'Human-centric digital experiences. Refined interfaces and fluid journeys for meaningful engagement.',
+      description: 'Crafting human-centric digital journeys through refined interfaces and sophisticated interaction design. We don\'t just design screens. We engineer environments that command attention and drive conversion.',
       span: 'md:col-span-1 md:row-span-2',
       geometry: 'torusKnot',
     },
@@ -66,9 +66,9 @@ export function Services() {
       <Container className="py-section">
         <Reveal width="100%" className="mb-element">
           <div className="mb-element">
-            <h2 className="text-title mb-element">
+            <h2 className="text-display mb-element">
               Premium <br />
-              <span className="text-primary italic">Digital Products.</span>
+              <span className="text-primary">Digital Products.</span>
             </h2>
 
           </div>
@@ -125,7 +125,7 @@ export function Services() {
                         <div className="pointer-events-auto">
                           <h3
                             className={`
-                              font-semibold mb-3 tracking-tight leading-tight
+                              text-card-title mb-3
                               ${isMobile ? 'text-2xl' : ''}
                               ${isLarge ? 'text-4xl md:text-6xl' : ''}
                               ${isTall ? 'text-2xl md:text-3xl' : ''}
@@ -137,11 +137,7 @@ export function Services() {
                           </h3>
                           <p
                             className={`
-                              leading-relaxed
-                              ${isMobile ? 'text-base line-clamp-4' : ''}
-                              ${isLarge ? 'text-lg md:text-2xl' : ''}
-                              ${isTall ? 'text-base md:text-lg' : ''}
-                              ${isSmall ? 'text-xs md:text-sm line-clamp-4' : ''}
+                              text-card-body line-clamp-4
                               ${item.accent ? 'text-white/80' : 'text-muted-foreground'}
                             `}
                           >

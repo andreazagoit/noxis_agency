@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useScroll, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Container } from '../layout/Container'
 import { GlassCard } from '../ui/glass-card'
 import { GlassBadge } from '../ui/glass-badge'
@@ -57,17 +57,8 @@ const PROCESS_STEPS: Stage[] = [
 export function FeaturedWork() {
     const containerRef = useRef<HTMLDivElement>(null)
 
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start center", "end center"]
-    })
 
 
-    const scaleY = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    })
 
     return (
         <section
@@ -83,7 +74,7 @@ export function FeaturedWork() {
                                 From chaos to clarity
                             </span>
                             <h2 className="text-display text-white selection:bg-white selection:text-primary">
-                                The <span className="italic">Process</span><span className="opacity-30">.</span>
+                                The <span>Process</span><span className="opacity-30">.</span>
                             </h2>
                         </div>
                     </Reveal>
@@ -140,11 +131,11 @@ function TimelineStep({ step, index, isLast }: { step: typeof PROCESS_STEPS[0], 
 
                         {/* Content */}
                         <div className="relative z-10">
-                            <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                            <h3 className="text-card-title text-2xl md:text-3xl text-white mb-3">
                                 {step.title}
                             </h3>
 
-                            <p className="text-white/80 text-sm md:text-base leading-relaxed mb-6">
+                            <p className="text-card-body text-white/80 mb-6">
                                 {step.description}
                             </p>
 

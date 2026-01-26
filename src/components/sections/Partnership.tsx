@@ -14,7 +14,7 @@ export function Partnership() {
         </Reveal>
 
         <Reveal width="100%" delay={0.1}>
-          <p className="text-body text-muted-foreground mb-element max-w-3xl mx-auto">
+          <p className="text-lead mb-element max-w-3xl mx-auto">
             We work with brands to turn their ideas into effective digital products.
             By combining design and engineering, we help you connect with your audience and achieve meaningful results. Let's build something great together.
           </p>

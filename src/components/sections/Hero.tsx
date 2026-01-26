@@ -84,7 +84,7 @@ export function Hero() {
                       animate={isLoading ? { y: "100%" } : { y: 0 }}
                       transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.4 }}
                     >
-                      <span className="text-primary font-medium">Deserves</span> More
+                      <span className="text-primary">Deserves</span> More
                     </motion.div>
                   </div>
                   <div className="overflow-hidden">
@@ -111,8 +111,8 @@ export function Hero() {
 
             {/* Description - Second on mobile, Left on desktop */}
             <div className="flex flex-col justify-center md:pr-0 order-2 md:order-1">
-              <div className="flex flex-col items-start gap-4 md:gap-6 md:max-w-[50%]">
-                <p className="text-body text-left text-muted-foreground font-medium flex flex-wrap gap-x-[0.35em] gap-y-0">
+              <div className="flex flex-col items-start gap-4 md:gap-6 md:max-w-[70%]">
+                <p className="text-lead text-left flex flex-wrap gap-x-[0.35em] gap-y-0">
                   {"Designing immersive, motion-driven experiences that command attention and guide users to act. Clean builds. Sharp strategy. Zero limits.".split(' ').map((word, i) => (
                     <span key={i} className="inline-block overflow-hidden py-1 -my-1">
                       <motion.span
@@ -155,7 +155,7 @@ export function Hero() {
 
         <div className="w-full h-auto flex items-center justify-center pt-32 md:pt-48">
           <Container className="py-section flex items-center justify-center">
-            <h2 className="text-display text-center">
+            <h2 className="text-title text-center">
               We Are <span className="text-primary">Good</span> At
             </h2>
           </Container>
