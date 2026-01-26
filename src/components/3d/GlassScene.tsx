@@ -157,13 +157,13 @@ function Geometries({
   const textProps = {
     font: fontUrl,
     size: 2.5,
-    height: 0.5, // Extrusion depth
-    curveSegments: 12,
-    bevelEnabled: false,
-    bevelThickness: 0.05,
-    bevelSize: 0.02,
+    height: 0.4, // Slightly reduced to accommodate bevel
+    curveSegments: 32, // Smoother base curve
+    bevelEnabled: true,
+    bevelThickness: 0.1,
+    bevelSize: 0.08,
     bevelOffset: 0,
-    bevelSegments: 5,
+    bevelSegments: 10, // High segments for rounding
   }
 
   return (

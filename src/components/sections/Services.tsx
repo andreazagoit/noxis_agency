@@ -18,33 +18,33 @@ const bentoItems: Array<{
   geometry: GeometryType
 }> = [
     {
-      title: 'Digital Strategy & Vision',
-      description: 'Building more than just products. From market analysis to long-term roadmaps, I define the trajectory that positions your brand as a market leader.',
+      title: 'Web Development',
+      description: 'High-performance web platforms built with modern architectures. Fast, SEO-optimized, and cutting-edge.',
       span: 'md:col-span-2 md:row-span-2',
       accent: true,
       geometry: 'icosahedron',
     },
     {
-      title: 'Creative Excellence',
-      description: 'Design that transcends trends. I craft visual identities and user interfaces that are timeless, bold, and meticulously detailed to create lasting emotional connections.',
+      title: 'UX/UI Design',
+      description: 'Human-centric digital experiences. Refined interfaces and fluid journeys for meaningful engagement.',
       span: 'md:col-span-1 md:row-span-2',
       geometry: 'torusKnot',
     },
     {
-      title: 'Web Platforms',
-      description: 'Scalable, high-performance web applications built with Next.js and modern architectures.',
-      span: 'md:col-span-1 md:row-span-1',
-      geometry: 'octahedron',
-    },
-    {
-      title: 'Mobile Apps',
-      description: 'Native and cross-platform mobile experiences that feel fluid, responsive, and natural.',
+      title: 'Mobile Development',
+      description: 'Native and cross-platform mobile apps built for performance and natural feel.',
       span: 'md:col-span-1 md:row-span-1',
       geometry: 'torus',
     },
     {
-      title: 'Growth & Analytics',
-      description: 'Data-driven insights and optimization strategies to ensure your product scales and succeeds.',
+      title: 'Artificial Intelligence',
+      description: 'Integrating smart AI solutions to automate workflows and enhance user interaction.',
+      span: 'md:col-span-1 md:row-span-1',
+      geometry: 'octahedron',
+    },
+    {
+      title: 'Marketing & Strategy',
+      description: 'Data-backed growth and performance marketing to scale your product effectively.',
       span: 'md:col-span-1 md:row-span-1',
       geometry: 'dodecahedron',
     },
