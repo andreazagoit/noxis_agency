@@ -26,7 +26,7 @@ export function BrandSlider() {
                 pauseOnHover={true}
                 className="flex items-center"
             >
-                <div className="flex items-center gap-40 pr-40">
+                <div className="flex items-center gap-2 md:gap-40 pr-2 md:pr-40">
                     {[...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS].map((brand, i) => (
                         <div key={i} className="flex-shrink-0 flex items-center justify-center">
                             <img
