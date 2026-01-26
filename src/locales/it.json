@@ -1,0 +1,153 @@
+{
+    "header": {
+        "vision": "Visione",
+        "services": "Servizi",
+        "method": "Metodo"
+    },
+    "hero": {
+        "title_line1": "Il tuo Brand",
+        "title_line2_prefix": "Merita",
+        "title_line2_suffix": "di più",
+        "title_line3": "di un bel",
+        "title_line4": "sito web.",
+        "description": "Progettiamo esperienze immersive guidate dal movimento che catturano l'attenzione e guidano gli utenti all'azione. Sviluppo impeccabile. Strategia. Zero limiti.",
+        "cta": "Inizia un Progetto",
+        "we_are_good_at": "Cosa facciamo",
+        "skills": {
+            "web": "Web",
+            "mobile": "Mobile",
+            "design": "Design",
+            "strategy": "Strategia"
+        }
+    },
+    "vision": {
+        "quote_line1": "L'impatto è progettato,",
+        "quote_line2": "non indovinato.",
+        "quote_description": "Il design senza funzionalità è vuoto. La funzionalità senza design è incompleta. Costruiamo prodotti digitali che rispettano entrambi e le persone che li usano.",
+        "our_vision": "La Nostra Visione",
+        "vision_title": "Definiamo\nStandard.",
+        "vision_description": "Immaginiamo un mondo digitale in cui ogni prodotto è bello, funzionale ed eticamente responsabile. Puntiamo a dimostrare che la tecnologia può essere una forza positiva, migliorando la vita delle persone senza scorciatoie o compromessi. La nostra ambizione è diventare un punto di riferimento per l'eccellenza, dove design e tecnologia si fondono in esperienze digitali premium che lasciano un impatto positivo duraturo.",
+        "our_mission": "La Nostra Missione",
+        "mission_title": "Progettiamo\nValore.",
+        "mission_description": "Creiamo soluzioni web e mobile della massima qualità, combinando design innovativo, funzionalità impeccabile e un'attenzione ossessiva ai dettagli. Ogni progetto nasce dal rispetto per le persone e per i valori dei nostri clienti. Rifiutiamo scorciatoie e pratiche non etiche, collaborando con chi condivide la nostra visione per produrre strumenti digitali che siano veramente utili, etici e sostenibili. La nostra missione è trasformare le idee in esperienze digitali premium che diano potere alle persone e generino valore concreto."
+    },
+    "footer": {
+        "slogan_line1": "Oltre l'",
+        "slogan_line2": "Eccellenza Digitale.",
+        "get_in_touch": "Contattaci",
+        "office": "Ufficio"
+    },
+    "services": {
+        "title_line1": "Prodotti",
+        "title_line2": "Digitali Premium.",
+        "web_dev": {
+            "title": "Sviluppo Web",
+            "description": "Forgiamo piattaforme web ad alte prestazioni con precisione chirurgica e architetture moderne. Colmiamo il divario tra ingegneria complessa e direzione artistica ossessiva per creare asset digitali potenti e belli."
+        },
+        "ux_ui": {
+            "title": "Design UX/UI",
+            "description": "Progettiamo percorsi digitali incentrati sull'uomo attraverso interfacce raffinate e design d'interazione sofisticato. Non progettiamo solo schermi. Ingegnerizziamo ambienti che catturano l'attenzione e guidano la conversione."
+        },
+        "mobile_dev": {
+            "title": "Sviluppo Mobile",
+            "description": "App mobili native e cross-platform costruite per prestazioni eccellenti e un feeling naturale."
+        },
+        "ai": {
+            "title": "Intelligenza Artificiale",
+            "description": "Integriamo soluzioni AI intelligenti per automatizzare i flussi di lavoro e migliorare l'interazione con l'utente."
+        },
+        "marketing": {
+            "title": "Marketing & Strategia",
+            "description": "Crescita basata sui dati e marketing delle prestazioni per scalare il tuo prodotto in modo efficace."
+        }
+    },
+    "partnership": {
+        "title_line1": "Pronto per un",
+        "title_line2": "Partner",
+        "description": "Collaboriamo con i brand per trasformare le loro idee in prodotti digitali efficaci. Combinando design e ingegneria, ti aiutiamo a connetterti con il tuo pubblico e a ottenere risultati significativi. Costruiamo qualcosa di grande insieme.",
+        "cta": "Inizia un Progetto"
+    },
+    "quotes": {
+        "items": [
+            "PROGETTI UNICI",
+            "DESIGN CON SCOPO",
+            "CODICE CON PASSIONE",
+            "CREIAMO CON VISIONE",
+            "INNOVIAMO SEMPRE"
+        ]
+    },
+    "methodology": {
+        "subtitle": "Dal caos alla chiarezza",
+        "title_prefix": "Il ",
+        "title_main": "Processo",
+        "steps": {
+            "discovery": {
+                "title": "Scoperta",
+                "description": "Un'immersione profonda nel cuore del tuo brand. Ricercamo le tendenze del mercato, definiamo obiettivi specifici e allineiamo ogni tassello digitale con la tua ambizione finale.",
+                "items": [
+                    "Brief Creativo",
+                    "Ricerca Brand",
+                    "Mood Board"
+                ]
+            },
+            "concept": {
+                "title": "Concetto",
+                "description": "Tradurre la scoperta in una visione tangibile. Definiamo la direzione visiva e artistica che distinguerà il tuo prodotto dalla concorrenza.",
+                "items": [
+                    "Direzione Visiva",
+                    "Direzione Artistica",
+                    "Storyboarding"
+                ]
+            },
+            "design": {
+                "title": "Design",
+                "description": "Creare un'esperienza utente premium con precisione chirurgica. Ogni interazione e pixel è progettato per trasmettere lusso ed eccellenza tecnica.",
+                "items": [
+                    "Craft UI/UX",
+                    "Motion Design",
+                    "Design d'Interazione"
+                ]
+            },
+            "develop": {
+                "title": "Sviluppo",
+                "description": "Forgiare capolavori digitali con tecnologia all'avanguardia. Costruiamo prodotti robusti, scalabili e immersivi che spingono i confini del web.",
+                "items": [
+                    "Creative Coding",
+                    "WebGL & 3D",
+                    "Animazioni"
+                ]
+            },
+            "polish": {
+                "title": "Rifinitura",
+                "description": "La ricerca ossessiva della perfezione. Affiniamo le micro-interazioni e ottimizziamo le prestazioni per garantire un'esperienza impeccabile su ogni dispositivo.",
+                "items": [
+                    "Micro-interazioni",
+                    "Prestazioni",
+                    "Pixel Perfect"
+                ]
+            },
+            "launch": {
+                "title": "Lancio",
+                "description": "Garantire un'entrata monumentale nel mercato. Gestiamo il processo di lancio e collaboriamo per l'evoluzione a lungo termine e l'eredità digitale.",
+                "items": [
+                    "Lancio",
+                    "Case Study",
+                    "Invio ad Awards"
+                ]
+            }
+        }
+    },
+    "language": {
+        "title": "Seleziona Lingua",
+        "it": "Italiano",
+        "en": "English"
+    },
+    "common": {
+        "copied": "Copiato!"
+    },
+    "seo": {
+        "title": "Noxis Agency | Prodotti Digitali Premium",
+        "description": "Non scriviamo solo codice. Forgiamo asset. Noxis Agency crea prodotti digitali tanto potenti quanto belli attraverso un'ingegneria rigorosa e una direzione artistica ossessiva.",
+        "keywords": "Agenzia Digitale, Web Design, Siti Web Premium, 3D Web, Awwwards, Agenzia Creativa, Next.js, React, Three.js, Glassmorphism"
+    }
+}

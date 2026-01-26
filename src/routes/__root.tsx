@@ -13,7 +13,8 @@ import { Footer } from '../components/sections/Footer'
 import { ThemeProvider } from '../components/theme-provider'
 import { CustomScrollbar } from '../components/ui/CustomScrollbar'
 import { LoadingScreen } from '../components/ui/LoadingScreen'
-
+import i18n from '../i18n'
+import { useTranslation } from 'react-i18next'
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -27,15 +28,15 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1, maximum-scale=5',
       },
       {
-        title: 'Noxis Agency | Premium Digital Products',
+        title: i18n.t('seo.title'),
       },
       {
         name: 'description',
-        content: 'We don\'t just write code. We forge assets. Noxis Agency creates digital products that are as powerful as they are beautiful through rigorous engineering and obsessive art direction.',
+        content: i18n.t('seo.description'),
       },
       {
         name: 'keywords',
-        content: 'Digital Agency, Web Design, Premium Websites, 3D Web, Awwwards, Creative Agency, Next.js, React, Three.js, Glassmorphism',
+        content: i18n.t('seo.keywords'),
       },
       // Open Graph / Facebook
       {
@@ -44,15 +45,15 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:title',
-        content: 'Noxis Agency | Premium Digital Products',
+        content: i18n.t('seo.title'),
       },
       {
         property: 'og:description',
-        content: 'We don\'t just write code. We forge assets. Creating digital products that are as powerful as they are beautiful.',
+        content: i18n.t('seo.description'),
       },
       {
         property: 'og:image',
-        content: '/og-image.jpg', // Ensure this image exists in public folder
+        content: '/og-image.jpg',
       },
       // Twitter
       {
@@ -61,11 +62,11 @@ export const Route = createRootRoute({
       },
       {
         name: 'twitter:title',
-        content: 'Noxis Agency',
+        content: i18n.t('seo.title'),
       },
       {
         name: 'twitter:description',
-        content: 'We don\'t just write code. We forge assets. Creating digital products that are as powerful as they are beautiful.',
+        content: i18n.t('seo.description'),
       },
       {
         name: 'twitter:image',
@@ -74,7 +75,7 @@ export const Route = createRootRoute({
       // Theme Color
       {
         name: 'theme-color',
-        content: '#000000', // Matches dark mode background
+        content: '#000000',
       },
     ],
     links: [
@@ -116,8 +117,9 @@ import { LoadingProvider } from '../context/LoadingContext'
 // ... existing imports
 
 function RootDocument() {
+  const { i18n } = useTranslation()
   return (
-    <html lang="en">
+    <html lang={i18n.language}>
       <head>
         <HeadContent />
       </head>

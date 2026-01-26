@@ -1,8 +1,8 @@
-'use client'
-
 import { Container } from '../layout/Container'
+import { useTranslation } from 'react-i18next'
 
 export function Footer() {
+  const { t } = useTranslation()
   return (
     <footer className="relative w-full bg-background text-foreground overflow-hidden pt-32 pb-12 transition-colors duration-300">
       <Container className="relative z-10">
@@ -10,13 +10,13 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
           <div className="max-w-xl">
             <h2 className="text-[2.5rem] md:text-[4rem] font-bold leading-none tracking-tight mb-8">
-              Beyond <br />
-              <span className="text-primary opacity-80">Digital Excellence.</span>
+              {t('footer.slogan_line1')} <br />
+              <span className="text-primary opacity-80">{t('footer.slogan_line2')}</span>
             </h2>
           </div>
 
           <div className="flex flex-col gap-6">
-            <span className="text-[0.6rem] uppercase tracking-[0.3em] font-bold text-muted-foreground/60">Get in touch</span>
+            <span className="text-[0.6rem] uppercase tracking-[0.3em] font-bold text-muted-foreground/60">{t('footer.get_in_touch')}</span>
             <a href="mailto:hello@noxis.agency" className="text-[1.5rem] md:text-[2rem] font-medium hover:underline underline-offset-8 decoration-foreground transition-all tracking-tight text-foreground">
               hello@noxis.agency
             </a>

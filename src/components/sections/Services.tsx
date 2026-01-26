@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Reveal } from '../ui/Reveal'
 import { BentoWireframe } from '../3d/BentoWireframe'
 import { Container } from '../layout/Container'
+import { useTranslation } from 'react-i18next'
 
 type GeometryType =
   | 'icosahedron'
@@ -10,49 +11,50 @@ type GeometryType =
   | 'torusKnot'
   | 'dodecahedron'
 
-const bentoItems: Array<{
-  title: string
-  description: string
-  span: string
-  accent?: boolean
-  geometry: GeometryType
-}> = [
-    {
-      title: 'Web Development',
-      description: 'Forging high-performance web platforms with surgical precision and modern architectures. We bridge the gap between complex engineering and obsessive art direction to create digital assets that are as powerful as they are beautiful.',
-      span: 'md:col-span-2 md:row-span-2',
-      accent: true,
-      geometry: 'icosahedron',
-    },
-    {
-      title: 'UX/UI Design',
-      description: 'Crafting human-centric digital journeys through refined interfaces and sophisticated interaction design. We don\'t just design screens. We engineer environments that command attention and drive conversion.',
-      span: 'md:col-span-1 md:row-span-2',
-      geometry: 'torusKnot',
-    },
-    {
-      title: 'Mobile Development',
-      description: 'Native and cross-platform mobile apps built for performance and natural feel.',
-      span: 'md:col-span-1 md:row-span-1',
-      geometry: 'torus',
-    },
-    {
-      title: 'Artificial Intelligence',
-      description: 'Integrating smart AI solutions to automate workflows and enhance user interaction.',
-      span: 'md:col-span-1 md:row-span-1',
-      geometry: 'octahedron',
-    },
-    {
-      title: 'Marketing & Strategy',
-      description: 'Data-backed growth and performance marketing to scale your product effectively.',
-      span: 'md:col-span-1 md:row-span-1',
-      geometry: 'dodecahedron',
-    },
-  ]
-
 export function Services() {
+  const { t } = useTranslation()
   // Simple check for mobile (can be refined or replaced with a proper hook library)
   const [isMobile, setIsMobile] = useState(false)
+
+  const bentoItems: Array<{
+    title: string
+    description: string
+    span: string
+    accent?: boolean
+    geometry: GeometryType
+  }> = [
+      {
+        title: t('services.web_dev.title'),
+        description: t('services.web_dev.description'),
+        span: 'md:col-span-2 md:row-span-2',
+        accent: true,
+        geometry: 'icosahedron',
+      },
+      {
+        title: t('services.ux_ui.title'),
+        description: t('services.ux_ui.description'),
+        span: 'md:col-span-1 md:row-span-2',
+        geometry: 'torusKnot',
+      },
+      {
+        title: t('services.mobile_dev.title'),
+        description: t('services.mobile_dev.description'),
+        span: 'md:col-span-1 md:row-span-1',
+        geometry: 'torus',
+      },
+      {
+        title: t('services.ai.title'),
+        description: t('services.ai.description'),
+        span: 'md:col-span-1 md:row-span-1',
+        geometry: 'octahedron',
+      },
+      {
+        title: t('services.marketing.title'),
+        description: t('services.marketing.description'),
+        span: 'md:col-span-1 md:row-span-1',
+        geometry: 'dodecahedron',
+      },
+    ]
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -67,8 +69,8 @@ export function Services() {
         <Reveal width="100%" className="mb-element">
           <div className="mb-element">
             <h2 className="text-display mb-element">
-              Premium <br />
-              <span className="text-primary">Digital Products.</span>
+              {t('services.title_line1')} <br />
+              <span className="text-primary">{t('services.title_line2')}</span>
             </h2>
 
           </div>

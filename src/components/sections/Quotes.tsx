@@ -19,7 +19,66 @@ const PlusMarker = ({ className }: { className?: string }) => (
     </div>
 )
 
-// Animated text with letter-by-letter reveal (opacity + Y translation)
+// Individual character component to handle its own transforms
+function Char({
+    char,
+    index,
+    total,
+    progress,
+    isFirst,
+    isLast
+}: {
+    char: string
+    index: number
+    total: number
+    progress: MotionValue<number>
+    isFirst: boolean
+    isLast: boolean
+}) {
+    const charPos = index / total
+    const overlap = 0.7
+
+    const appearStart = charPos * 0.5
+    const appearEnd = Math.min((charPos + overlap) * 0.5, 0.5)
+    const disappearStart = 0.5 + charPos * 0.5
+    const disappearEnd = Math.min(0.5 + (charPos + overlap) * 0.5, 1.0)
+
+    const charOpacity = useTransform(
+        progress,
+        isFirst ? [disappearStart, disappearEnd] :
+            isLast ? [appearStart, appearEnd] :
+                [appearStart, appearEnd, disappearStart, disappearEnd],
+        isFirst ? [1, 0] :
+            isLast ? [0, 1] :
+                [0, 1, 1, 0],
+        { ease: easeOut }
+    )
+
+    const charY = useTransform(
+        progress,
+        isFirst ? [disappearStart, disappearEnd] :
+            isLast ? [appearStart, appearEnd] :
+                [appearStart, appearEnd, disappearStart, disappearEnd],
+        isFirst ? [0, -20] :
+            isLast ? [20, 0] :
+                [20, 0, 0, -20],
+        { ease: easeOut }
+    )
+
+    return (
+        <motion.span
+            style={{
+                opacity: charOpacity,
+                y: charY,
+                display: 'inline-block',
+                willChange: 'transform, opacity'
+            }}
+        >
+            {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+    )
+}
+
 function AnimatedText({
     text,
     progress,
@@ -34,73 +93,67 @@ function AnimatedText({
     const chars = text.split('')
     const charCount = chars.length
 
-    // Split text into words, keeping track of character positions
-    const words = text.split(' ')
-    let charIndex = 0
-
     return (
         <span className="inline">
-            {words.map((word, wordIndex) => {
-                const wordChars = word.split('')
-                const wordStartIndex = charIndex
-                charIndex += word.length + 1 // +1 for space
-
-                return (
-                    <span key={wordIndex} className="inline-block whitespace-nowrap">
-                        {wordChars.map((char, i) => {
-                            const globalCharIndex = wordStartIndex + i
-                            const charPos = globalCharIndex / charCount
-                            const overlap = 0.7
-
-                            const appearStart = charPos * 0.5
-                            const appearEnd = Math.min((charPos + overlap) * 0.5, 0.5)
-                            const disappearStart = 0.5 + charPos * 0.5
-                            const disappearEnd = Math.min(0.5 + (charPos + overlap) * 0.5, 1.0)
-
-                            let charOpacity: MotionValue<number>
-                            let charY: MotionValue<number>
-
-                            if (isFirst) {
-                                charOpacity = useTransform(progress, [disappearStart, disappearEnd], [1, 0], { ease: easeOut })
-                                charY = useTransform(progress, [disappearStart, disappearEnd], [0, -20], { ease: easeOut })
-                            } else if (isLast) {
-                                charOpacity = useTransform(progress, [appearStart, appearEnd], [0, 1], { ease: easeOut })
-                                charY = useTransform(progress, [appearStart, appearEnd], [20, 0], { ease: easeOut })
-                            } else {
-                                charOpacity = useTransform(
-                                    progress,
-                                    [appearStart, appearEnd, disappearStart, disappearEnd],
-                                    [0, 1, 1, 0]
-                                )
-                                charY = useTransform(
-                                    progress,
-                                    [appearStart, appearEnd, disappearStart, disappearEnd],
-                                    [20, 0, 0, -20]
-                                )
-                            }
-
-                            return (
-                                <motion.span
-                                    key={i}
-                                    style={{
-                                        opacity: charOpacity,
-                                        y: charY,
-                                        display: 'inline-block',
-                                        willChange: 'transform, opacity'
-                                    }}
-                                >
-                                    {char}
-                                </motion.span>
-                            )
-                        })}
-                        {wordIndex < words.length - 1 && <span>&nbsp;</span>}
-                    </span>
-                )
-            })}
+            {chars.map((char, i) => (
+                <Char
+                    key={`${text}-${i}`}
+                    char={char}
+                    index={i}
+                    total={charCount}
+                    progress={progress}
+                    isFirst={isFirst}
+                    isLast={isLast}
+                />
+            ))}
         </span>
     )
 }
 
+function QuoteItem({
+    text,
+    index,
+    total,
+    scrollYProgress,
+    isFirst,
+    isLast
+}: {
+    text: string
+    index: number
+    total: number
+    scrollYProgress: MotionValue<number>
+    isFirst: boolean
+    isLast: boolean
+}) {
+    const segmentStart = index / total
+    const segmentEnd = (index + 1) / total
+    const itemProgress = useTransform(scrollYProgress, [segmentStart, segmentEnd], [0, 1])
+
+    const overlap = 0.02
+    const containerOpacity = useTransform(
+        scrollYProgress,
+        isFirst ? [segmentStart, segmentEnd - overlap, segmentEnd] :
+            isLast ? [segmentStart - overlap, segmentStart, segmentEnd] :
+                [segmentStart - overlap, segmentStart, segmentEnd - overlap, segmentEnd],
+        isFirst ? [1, 1, 0] :
+            isLast ? [0, 1, 1] :
+                [0, 1, 1, 0]
+    )
+
+    return (
+        <motion.h2
+            style={{ opacity: containerOpacity }}
+            className="col-start-1 row-start-1 text-display text-center break-words w-full"
+        >
+            <AnimatedText
+                text={text}
+                progress={itemProgress}
+                isFirst={isFirst}
+                isLast={isLast}
+            />
+        </motion.h2>
+    )
+}
 
 export function Quotes({
     items = ["Text 1", "Text 2", "Text 3", "Text 4"],
@@ -117,34 +170,6 @@ export function Quotes({
 
     const itemCount = items.length
 
-    // Create progress transforms for each item's segment
-    // No gaps - seamless transitions
-    const itemProgresses = items.map((_, i) => {
-        const segmentStart = i / itemCount
-        const segmentEnd = (i + 1) / itemCount
-        return useTransform(scrollYProgress, [segmentStart, segmentEnd], [0, 1])
-    })
-
-    // Container opacity - overlapping at boundaries for seamless transitions
-    const containerOpacities = items.map((_, i) => {
-        const segmentStart = i / itemCount
-        const segmentEnd = (i + 1) / itemCount
-        const overlap = 0.02 // Small overlap at boundaries
-        const isFirst = i === 0
-        const isLast = i === itemCount - 1
-
-        if (isFirst) {
-            // First: visible from start, fade out at end
-            return useTransform(scrollYProgress, [segmentStart, segmentEnd - overlap, segmentEnd], [1, 1, 0])
-        }
-        if (isLast) {
-            // Last: fade in at start, stay visible
-            return useTransform(scrollYProgress, [segmentStart - overlap, segmentStart, segmentEnd], [0, 1, 1])
-        }
-        // Middle: fade in at start (overlapping with previous), fade out at end (overlapping with next)
-        return useTransform(scrollYProgress, [segmentStart - overlap, segmentStart, segmentEnd - overlap, segmentEnd], [0, 1, 1, 0])
-    })
-
     return (
         <section
             ref={sectionRef}
@@ -159,9 +184,7 @@ export function Quotes({
             }}
         >
             {/* Sticky Container */}
-            <div
-                className="sticky top-0 h-screen w-full flex flex-col items-center justify-center"
-            >
+            <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center">
                 <Container className="relative z-20 grid place-items-center h-full w-full px-[10vw] md:px-[5vw]">
                     {/* Corner Markers */}
                     <PlusMarker className="top-[10vw] left-[10vw] md:top-[5vw] md:left-[5vw] -translate-x-1/2 -translate-y-1/2" />
@@ -171,18 +194,15 @@ export function Quotes({
 
                     {/* Animated Texts */}
                     {items.map((text, i) => (
-                        <motion.h2
+                        <QuoteItem
                             key={i}
-                            style={{ opacity: containerOpacities[i] }}
-                            className="col-start-1 row-start-1 text-display text-center break-words w-full"
-                        >
-                            <AnimatedText
-                                text={text}
-                                progress={itemProgresses[i]}
-                                isFirst={i === 0}
-                                isLast={i === items.length - 1}
-                            />
-                        </motion.h2>
+                            text={text}
+                            index={i}
+                            total={itemCount}
+                            scrollYProgress={scrollYProgress}
+                            isFirst={i === 0}
+                            isLast={i === items.length - 1}
+                        />
                     ))}
                 </Container>
             </div>

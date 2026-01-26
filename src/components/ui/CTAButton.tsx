@@ -13,12 +13,15 @@ interface CTAButtonProps {
     children: React.ReactNode
 }
 
+import { useTranslation } from 'react-i18next'
+
 export function CTAButton({
     email = 'hello@noxis.agency',
     variant = 'primary',
     className,
     children,
 }: CTAButtonProps) {
+    const { t } = useTranslation()
     const [isHovered, setIsHovered] = useState(false)
     const [displayState, setDisplayState] =
         useState<'default' | 'email' | 'copied'>('default')
@@ -68,7 +71,7 @@ export function CTAButton({
             ? buttonText
             : displayState === 'email'
                 ? email
-                : 'Copied!'
+                : t('common.copied')
 
     const Icon =
         displayState === 'email'

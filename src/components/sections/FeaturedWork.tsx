@@ -1,5 +1,3 @@
-'use client'
-
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Container } from '../layout/Container'
@@ -7,6 +5,7 @@ import { GlassCard } from '../ui/glass-card'
 import { GlassBadge } from '../ui/glass-badge'
 import { cn } from '../../lib/utils'
 import { Reveal } from '../ui/Reveal'
+import { useTranslation } from 'react-i18next'
 
 interface Stage {
     id: string;
@@ -15,50 +14,48 @@ interface Stage {
     items: string[];
 }
 
-const PROCESS_STEPS: Stage[] = [
-    {
-        id: "01",
-        title: "Discovery",
-        description: "An immersive deep-dive into your brand's core. We research market trends, define specific goals, and align every digital stone with your ultimate ambition.",
-        items: ["Creative Brief", "Brand Research", "Mood Boards"]
-    },
-    {
-        id: "02",
-        title: "Concept",
-        description: "Translating discovery into a tangible vision. We define the visual and artistic direction that will set your product apart from the competition.",
-        items: ["Visual Direction", "Art Direction", "Storyboarding"]
-    },
-    {
-        id: "03",
-        title: "Design",
-        description: "Crafting a premium user experience with surgical precision. Every interaction and pixel is designed to convey luxury and technical excellence.",
-        items: ["UI/UX Craft", "Motion Design", "Interaction Design"]
-    },
-    {
-        id: "04",
-        title: "Develop",
-        description: "Forging digital masterpieces with cutting-edge tech. We build robust, scalable, and immersive products that push the boundaries of the web.",
-        items: ["Creative Coding", "WebGL & 3D", "Animations"]
-    },
-    {
-        id: "05",
-        title: "Polish",
-        description: "The obsessive pursuit of perfection. We refine micro-interactions and optimize performance to ensure a flawless experience on every device.",
-        items: ["Micro-interactions", "Performance", "Pixel Perfect"]
-    },
-    {
-        id: "06",
-        title: "Launch",
-        description: "Ensuring a monumental entry into the market. We manage the launch process and partner for long-term evolution and digital legacy.",
-        items: ["Go Live", "Case Study", "Awards Submit"]
-    }
-]
-
 export function FeaturedWork() {
+    const { t } = useTranslation()
     const containerRef = useRef<HTMLDivElement>(null)
 
-
-
+    const PROCESS_STEPS: Stage[] = [
+        {
+            id: "01",
+            title: t('methodology.steps.discovery.title'),
+            description: t('methodology.steps.discovery.description'),
+            items: t('methodology.steps.discovery.items', { returnObjects: true }) as string[]
+        },
+        {
+            id: "02",
+            title: t('methodology.steps.concept.title'),
+            description: t('methodology.steps.concept.description'),
+            items: t('methodology.steps.concept.items', { returnObjects: true }) as string[]
+        },
+        {
+            id: "03",
+            title: t('methodology.steps.design.title'),
+            description: t('methodology.steps.design.description'),
+            items: t('methodology.steps.design.items', { returnObjects: true }) as string[]
+        },
+        {
+            id: "04",
+            title: t('methodology.steps.develop.title'),
+            description: t('methodology.steps.develop.description'),
+            items: t('methodology.steps.develop.items', { returnObjects: true }) as string[]
+        },
+        {
+            id: "05",
+            title: t('methodology.steps.polish.title'),
+            description: t('methodology.steps.polish.description'),
+            items: t('methodology.steps.polish.items', { returnObjects: true }) as string[]
+        },
+        {
+            id: "06",
+            title: t('methodology.steps.launch.title'),
+            description: t('methodology.steps.launch.description'),
+            items: t('methodology.steps.launch.items', { returnObjects: true }) as string[]
+        }
+    ]
 
     return (
         <section
@@ -71,10 +68,10 @@ export function FeaturedWork() {
                     <Reveal width="100%">
                         <div className="flex flex-col items-center">
                             <span className="text-caption mb-4 text-white selection:bg-white selection:text-primary">
-                                From chaos to clarity
+                                {t('methodology.subtitle')}
                             </span>
                             <h2 className="text-display text-white selection:bg-white selection:text-primary">
-                                The <span>Process</span><span className="opacity-30">.</span>
+                                {t('methodology.title_prefix')}<span>{t('methodology.title_main')}</span><span className="opacity-30">.</span>
                             </h2>
                         </div>
                     </Reveal>
@@ -93,7 +90,7 @@ export function FeaturedWork() {
     )
 }
 
-function TimelineStep({ step, index, isLast }: { step: typeof PROCESS_STEPS[0], index: number, isLast: boolean }) {
+function TimelineStep({ step, index, isLast }: { step: Stage, index: number, isLast: boolean }) {
     const isEven = index % 2 === 1
 
     return (

@@ -2,10 +2,13 @@ import { Link, useLocation } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
 import { useLenis } from 'lenis/react'
 import { ThemeToggle } from '../ui/ThemeToggle'
+import { LanguageModal } from './LanguageModal'
+import { useTranslation } from 'react-i18next'
 
 export function Header() {
   const lenis = useLenis()
   const { pathname } = useLocation()
+  const { t } = useTranslation()
 
   const handleScroll = (id: string) => (e: React.MouseEvent) => {
     // Only intercept if we are on the home page
@@ -44,33 +47,34 @@ export function Header() {
         </Link>
 
         {/* Static Navigation */}
-        <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-black dark:text-white">
+        <div className="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-black dark:text-white">
           <a
             href="/#manifesto"
             onClick={handleScroll('#manifesto')}
             className="hover:text-zinc-500/80 dark:hover:text-zinc-400 transition-colors"
           >
-            Vision
+            {t('header.vision')}
           </a>
           <a
             href="/#services"
             onClick={handleScroll('#services')}
             className="hover:text-zinc-500/80 dark:hover:text-zinc-400 transition-colors"
           >
-            Services
+            {t('header.services')}
           </a>
           <a
             href="/#methodology"
             onClick={handleScroll('#methodology')}
             className="hover:text-zinc-500/80 dark:hover:text-zinc-400 transition-colors"
           >
-            Method
+            {t('header.method')}
           </a>
         </div>
 
         <div className="w-px h-4 bg-black/10 dark:bg-white/10" />
 
-        <div className="ml-[-8px]">
+        <div className="flex items-center gap-1 ml-[-8px]">
+          <LanguageModal />
           <ThemeToggle />
         </div>
       </motion.nav>

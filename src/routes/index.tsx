@@ -9,11 +9,14 @@ import { Quotes } from '../components/sections/Quotes'
 
 import { Vision } from '../components/sections/Vision'
 
+import { useTranslation } from 'react-i18next'
+
 export const Route = createFileRoute('/')({
   component: Home,
 })
 
 function Home() {
+  const { t } = useTranslation()
   return (
     <div className="relative">
       <Hero />
@@ -29,7 +32,7 @@ function Home() {
       {/* Bottom Section - Quotes */}
       <MountainSeparator topColor="bg-primary" bottomColor="bg-background" />
       <Quotes
-        items={["BUILD DIFFERENT", "DESIGN WITH PURPOSE", "CODE WITH PASSION", "CREATE WITH VISION", "INNOVATE ALWAYS"]}
+        items={t('quotes.items', { returnObjects: true }) as string[]}
         backgroundColor="bg-background"
         textColor="text-foreground"
         className="mt-0"

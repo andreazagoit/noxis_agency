@@ -1,0 +1,153 @@
+{
+    "header": {
+        "vision": "Vision",
+        "services": "Services",
+        "method": "Method"
+    },
+    "hero": {
+        "title_line1": "Your Brand",
+        "title_line2_prefix": "Deserves",
+        "title_line2_suffix": "More",
+        "title_line3": "Than a Pretty",
+        "title_line4": "Website.",
+        "description": "Designing immersive, motion-driven experiences that command attention and guide users to act. Clean builds. Sharp strategy. Zero limits.",
+        "cta": "Start a Project",
+        "we_are_good_at": "We Are Good At",
+        "skills": {
+            "web": "Web",
+            "mobile": "Mobile",
+            "design": "Design",
+            "strategy": "Strategy"
+        }
+    },
+    "vision": {
+        "quote_line1": "Impact is engineered,",
+        "quote_line2": "not guessed.",
+        "quote_description": "Design without functionality is hollow. Functionality without design is incomplete. We build digital products that respect both and the people who use them.",
+        "our_vision": "Our Vision",
+        "vision_title": "Setting\nThe\nStandard.",
+        "vision_description": "We envision a digital world where every product is beautiful, functional, and ethically responsible. We aim to prove that technology can be a force for good, improving people's lives without shortcuts or compromises. Our ambition is to become a benchmark for excellence, where design and technology merge into premium digital experiences that leave a lasting positive impact.",
+        "our_mission": "Our Mission",
+        "mission_title": "Engineering\nValue.",
+        "mission_description": "We create web and mobile solutions of the highest quality, combining innovative design, flawless functionality, and obsessive attention to detail. Every project is born from respect for people and our clients' values. We reject shortcuts and unethical practices, collaborating with those who share our vision to produce digital tools that are truly useful, ethical, and sustainable. Our mission is to transform ideas into premium digital experiences that empower people and generate concrete value."
+    },
+    "footer": {
+        "slogan_line1": "Beyond ",
+        "slogan_line2": "Digital Excellence.",
+        "get_in_touch": "Get in touch",
+        "office": "Office"
+    },
+    "services": {
+        "title_line1": "Premium",
+        "title_line2": "Digital Products.",
+        "web_dev": {
+            "title": "Web Development",
+            "description": "Forging high-performance web platforms with surgical precision and modern architectures. We bridge the gap between complex engineering and obsessive art direction to create digital assets that are as powerful as they are beautiful."
+        },
+        "ux_ui": {
+            "title": "UX/UI Design",
+            "description": "Crafting human-centric digital journeys through refined interfaces and sophisticated interaction design. We don't just design screens. We engineer environments that command attention and drive conversion."
+        },
+        "mobile_dev": {
+            "title": "Mobile Development",
+            "description": "Native and cross-platform mobile apps built for performance and natural feel."
+        },
+        "ai": {
+            "title": "Artificial Intelligence",
+            "description": "Integrating smart AI solutions to automate workflows and enhance user interaction."
+        },
+        "marketing": {
+            "title": "Marketing & Strategy",
+            "description": "Data-backed growth and performance marketing to scale your product effectively."
+        }
+    },
+    "partnership": {
+        "title_line1": "Ready for a",
+        "title_line2": "Partner",
+        "description": "We work with brands to turn their ideas into effective digital products. By combining design and engineering, we help you connect with your audience and achieve meaningful results. Let's build something great together.",
+        "cta": "Start a Project"
+    },
+    "quotes": {
+        "items": [
+            "BUILD DIFFERENT",
+            "DESIGN WITH PURPOSE",
+            "CODE WITH PASSION",
+            "CREATE WITH VISION",
+            "INNOVATE ALWAYS"
+        ]
+    },
+    "methodology": {
+        "subtitle": "From chaos to clarity",
+        "title_prefix": "The ",
+        "title_main": "Process",
+        "steps": {
+            "discovery": {
+                "title": "Discovery",
+                "description": "An immersive deep-dive into your brand's core. We research market trends, define specific goals, and align every digital stone with your ultimate ambition.",
+                "items": [
+                    "Creative Brief",
+                    "Brand Research",
+                    "Mood Boards"
+                ]
+            },
+            "concept": {
+                "title": "Concept",
+                "description": "Translating discovery into a tangible vision. We define the visual and artistic direction that will set your product apart from the competition.",
+                "items": [
+                    "Visual Direction",
+                    "Art Direction",
+                    "Storyboarding"
+                ]
+            },
+            "design": {
+                "title": "Design",
+                "description": "Crafting a premium user experience with surgical precision. Every interaction and pixel is designed to convey luxury and technical excellence.",
+                "items": [
+                    "UI/UX Craft",
+                    "Motion Design",
+                    "Interaction Design"
+                ]
+            },
+            "develop": {
+                "title": "Develop",
+                "description": "Forging digital masterpieces with cutting-edge tech. We build robust, scalable, and immersive products that push the boundaries of the web.",
+                "items": [
+                    "Creative Coding",
+                    "WebGL & 3D",
+                    "Animations"
+                ]
+            },
+            "polish": {
+                "title": "Polish",
+                "description": "The obsessive pursuit of perfection. We refine micro-interactions and optimize performance to ensure a flawless experience on every device.",
+                "items": [
+                    "Micro-interactions",
+                    "Performance",
+                    "Pixel Perfect"
+                ]
+            },
+            "launch": {
+                "title": "Launch",
+                "description": "Ensuring a monumental entry into the market. We manage the launch process and partner for long-term evolution and digital legacy.",
+                "items": [
+                    "Go Live",
+                    "Case Study",
+                    "Awards Submit"
+                ]
+            }
+        }
+    },
+    "language": {
+        "title": "Select Language",
+        "it": "Italiano",
+        "en": "English"
+    },
+    "common": {
+        "copied": "Copied!"
+    },
+    "seo": {
+        "title": "Noxis Agency | Premium Digital Products",
+        "description": "We don’t just write code. We forge assets. Noxis Agency creates digital products that are as powerful as they are beautiful through rigorous engineering and obsessive art direction.",
+        "keywords": "Digital Agency, Web Design, Premium Websites, 3D Web, Awwwards, Creative Agency, Next.js, React, Three.js, Glassmorphism"
+    }
+}
