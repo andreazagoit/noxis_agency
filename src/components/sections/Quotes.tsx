@@ -90,22 +90,35 @@ function AnimatedText({
     isFirst: boolean
     isLast: boolean
 }) {
-    const chars = text.split('')
-    const charCount = chars.length
+    const words = text.split(' ')
+    const totalChars = text.length
+    let charIndex = 0
 
     return (
         <span className="inline">
-            {chars.map((char, i) => (
-                <Char
-                    key={`${text}-${i}`}
-                    char={char}
-                    index={i}
-                    total={charCount}
-                    progress={progress}
-                    isFirst={isFirst}
-                    isLast={isLast}
-                />
-            ))}
+            {words.map((word, i) => {
+                const currentStartIndex = charIndex
+                charIndex += word.length + 1
+
+                return (
+                    <span key={i}>
+                        <span className="inline-block whitespace-nowrap">
+                            {word.split('').map((char, j) => (
+                                <Char
+                                    key={`${word}-${j}`}
+                                    char={char}
+                                    index={currentStartIndex + j}
+                                    total={totalChars}
+                                    progress={progress}
+                                    isFirst={isFirst}
+                                    isLast={isLast}
+                                />
+                            ))}
+                        </span>
+                        {i < words.length - 1 && ' '}
+                    </span>
+                )
+            })}
         </span>
     )
 }
