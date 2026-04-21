@@ -70,7 +70,7 @@ export function Hero() {
             {/* Title - First on mobile, Right on desktop */}
             <div className="flex items-center md:pl-0 order-1 md:order-2">
               <div className="w-full">
-                <h1 className="text-display text-left text-foreground leading-[0.85] tracking-tight">
+                <h1 className="text-display text-left text-foreground leading-[0.85]">
                   <div className="overflow-hidden">
                     <motion.div
                       initial={{ y: "100%" }}
@@ -82,11 +82,12 @@ export function Hero() {
                   </div>
                   <div className="overflow-hidden">
                     <motion.div
+                      className="text-primary"
                       initial={{ y: "100%" }}
                       animate={isLoading ? { y: "100%" } : { y: 0 }}
                       transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.4 }}
                     >
-                      <span className="text-primary">{t('hero.title_line2_prefix')}</span> {t('hero.title_line2_suffix')}
+                      {t('hero.title_line2')}
                     </motion.div>
                   </div>
                   <div className="overflow-hidden">

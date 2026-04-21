@@ -5,11 +5,10 @@
         "method": "Method"
     },
     "hero": {
-        "title_line1": "Your Brand",
-        "title_line2_prefix": "Deserves",
-        "title_line2_suffix": "More",
-        "title_line3": "Than a Pretty",
-        "title_line4": "Website.",
+        "title_line1": "We love",
+        "title_line2": "challenges.",
+        "title_line3": "You love",
+        "title_line4": "results.",
         "description": "Designing immersive, motion-driven experiences that command attention and guide users to act. Clean builds. Sharp strategy. Zero limits.",
         "cta": "Start a Project",
         "we_are_good_at": "We Are Good At",
