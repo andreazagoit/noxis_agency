@@ -99,15 +99,6 @@ export function Hero() {
                       {t('hero.title_line3')}
                     </motion.div>
                   </div>
-                  <div className="overflow-hidden">
-                    <motion.div
-                      initial={{ y: "100%" }}
-                      animate={isLoading ? { y: "100%" } : { y: 0 }}
-                      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.6 }}
-                    >
-                      {t('hero.title_line4')}
-                    </motion.div>
-                  </div>
                 </h1>
               </div>
             </div>
